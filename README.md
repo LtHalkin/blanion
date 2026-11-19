@@ -63,6 +63,14 @@ In **/admin → DAY & STATS → TEST A DAY** you can load any day's questions (d
 
 Growing the bank: `NODE_USE_ENV_PROXY=1 node scripts/harvest.js` does a polite (1 req/s) Nominatim grid harvest into `scripts/osm-raw/nominatim-extra.json` (resumable); then `node scripts/build-bank.js` rebuilds `lib/bank.json`.
 
+## BLANION Racer (`/racer`)
+
+A low-poly 3D time-trial racer in the spirit of PolyTrack (original code and art, nothing copied): arcade car physics, three hand-built circuits (Coral Loop, Tidewater Run, Deep Trench), **random tracks from a numeric code** (share the code; the same code always gives the same circuit), a **ghost car** of your best race, gold/silver/bronze medals, drift with SPACE, minimap, engine sound, keyboard and touch controls.
+
+- `public/racer-core.js` – track maths, 120 Hz fixed-step car physics, lap rules, AI driver. Pure functions, tested in Node (`tests/racer.test.js`): every circuit is validated (no crossings or pinches) and must be finished cleanly by the AI driver; the AI's time sets the medal thresholds.
+- `public/racer3d.js` – the view: the whole circuit is merged into a few vertex-coloured, flat-shaded meshes (fast on phones). `public/racer.js` – game flow, HUD, ghost, records.
+- Best times, ghosts and settings are stored in your browser (`localStorage`); there is no server leaderboard.
+
 ## Endless Dive (unlimited mode for the main game)
 
 The daily dive is seven questions once a day. **Endless Dive** (home screen: `∞ ENDLESS DIVE`, also on the results screen) is the unlimited version: as many runs as you like, any time.

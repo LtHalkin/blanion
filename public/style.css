@@ -184,3 +184,5 @@ summary{cursor:pointer;color:var(--lantern)}
 #eReveal{text-align:center;animation:pop .35s steps(5)}
 @media (max-width:640px){#eForm{flex-direction:column}}
 #endlessBtn{display:block;margin:16px auto 0}
+
+.promo-racer{border-color:#ff8a70}.promo-racer .promo-title,.promo-racer .promo-go{color:#ffb4a2}
