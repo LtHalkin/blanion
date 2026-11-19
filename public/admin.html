@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>BLANION — Harbour Master</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+<div id="login" class="login">
+  <form id="loginForm" class="panel">
+    <h1>BLANION</h1><p class="sub">HARBOUR MASTER · ADMIN</p>
+    <input id="pw" type="password" placeholder="Admin password" autocomplete="current-password" required>
+    <button class="btn" type="submit">ENTER</button>
+    <p id="loginErr" class="err"></p>
+  </form>
+</div>
+
+<div id="shell" class="hidden">
+  <header>
+    <h1>BLANION <small>HARBOUR MASTER</small></h1>
+    <nav id="tabs">
+      <button data-tab="review" class="on">ANSWER REVIEW <span id="bReview" class="badge">0</span></button>
+      <button data-tab="flagged">FLAGGED <span id="bFlag" class="badge">0</span></button>
+      <button data-tab="answers">ANSWER DATABASE</button>
+      <button data-tab="stats">DAY &amp; STATS</button>
+      <button data-tab="audit">AUDIT LOG</button>
+      <button id="logout" class="ghost">LOG OUT</button>
+    </nav>
+  </header>
+  <main>
+    <section id="t-review"></section>
+    <section id="t-flagged" class="hidden"></section>
+    <section id="t-answers" class="hidden"></section>
+    <section id="t-stats" class="hidden"></section>
+    <section id="t-audit" class="hidden"></section>
+  </main>
+  <div id="toast" class="toast hidden"></div>
+</div>
+<script src="/admin.js"></script>
+</body>
+</html>

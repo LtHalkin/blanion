@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BLANION — The Blanchardstown Daily Dive</title>
+<meta name="description" content="Seven questions. One town. How deep can you go? BLANION is the daily Blanchardstown trivia game where rare answers score the most.">
+<meta property="og:title" content="BLANION — The Blanchardstown Daily Dive">
+<meta property="og:description" content="Seven questions. One town. How deep can you go?">
+<meta name="theme-color" content="#071a3a">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<canvas id="ocean" aria-hidden="true"></canvas>
+
+<aside id="gauge" aria-label="Depth gauge">
+  <div class="gauge-track"><div class="gauge-fill"></div><div class="gauge-pip"></div></div>
+  <div class="gauge-m">0m</div>
+</aside>
+
+<header class="top">
+  <button class="brand" id="logoBtn" aria-label="BLANION home"><canvas id="logoMascot"></canvas><span>BLANION</span></button>
+  <nav>
+    <button class="link" id="navHow">HOW TO PLAY</button>
+    <button class="link" id="navBoard">LEADERBOARD</button>
+  </nav>
+</header>
+
+<main id="app">
+  <!-- HOME -->
+  <section id="v-home" class="view">
+    <div class="hero">
+      <div class="day-chip" id="dayChip">DAY 001</div>
+      <h1 class="logo">BLANION</h1>
+      <p class="tagline">THE BLANCHARDSTOWN DAILY DIVE</p>
+      <p class="support">Seven questions. One town. How deep can you go?</p>
+    </div>
+    <div class="card home-card">
+      <div class="status" id="homeStatus"></div>
+      <label class="nick" id="nickWrap">DIVER NAME <input id="nick" maxlength="16" placeholder="optional" autocomplete="nickname" spellcheck="false"></label>
+      <button class="btn big" id="diveBtn">DIVE</button>
+      <div class="links-row">
+        <button class="link" id="howBtn">HOW IT WORKS</button>
+        <button class="link" id="boardBtn">TODAY'S DIVERS</button>
+      </div>
+      <div class="countdown" id="homeCountdown"></div>
+    </div>
+    <div class="pills">
+      <span>7 QUESTIONS</span><span>25 SECONDS EACH</span><span>RARE ANSWERS = BIG POINTS</span>
+    </div>
+  </section>
+
+  <!-- GAME -->
+  <section id="v-game" class="view hidden">
+    <div class="hud card thin">
+      <div><small>QUESTION</small><b id="hudQ">1/7</b></div>
+      <div><small>SCORE</small><b id="hudScore">0</b></div>
+      <div><small>DEPTH</small><b id="hudDepth">0m</b></div>
+    </div>
+    <div class="card">
+      <div id="qPanel">
+        <div class="timer" aria-hidden="true"><div class="timer-bar" id="timerBar"></div></div>
+        <div class="timer-row"><span class="chip" id="qCat">CATEGORY</span><span class="secs" id="secs" role="timer">25</span></div>
+        <h2 id="qText" class="question">…</h2>
+        <form id="answerForm" autocomplete="off">
+          <input id="answer" maxlength="100" placeholder="Type your answer" autocapitalize="words" spellcheck="false" aria-label="Your answer">
+          <button class="btn" id="submitBtn" type="submit">SUBMIT</button>
+        </form>
+        <div id="clarify" class="clarify hidden"></div>
+        <p class="hint" id="hint" aria-live="polite"></p>
+      </div>
+
+      <div id="revealPanel" class="hidden" aria-live="polite">
+        <div class="reveal-tier" id="rvTier">PLANKTON</div>
+        <div class="reveal-points" id="rvPoints">+10</div>
+        <div class="reveal-name" id="rvName"></div>
+        <p class="reveal-note" id="rvNote"></p>
+        <div class="appeal hidden" id="appealBox">
+          <textarea id="appealText" rows="3" maxlength="400" placeholder="Tell us what it is and where it is — a link helps!"></textarea>
+          <div class="row"><button class="btn small" id="appealSend">SEND APPEAL</button><button class="link" id="appealCancel">CANCEL</button></div>
+        </div>
+        <div class="row">
+          <button class="btn" id="nextBtn">NEXT</button>
+          <button class="link hidden" id="appealBtn">APPEAL THIS ANSWER</button>
+        </div>
+        <div class="auto"><div id="autoBar"></div></div>
+      </div>
+
+      <div id="readyPanel" class="hidden">
+        <h2 class="question" id="readyTitle">Ready?</h2>
+        <p class="support" id="readyText"></p>
+        <button class="btn big" id="goBtn">START THE CLOCK</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="v-results" class="view hidden">
+    <div class="card">
+      <div class="day-chip" id="resDay">DAY 001</div>
+      <h2 class="res-title">DIVE COMPLETE</h2>
+      <div class="res-zone" id="resZone">Midnight Trench</div>
+      <div class="res-score"><span id="resScore">0</span><small>/ 700</small></div>
+      <div class="res-depth" id="resDepth">0m deep</div>
+      <div class="res-prov" id="resProv"></div>
+      <ol class="res-list" id="resList"></ol>
+      <div class="res-rank" id="resRank"></div>
+      <div class="row center">
+        <button class="btn" id="shareBtn">COPY RESULT</button>
+        <button class="btn ghost" id="resBoardBtn">LEADERBOARD</button>
+      </div>
+      <p class="hint center" id="shareHint"></p>
+      <div class="countdown" id="resCountdown"></div>
+    </div>
+  </section>
+
+  <!-- BOARD -->
+  <section id="v-board" class="view hidden">
+    <div class="card">
+      <h2 class="res-title">LEADERBOARD</h2>
+      <div class="res-prov" id="boardProv"></div>
+      <ol class="board" id="boardList"></ol>
+      <div class="row center"><button class="btn ghost" id="boardBack">BACK</button></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>BLANION is an independent fan-made game about Blanchardstown &amp; Dublin 15.</span>
+</footer>
+
+<dialog id="how">
+  <div class="dlg">
+    <h2>HOW TO PLAY</h2>
+    <p>Every day, everyone gets the <b>same seven questions</b> about Blanchardstown. You have <b>25 seconds</b> for each one.</p>
+    <p>Any correct answer scores — but <b>the fewer divers who give the same answer, the more it is worth</b>. Obvious answers sink to the bottom of the pile. Deep cuts float your little angler all the way down to the abyss.</p>
+    <table class="tiers" id="tierTable"></table>
+    <p class="small">Scores are <b>provisional</b> while the day is live (based on expected popularity, blended with real answers as they arrive). When the day closes at midnight, rarity is locked in from actual answer counts and everyone is scored the same way.</p>
+    <p class="small">Answered something we don't recognise? It is never thrown away: it goes to the Harbour Masters for verification, and if it is approved your score updates automatically.</p>
+    <details><summary>Where does BLANION cover?</summary><p class="small" id="coverageText"></p></details>
+    <div class="row center"><button class="btn" id="howClose">GOT IT</button></div>
+  </div>
+</dialog>
+
+<script src="/mascot.js"></script>
+<script src="/ocean.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
