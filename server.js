@@ -36,6 +36,7 @@ function serveStatic(req, res, pathname) {
   if (pathname === '/reviewer') pathname = '/reviewer.html';
   if (pathname === '/stack') pathname = '/stack.html';
   if (pathname === '/weigh') pathname = '/weigh.html';
+  if (pathname === '/golf') pathname = '/golf.html';
   const root = path.join(__dirname, 'public');
   const file = path.normalize(path.join(root, decodeURIComponent(pathname)));
   if (!file.startsWith(root + path.sep)) { res.writeHead(403); return res.end(); }

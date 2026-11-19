@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>BLANION MINI GOLF — 3 holes</title>
+<meta name="description" content="Three holes of 3D mini golf: a dogleg, a spinning-arm alley and a pond crossing. Play before or after the daily dive.">
+<meta name="theme-color" content="#071a3a">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/golf.css">
+</head>
+<body class="golf-page">
+<canvas id="gl" aria-label="3D mini golf course"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="brand" href="/" aria-label="BLANION home"><canvas id="logoMascot"></canvas><span>BLANION</span></a>
+  <nav><a class="link" href="/">THE DAILY DIVE</a></nav>
+</header>
+
+<!-- in-game HUD -->
+<div class="g-hud hidden" id="hud">
+  <div class="g-card">
+    <div class="g-hole"><small>HOLE</small><b id="hHole">1/3</b></div>
+    <div><small>PAR</small><b id="hPar">2</b></div>
+    <div><small>STROKES</small><b id="hStrokes">0</b></div>
+    <div><small>TOTAL</small><b id="hTotal">0</b></div>
+  </div>
+  <div class="g-tools">
+    <button class="tb" id="bView" aria-label="Toggle overview camera" title="Overview">&#9974;</button>
+    <button class="tb" id="bMute" aria-label="Sound on or off" aria-pressed="false">&#9835;</button>
+    <button class="tb" id="bPause" aria-label="Pause">&#10074;&#10074;</button>
+  </div>
+</div>
+
+<div class="power hidden" id="power" aria-hidden="true"><div class="pbar"><i id="pfill"></i></div><span id="ptxt">POWER</span></div>
+<div class="hint-bubble hidden" id="hint">Drag back from anywhere, then let go to putt</div>
+<div class="cam-pad hidden" id="camPad">
+  <button class="tb" id="bRotL" aria-label="Rotate camera left">&#10226;</button>
+  <button class="tb" id="bRotR" aria-label="Rotate camera right">&#10227;</button>
+  <button class="tb" id="bZoomIn" aria-label="Zoom in">+</button>
+  <button class="tb" id="bZoomOut" aria-label="Zoom out">&minus;</button>
+</div>
+
+<div class="hole-intro hidden" id="holeIntro"><small id="hiNum">HOLE 1</small><h2 id="hiName">Gentle Dogleg</h2><p id="hiPar">PAR 2</p><span id="hiBlurb"></span></div>
+<div class="banner hidden" id="banner"><div class="b-big" id="bBig">BIRDIE!</div><div class="b-sub" id="bSub">2 strokes &middot; par 3</div><button class="btn" id="bNext">NEXT HOLE</button></div>
+<div class="toast hidden" id="toast" aria-live="polite"></div>
+
+<!-- menu -->
+<section class="overlay" id="menu">
+  <div class="card menu-card">
+    <div class="day-chip">3 HOLES &middot; PAR 8</div>
+    <h1 class="res-title">BLANION<br>MINI GOLF</h1>
+    <ul class="holes-list" id="holesList"></ul>
+    <p class="support">Drag back from anywhere and let go to putt. Mind the spinning arms and the pond.</p>
+    <div class="row center"><button class="btn big" id="start">TEE OFF</button></div>
+    <p class="hint center" id="bestLine"></p>
+    <div class="row center"><a class="link" href="/">&larr; PLAY THE DAILY DIVE</a></div>
+  </div>
+</section>
+
+<!-- scorecard -->
+<section class="overlay hidden" id="card">
+  <div class="card menu-card">
+    <div class="day-chip">SCORECARD</div>
+    <h2 class="res-title">ROUND COMPLETE</h2>
+    <div class="res-zone" id="cTitle">Par Player</div>
+    <div class="res-score"><span id="cTotal">8</span><small id="cVs">par</small></div>
+    <table class="card-table"><thead><tr><th>HOLE</th><th>PAR</th><th>SCORE</th><th></th></tr></thead><tbody id="cRows"></tbody></table>
+    <div class="res-prov" id="cBest"></div>
+    <div class="row center"><button class="btn" id="again">PLAY AGAIN</button><button class="btn ghost" id="copy">COPY RESULT</button></div>
+    <p class="hint center" id="copyHint"></p>
+    <a class="promo" href="/stack"><span class="promo-kicker">NEXT UP?</span><span class="promo-title">PLAY BLANION STACK</span><span class="promo-sub">Stack 20 odd-shaped blocks.</span><span class="promo-go" aria-hidden="true">&#9654;</span></a>
+    <a class="promo promo-weigh" href="/weigh"><span class="promo-kicker">OR TRY</span><span class="promo-title">PLAY BLANION WEIGH-IN</span><span class="promo-sub">How many eggs is an elephant?</span><span class="promo-go" aria-hidden="true">&#9654;</span></a>
+  </div>
+</section>
+
+<section class="overlay hidden" id="pause"><div class="card menu-card"><h2 class="res-title">PAUSED</h2><div class="row center"><button class="btn" id="resume">RESUME</button></div><div class="row center"><button class="btn ghost small" id="quit">QUIT TO MENU</button></div></div></section>
+
+<section class="overlay hidden" id="noGL"><div class="card menu-card"><h2 class="res-title">3D NOT AVAILABLE</h2><p class="support">Mini golf needs WebGL (3D graphics), which this browser or device has turned off. Try another browser, or play the other games.</p><div class="row center"><a class="btn" href="/">BACK TO BLANION</a></div></div></section>
+
+<script src="/mascot.js"></script>
+<script src="/golf-physics.js"></script>
+<script type="module" src="/golf.js"></script>
+</body>
+</html>

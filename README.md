@@ -106,6 +106,18 @@ A block-stacking game you can play before or after the daily dive (linked from t
 
 Linked from the home and results screens alongside Stack and Lowfly.
 
+## BLANION MINI GOLF (fourth game, `/golf`)
+
+Three holes of real-time 3D mini golf, playable before or after the daily dive (linked from the home and results screens): **1 Gentle Dogleg** (par 2), **2 Spinner Alley** (par 3: time the spinning arms, mind the sand traps) and **3 Pond Crossing** (par 3: use the bridge, a splash costs a stroke; a slope near the cup pushes the ball). Par for the round is 8.
+
+- **Controls:** drag back from anywhere and let go to putt (slingshot style, any pointer: mouse, touch or pen). A dotted guide shows the first bounces and a power-coloured arrow shows strength. Rotate the camera with ⟲ ⟳ / ← → / right-drag / two-finger twist, zoom with + − / wheel / pinch, toggle an overview camera, Esc or P to pause. Eight strokes maximum per hole ("pick up").
+- **Graphics:** Three.js with soft shadow-mapped lighting, ACES tone mapping, procedural mown-grass, wood, sand and water textures, a real cup cut into the green, wooden rails with caps and posts, striped bumpers and spinner arms, a waving flag, pond stones and ripples, animated slope chevrons, low-poly trees/bushes/flowers/rocks/hills and drifting clouds, a sky gradient with fog, particle effects (dust, splashes, sparks, confetti) and a camera fly-over intro per hole. Mobile gets cheaper shadows and a wider camera; `prefers-reduced-motion` removes the fly-over and shake.
+- **Physics:** a custom 2D engine (`public/golf-physics.js`, no dependencies, runs in Node): fixed 240 Hz sub-stepping so results are identical at any frame rate, continuous circle-vs-segment collision (no tunnelling), restitution walls, kick bumpers, rotating spinner arms with surface velocity, sand and grass friction, slopes, water hazards and a cup that only captures a ball moving slowly enough.
+- **Course fairness is tested.** `scripts/golf-solve.js` brute-forces each hole and `tests/golf.test.js` replays the stored solutions: hole 1 is solvable in 2 (par), hole 2 even in 1 (a timed hole-in-one), hole 3 in 2. The tests also cover rolling distance, wall reflection, no escaping the course from any angle at full power, the cup (gentle drops, fast skips), water and respawn, sand, slopes, spinner collisions, determinism and score names.
+- **Scoring:** result names (Hole in one, Birdie, Par, Bogey…), a scorecard with a title from *Keep Practising* to *Mini Golf Legend*, your best round saved in `localStorage`, and a copyable result. There is no server leaderboard (physics runs in the browser, so it would be trivially cheatable).
+- **3D library:** the shared tree-shaken Three.js bundle (`public/vendor/three-lite.min.js`, ~600 KB / ~150 KB gzipped, rebuilt with `scripts/build-three.sh`) is loaded only on the 3D game pages. If WebGL is unavailable the page says so and links back.
+- **Adding a hole:** add an entry to `HOLES` in `golf-physics.js` (outline, tee, cup, optional bumpers / spinners / sand / water / slopes / blocks), run `node scripts/golf-solve.js` to confirm it is solvable, and add the solution to the test.
+
 ## Reviewer panel (view only)
 
 `/reviewer` is a second, read-only panel that shows **only the ANSWER REVIEW list** (pending / flagged / decided / all, with the bot's recommendation and evidence, player appeals and proposed sources). It has no forms or buttons and cannot change anything.

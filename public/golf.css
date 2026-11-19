@@ -1,0 +1,60 @@
+html,body{margin:0;height:100%;overflow:hidden;background:#cfeaff;overscroll-behavior:none}
+body.golf-page{touch-action:none;user-select:none;-webkit-user-select:none}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+.vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 58%,rgba(4,18,44,.38) 100%)}
+.golf-page .top{z-index:20}.golf-page .brand{color:var(--ink);text-decoration:none}.golf-page .top nav .link{text-decoration:none}
+.hidden{display:none!important}
+
+/* HUD */
+.g-hud{position:fixed;top:56px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;z-index:15;pointer-events:none}
+.g-card{display:flex;gap:18px;padding:10px 14px;background:rgba(5,20,50,.82);border:4px solid #cfeaff;box-shadow:4px 4px 0 rgba(2,8,24,.7);backdrop-filter:blur(3px)}
+.g-card small{display:block;font-family:var(--px);font-size:7px;color:var(--mute);margin-bottom:6px}
+.g-card b{font-family:var(--px);font-size:14px;color:var(--lantern)}
+.g-card b.bump{display:inline-block;animation:bump .35s steps(4)}
+@keyframes bump{50%{transform:scale(1.4);color:#fff}}
+.g-tools{display:flex;gap:8px;pointer-events:auto}
+.tb{font-size:16px;width:40px;height:40px;color:var(--ink);background:rgba(5,20,50,.85);border:3px solid var(--line);padding:0;cursor:pointer;box-shadow:3px 3px 0 rgba(2,8,24,.6)}
+.tb:hover{border-color:var(--lantern)}.tb:active{transform:translateY(2px)}.tb.off{opacity:.45;text-decoration:line-through}.tb.on{border-color:var(--lantern);color:var(--lantern)}
+.cam-pad{position:fixed;right:12px;bottom:16px;display:grid;grid-template-columns:repeat(2,auto);gap:8px;z-index:15}
+
+/* power */
+.power{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);width:min(420px,78vw);z-index:15;text-align:center;pointer-events:none}
+.pbar{height:20px;border:4px solid #cfeaff;background:rgba(4,18,44,.85);box-shadow:3px 3px 0 rgba(2,8,24,.7);overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#5be3a1,#ffd54f 60%,#ff6b4a)}
+.power span{display:block;margin-top:6px;font-family:var(--px);font-size:9px;color:#fff;text-shadow:2px 2px #04122c}
+.hint-bubble{position:fixed;left:50%;bottom:62px;transform:translateX(-50%);z-index:14;font-family:var(--px);font-size:9px;line-height:1.7;text-align:center;color:#fff;background:rgba(4,18,44,.82);border:3px solid #cfeaff;padding:10px 14px;pointer-events:none;max-width:84vw;animation:hintPulse 1.8s ease-in-out infinite}
+@keyframes hintPulse{50%{transform:translateX(-50%) translateY(-4px)}}
+
+/* hole intro + banner + toast */
+.hole-intro{position:fixed;left:50%;top:26%;transform:translateX(-50%);text-align:center;z-index:16;pointer-events:none;animation:introIn 2.4s ease-out both}
+@keyframes introIn{0%{opacity:0;transform:translateX(-50%) translateY(18px)}12%,78%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0;transform:translateX(-50%) translateY(-10px)}}
+.hole-intro small{font-family:var(--px);font-size:10px;color:var(--lantern);letter-spacing:2px;text-shadow:2px 2px #04122c}
+.hole-intro h2{font-family:var(--px);font-size:clamp(18px,5vw,30px);margin:10px 0;font-weight:400;color:#fff;text-shadow:4px 4px 0 #04122c,0 0 24px rgba(0,0,0,.35)}
+.hole-intro p{font-family:var(--px);font-size:11px;color:#fff;margin:0 0 8px;text-shadow:2px 2px #04122c}
+.hole-intro span{font-size:22px;color:#e8f6ff;text-shadow:2px 2px #04122c}
+.banner{position:fixed;left:50%;top:17%;transform:translateX(-50%);text-align:center;z-index:17;animation:bannerIn .5s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes bannerIn{from{opacity:0;transform:translateX(-50%) scale(.5)}}
+.b-big{font-family:var(--px);font-size:clamp(24px,7vw,48px);color:var(--lantern);text-shadow:4px 4px 0 #04122c,0 0 30px rgba(255,213,79,.5)}
+.b-big.good{animation:rainbow 1.4s linear infinite}
+@keyframes rainbow{to{filter:hue-rotate(360deg)}}
+.b-sub{font-family:var(--px);font-size:11px;color:#fff;margin:12px 0 18px;text-shadow:2px 2px #04122c}
+.toast{position:fixed;left:50%;top:22%;transform:translateX(-50%);font-family:var(--px);font-size:11px;color:#fff;background:rgba(190,40,40,.92);border:3px solid #ffd0d0;padding:10px 14px;z-index:18;pointer-events:none;animation:bannerIn .3s steps(5) both}
+.toast.ok{background:rgba(30,120,80,.92);border-color:#d0ffe6}
+
+/* overlays */
+.overlay{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(2,10,28,.28);overflow:auto}
+.menu-card{width:min(440px,100%);text-align:center;padding:20px 20px 22px;max-height:100%;overflow:auto;animation:viewIn .45s ease-out both}
+@keyframes viewIn{from{opacity:0;transform:translateY(16px)}}
+.menu-card .day-chip{display:inline-block}
+.menu-card .res-title{line-height:1.5;margin:10px 0}
+.holes-list{list-style:none;margin:8px 0;padding:0;display:grid;gap:6px;text-align:left}
+.holes-list li{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:8px 10px;background:rgba(2,10,28,.55);border-left:6px solid var(--c,#5be3a1)}
+.holes-list .n{font-family:var(--px);font-size:12px;color:var(--lantern)}.holes-list .nm{font-size:22px}.holes-list small{display:block;font-size:17px;color:var(--mute)}.holes-list .p{font-family:var(--px);font-size:9px;color:#fff}
+.card-table{width:100%;border-collapse:collapse;margin:10px 0}
+.card-table th{font-family:var(--px);font-size:7px;color:var(--mute);text-align:center;padding:6px}
+.card-table td{text-align:center;padding:8px 6px;font-size:22px;border-top:2px solid rgba(255,255,255,.1)}
+.card-table td:last-child{font-family:var(--px);font-size:9px;text-align:right}
+.card-table .good{color:#8affc8}.card-table .bad{color:#ff9a8a}
+.menu-card .promo{margin-top:12px}
+@media (max-width:640px){.power{bottom:96px;width:min(360px,70vw)}.hint-bubble{bottom:132px}.cam-pad{grid-template-columns:repeat(4,auto);bottom:14px;left:50%;right:auto;transform:translateX(-50%)}.g-card{gap:12px;padding:8px 10px}.g-card b{font-size:12px}.g-hud{top:50px}.tb{width:36px;height:36px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
