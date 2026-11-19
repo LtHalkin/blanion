@@ -54,6 +54,30 @@ npm test                            # engine unit tests
 5. **Admin decisions** — approve (needs a source URL + an in-boundary area; coords must fall inside the Dublin 15 box; duplicate of an existing answer is refused → use merge), merge, reject (reason required), flag for research. One decision applies to every player who gave that answer, and scores are **recomputed from decisions** — there is no endpoint to edit a score.
 6. **Audit trail**: every decision, coverage change, answer edit, day close and recalculation is appended to a hash-chained log (verify it in the admin AUDIT LOG tab).
 
+## Answer bank
+
+The bank holds **141 answers** (Q1 waterways 5 · Q2 stations 5 · Q3 parks 16 · Q4 schools 36 · Q5 heritage 22 · Q6 areas 39 · Q7 clubs 20 roughly; see the admin Answer Database for the live numbers).
+It has three layers:
+
+1. **Hand-curated Day 001 seed** (`lib/day001.js`), supplied by the editor.
+2. **OpenStreetMap-sourced expansion** (`lib/bank.json`, built by `node scripts/build-bank.js` from `scripts/osm-raw/nominatim.json`).
+   Every entry is looked up by name in the harvested OpenStreetMap data, and the build fails if one cannot be found, so each carries a **real coordinate and an openstreetmap.org source link**.
+   The same data also upgraded the seed answers' coordinates from area-centres to real points and resolved several flags
+   (e.g. St Peregrine's GAA, Verona, Lady's Well Park, St Luke's NS are located inside Dublin 15).
+   Entries are marked `verification: osm-sourced` — that means *sourced and located*, **not** *admin-verified*. Review them in the admin Answer Database.
+   Judgement calls (which side of the boundary a borderline place is on) are explicit in `scripts/build-bank.js`, and borderline ones carry a flag.
+3. **Player-discovered answers**: anything players type that is not in the bank goes to ANSWER REVIEW and, once approved with a source, joins the bank.
+   **BULK IMPORT** (admin tab, or `POST /api/admin/answers/import`) adds many verified answers at once with the same rules (source URL, in-boundary area, no duplicates), with a dry-run preview and an audit entry.
+
+**Upgrading an existing deployment:** on start-up, any store seeded by an older bank is topped up automatically (new answers added, untouched seed answers enriched, answers an admin has edited are never overwritten; one `seed.sync` audit entry, idempotent). Players, plays and audit history are untouched.
+
+Known limits: OpenStreetMap is thin for clubs and for archaeology (e.g. no ringfort points), so the heritage and sports lists are the shortest.
+New neighbourhood answers are the Dublin 15 **townlands** from OpenStreetMap; they sit in the "extended" boundary ring.
+Places OpenStreetMap puts outside Dublin 15 (Lucan, Leixlip, Palmerstown, Chapelizod, Ashtown, Phoenix Park…) were excluded.
+The Wikipedia, fingal.ie and mytown.ie pages named in the brief could not be reached from the build environment, so they were not used; bulk import is the way to add data from them.
+
+**Attribution:** place names and coordinates © OpenStreetMap contributors, licensed under the ODbL 1.0 (https://www.openstreetmap.org/copyright). The site footer carries the credit; keep it.
+
 ## Rarity & fairness
 
 `share = (count + prior·k) / (total + k)` with `k = max(0, 100 − total)` — day-one priors (expected popularity) fade out as real answers arrive and are gone at 100 valid answers per question.

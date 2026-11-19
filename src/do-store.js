@@ -3,7 +3,7 @@
  * Durable Object store: keeps the whole game state in memory (single writer => consistent counts and scoring)
  * and persists it to Durable Object storage as one key per record, writing only what changed.
  */
-const { blankState, appendAudit, verifyChain } = require('../lib/state');
+const { blankState, appendAudit, verifyChain, syncSeeds } = require('../lib/state');
 const { uid } = require('../lib/util');
 
 const pad = n => String(n).padStart(8, '0');
@@ -40,6 +40,8 @@ function createDoStore(storage, env) {
     if (env.LAUNCH_DATE) db.meta.launchDate = env.LAUNCH_DATE;
     db.submissions.forEach(s => subIndex.set(s.id, s));
     auditDone = db.audit.length; subsDone = db.submissions.length;
+    const sync = syncSeeds(db);
+    if (sync) { appendAudit(db, 'system', 'seed.sync', 'answers', sync); touched.full = true; await persist(); }
   }
 
   /** Write only records that changed since the last persist. Call after every request. */

@@ -1,0 +1,1889 @@
+{
+ "version": 2,
+ "generatedAt": "2026-11-19",
+ "attribution": "Coordinates and names © OpenStreetMap contributors, ODbL 1.0 — https://www.openstreetmap.org/copyright",
+ "areas": {
+  "Hollywoodrath": [
+   53.42424,
+   -6.37471
+  ],
+  "Ballycoolen": [
+   53.40628,
+   -6.36126
+  ],
+  "Buzzardstown": [
+   53.40623,
+   -6.38461
+  ],
+  "Cappogue": [
+   53.39882,
+   -6.33396
+  ],
+  "Castaheany": [
+   53.40199,
+   -6.43461
+  ],
+  "Cruiserath": [
+   53.41722,
+   -6.37577
+  ],
+  "Deanestown": [
+   53.39485,
+   -6.37032
+  ],
+  "Dunsink": [
+   53.38768,
+   -6.33947
+  ],
+  "Macetown North": [
+   53.41747,
+   -6.4076
+  ],
+  "Macetown South": [
+   53.41233,
+   -6.40684
+  ],
+  "Mitchelstown": [
+   53.41631,
+   -6.35054
+  ],
+  "Sheephill": [
+   53.3939,
+   -6.35619
+  ],
+  "Scribblestown": [
+   53.38238,
+   -6.33275
+  ],
+  "Woodlands": [
+   53.37411,
+   -6.42525
+  ],
+  "Barnhill": [
+   53.38744,
+   -6.45118
+  ],
+  "Littlepace": [
+   53.40622,
+   -6.43082
+  ],
+  "Astagob": [
+   53.3681,
+   -6.40409
+  ]
+ },
+ "answers": [
+  {
+   "id": "b1-1k3azuf",
+   "q": 1,
+   "canonical": "Pinkeen River",
+   "aliases": [
+    "The Pinkeen",
+    "Pinkeen Stream"
+   ],
+   "area": "Mulhuddart",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Waterways",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.40585,
+   "lng": -6.39983,
+   "source": "https://www.openstreetmap.org/way/297744523",
+   "sources": [
+    "https://www.openstreetmap.org/way/297744523"
+   ],
+   "osm": "way/297744523",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b1-1ojcx8b",
+   "q": 1,
+   "canonical": "Warrenstown Stream",
+   "aliases": [
+    "Warrenstown"
+   ],
+   "area": "Blanchardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Waterways",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.40228,
+   "lng": -6.38367,
+   "source": "https://www.openstreetmap.org/way/39989256",
+   "sources": [
+    "https://www.openstreetmap.org/way/39989256"
+   ],
+   "osm": "way/39989256",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b2-153tn28",
+   "q": 2,
+   "canonical": "Navan Road Parkway Station",
+   "aliases": [
+    "Navan Road Parkway",
+    "Navan Road",
+    "Navan Rd Parkway",
+    "Navan Road Station"
+   ],
+   "area": "Castleknock",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Rail",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.37755,
+   "lng": -6.34543,
+   "source": "https://www.openstreetmap.org/node/7198261238",
+   "sources": [
+    "https://www.openstreetmap.org/node/7198261238"
+   ],
+   "osm": "node/7198261238",
+   "flag": "Borderline: OpenStreetMap places this station in the Castleknock-Park area on the Navan Road, near the Ashtown edge. Confirm that it counts as serving the coverage area.",
+   "note": null
+  },
+  {
+   "id": "b3-1a8t08a",
+   "q": 3,
+   "canonical": "Beech Park",
+   "aliases": [],
+   "area": "Clonsilla",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Parks",
+   "location": "Clonsilla, Dublin 15",
+   "lat": 53.38064,
+   "lng": -6.42478,
+   "source": "https://www.openstreetmap.org/way/71919320",
+   "sources": [
+    "https://www.openstreetmap.org/way/71919320"
+   ],
+   "osm": "way/71919320",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b3-yp7lkr",
+   "q": 3,
+   "canonical": "Castle Curragh Park",
+   "aliases": [
+    "Castlecurragh Park",
+    "Castle Curragh"
+   ],
+   "area": "Mulhuddart",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Parks",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.40081,
+   "lng": -6.3923,
+   "source": "https://www.openstreetmap.org/way/28158364",
+   "sources": [
+    "https://www.openstreetmap.org/way/28158364"
+   ],
+   "osm": "way/28158364",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b3-ocuon8",
+   "q": 3,
+   "canonical": "Cherryfield Park",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Parks",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.3947,
+   "lng": -6.42066,
+   "source": "https://www.openstreetmap.org/way/264670928",
+   "sources": [
+    "https://www.openstreetmap.org/way/264670928"
+   ],
+   "osm": "way/264670928",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b3-ctcvys",
+   "q": 3,
+   "canonical": "Farmleigh",
+   "aliases": [
+    "Farmleigh House",
+    "Farmleigh Estate",
+    "Farmleigh Gardens",
+    "Farmleigh House and Estate"
+   ],
+   "area": "Castleknock",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Parks",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.364,
+   "lng": -6.358,
+   "source": "https://www.openstreetmap.org/way/20487299",
+   "sources": [
+    "https://www.openstreetmap.org/way/20487299"
+   ],
+   "osm": "way/20487299",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b3-1wo99lm",
+   "q": 3,
+   "canonical": "Littlepace Park",
+   "aliases": [
+    "Littlepace"
+   ],
+   "area": "Mulhuddart",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Parks",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.40589,
+   "lng": -6.42119,
+   "source": "https://www.openstreetmap.org/relation/15608860",
+   "sources": [
+    "https://www.openstreetmap.org/relation/15608860"
+   ],
+   "osm": "relation/15608860",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b3-1i4ly16",
+   "q": 3,
+   "canonical": "Porterstown Park",
+   "aliases": [
+    "Porterstown"
+   ],
+   "area": "Porterstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Parks",
+   "location": "Porterstown, Dublin 15",
+   "lat": 53.36905,
+   "lng": -6.4026,
+   "source": "https://www.openstreetmap.org/way/38727008",
+   "sources": [
+    "https://www.openstreetmap.org/way/38727008"
+   ],
+   "osm": "way/38727008",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b3-1wmmz1x",
+   "q": 3,
+   "canonical": "Shackleton Gardens",
+   "aliases": [
+    "The Shackleton Garden",
+    "Shackleton Park"
+   ],
+   "area": "Clonsilla",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Parks",
+   "location": "Clonsilla, Dublin 15",
+   "lat": 53.38242,
+   "lng": -6.43132,
+   "source": "https://www.openstreetmap.org/way/988025269",
+   "sources": [
+    "https://www.openstreetmap.org/way/988025269"
+   ],
+   "osm": "way/988025269",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b3-1kb0zls",
+   "q": 3,
+   "canonical": "Avondale Garden",
+   "aliases": [
+    "Avondale Gardens",
+    "Avondale Park"
+   ],
+   "area": "Mulhuddart",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Parks",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.41032,
+   "lng": -6.39965,
+   "source": "https://www.openstreetmap.org/way/1161103040",
+   "sources": [
+    "https://www.openstreetmap.org/way/1161103040"
+   ],
+   "osm": "way/1161103040",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-1xm530h",
+   "q": 4,
+   "canonical": "Castaheany Educate Together National School",
+   "aliases": [
+    "Castaheany",
+    "Castaheany Educate Together",
+    "Castaheany ETNS"
+   ],
+   "area": "Ongar",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39354,
+   "lng": -6.44271,
+   "source": "https://www.openstreetmap.org/way/81604318",
+   "sources": [
+    "https://www.openstreetmap.org/way/81604318"
+   ],
+   "osm": "way/81604318",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-1h9vmaa",
+   "q": 4,
+   "canonical": "Castleknock Educate Together National School",
+   "aliases": [
+    "Castleknock Educate Together",
+    "Castleknock ETNS"
+   ],
+   "area": "Castleknock",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.37964,
+   "lng": -6.36358,
+   "source": "https://www.openstreetmap.org/way/164361076",
+   "sources": [
+    "https://www.openstreetmap.org/way/164361076"
+   ],
+   "osm": "way/164361076",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-yn1b3p",
+   "q": 4,
+   "canonical": "Castleknock National School",
+   "aliases": [
+    "Castleknock NS"
+   ],
+   "area": "Castleknock",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.37411,
+   "lng": -6.3622,
+   "source": "https://www.openstreetmap.org/way/72693714",
+   "sources": [
+    "https://www.openstreetmap.org/way/72693714"
+   ],
+   "osm": "way/72693714",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-1bkur4w",
+   "q": 4,
+   "canonical": "Edmund Rice College",
+   "aliases": [
+    "Edmund Rice",
+    "Edmund Rice College Blanchardstown"
+   ],
+   "area": "Blanchardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.37595,
+   "lng": -6.34988,
+   "source": "https://www.openstreetmap.org/way/1120672163",
+   "sources": [
+    "https://www.openstreetmap.org/way/1120672163"
+   ],
+   "osm": "way/1120672163",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-1mmylta",
+   "q": 4,
+   "canonical": "Hansfield Educate Together National School",
+   "aliases": [
+    "Hansfield Educate Together Primary",
+    "Hansfield ETNS",
+    "Hansfield Educate Together NS"
+   ],
+   "area": "Hansfield",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Hansfield, Dublin 15",
+   "lat": 53.39202,
+   "lng": -6.44501,
+   "source": "https://www.openstreetmap.org/way/304435337",
+   "sources": [
+    "https://www.openstreetmap.org/way/304435337"
+   ],
+   "osm": "way/304435337",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-17cbkrk",
+   "q": 4,
+   "canonical": "Hansfield Educate Together Secondary School",
+   "aliases": [
+    "Hansfield ETSS",
+    "Hansfield Educate Together Secondary"
+   ],
+   "area": "Hansfield",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Hansfield, Dublin 15",
+   "lat": 53.39032,
+   "lng": -6.44524,
+   "source": "https://www.openstreetmap.org/way/450356448",
+   "sources": [
+    "https://www.openstreetmap.org/way/450356448"
+   ],
+   "osm": "way/450356448",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-1mcmsic",
+   "q": 4,
+   "canonical": "Lady's Well National School",
+   "aliases": [
+    "Ladys Well NS",
+    "Lady Well National School",
+    "Ladys Well School"
+   ],
+   "area": "Mulhuddart",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.40554,
+   "lng": -6.39215,
+   "source": "https://www.openstreetmap.org/way/316650748",
+   "sources": [
+    "https://www.openstreetmap.org/way/316650748"
+   ],
+   "osm": "way/316650748",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-xcen3s",
+   "q": 4,
+   "canonical": "Luttrellstown Community College",
+   "aliases": [
+    "Luttrellstown CC",
+    "Luttrellstown College",
+    "Luttrelstown Community College",
+    "Luttrellstown"
+   ],
+   "area": "Blanchardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.37445,
+   "lng": -6.40935,
+   "source": "https://www.openstreetmap.org/way/517692288",
+   "sources": [
+    "https://www.openstreetmap.org/way/517692288"
+   ],
+   "osm": "way/517692288",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-eilpkc",
+   "q": 4,
+   "canonical": "Rath Dara Community College",
+   "aliases": [
+    "Rath Dara",
+    "Rathdara Community College",
+    "Rath Dara CC"
+   ],
+   "area": "Blanchardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.4017,
+   "lng": -6.37967,
+   "source": "https://www.openstreetmap.org/way/55384051",
+   "sources": [
+    "https://www.openstreetmap.org/way/55384051"
+   ],
+   "osm": "way/55384051",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-x406o",
+   "q": 4,
+   "canonical": "Sacred Heart of Jesus Primary School, Huntstown",
+   "aliases": [
+    "Sacred Heart Primary School Huntstown",
+    "Sacred Heart Huntstown",
+    "Sacred Heart of Jesus Primary School"
+   ],
+   "area": "Huntstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Huntstown, Dublin 15",
+   "lat": 53.40253,
+   "lng": -6.40937,
+   "source": "https://www.openstreetmap.org/way/509940559",
+   "sources": [
+    "https://www.openstreetmap.org/way/509940559"
+   ],
+   "osm": "way/509940559",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-u2f9i8",
+   "q": 4,
+   "canonical": "St Brigid's National School, Castleknock",
+   "aliases": [
+    "St Brigid's NS Castleknock",
+    "St Brigids Castleknock"
+   ],
+   "area": "Castleknock",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.37511,
+   "lng": -6.36203,
+   "source": "https://www.openstreetmap.org/way/72693717",
+   "sources": [
+    "https://www.openstreetmap.org/way/72693717"
+   ],
+   "osm": "way/72693717",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-1b2pw1l",
+   "q": 4,
+   "canonical": "St Ciaran's Primary School",
+   "aliases": [
+    "St Ciarans",
+    "St Ciarans National School",
+    "St Ciaran NS"
+   ],
+   "area": "Hartstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Hartstown, Dublin 15",
+   "lat": 53.39402,
+   "lng": -6.4201,
+   "source": "https://www.openstreetmap.org/way/675219950",
+   "sources": [
+    "https://www.openstreetmap.org/way/675219950"
+   ],
+   "osm": "way/675219950",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-a6zcvt",
+   "q": 4,
+   "canonical": "St Mochta's National School",
+   "aliases": [
+    "St Mochtas NS",
+    "St Mochtas School"
+   ],
+   "area": "Blanchardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.38191,
+   "lng": -6.40502,
+   "source": "https://www.openstreetmap.org/way/82236066",
+   "sources": [
+    "https://www.openstreetmap.org/way/82236066"
+   ],
+   "osm": "way/82236066",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-1u38r0a",
+   "q": 4,
+   "canonical": "St Patrick's National School, Diswellstown",
+   "aliases": [
+    "St Patricks Diswellstown",
+    "St Patricks NS Diswellstown",
+    "Diswellstown National School"
+   ],
+   "area": "Diswellstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Diswellstown, Dublin 15",
+   "lat": 53.36919,
+   "lng": -6.38747,
+   "source": "https://www.openstreetmap.org/way/27428580",
+   "sources": [
+    "https://www.openstreetmap.org/way/27428580"
+   ],
+   "osm": "way/27428580",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-1kgk9z7",
+   "q": 4,
+   "canonical": "St Philip's National School",
+   "aliases": [
+    "St Philips NS",
+    "St Philip's National Schools",
+    "St Philips School"
+   ],
+   "area": "Blanchardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.39003,
+   "lng": -6.40746,
+   "source": "https://www.openstreetmap.org/way/27823981",
+   "sources": [
+    "https://www.openstreetmap.org/way/27823981"
+   ],
+   "osm": "way/27823981",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-4nokny",
+   "q": 4,
+   "canonical": "Scoil Choilm Community National School",
+   "aliases": [
+    "Scoil Choilm",
+    "Scoil Choilm CNS",
+    "Scoil Cholm"
+   ],
+   "area": "Blanchardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.37609,
+   "lng": -6.40801,
+   "source": "https://www.openstreetmap.org/way/250369417",
+   "sources": [
+    "https://www.openstreetmap.org/way/250369417"
+   ],
+   "osm": "way/250369417",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-emsx9f",
+   "q": 4,
+   "canonical": "Scoil Gráinne",
+   "aliases": [
+    "Scoil Gráinne Ongar"
+   ],
+   "area": "Ongar",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39745,
+   "lng": -6.43699,
+   "source": "https://www.openstreetmap.org/way/97219818",
+   "sources": [
+    "https://www.openstreetmap.org/way/97219818"
+   ],
+   "osm": "way/97219818",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-1z3las",
+   "q": 4,
+   "canonical": "Scoil Thomáis",
+   "aliases": [
+    "Scoil Tomáis",
+    "Scoil Thomais Carpenterstown"
+   ],
+   "area": "Carpenterstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Carpenterstown, Dublin 15",
+   "lat": 53.37818,
+   "lng": -6.37774,
+   "source": "https://www.openstreetmap.org/way/27428622",
+   "sources": [
+    "https://www.openstreetmap.org/way/27428622"
+   ],
+   "osm": "way/27428622",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-11h4p7f",
+   "q": 4,
+   "canonical": "St Benedict's National School",
+   "aliases": [
+    "St Benedicts NS",
+    "St Benedicts School"
+   ],
+   "area": "Ongar",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39334,
+   "lng": -6.44047,
+   "source": "https://www.openstreetmap.org/way/81604352",
+   "sources": [
+    "https://www.openstreetmap.org/way/81604352"
+   ],
+   "osm": "way/81604352",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b4-4yo03n",
+   "q": 4,
+   "canonical": "Mary Mother of Hope Junior National School",
+   "aliases": [
+    "Mary Mother of Hope",
+    "Mary Mother of Hope JNS",
+    "Mary Mother of Hope Junior School"
+   ],
+   "area": "Ongar",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Schools",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.4042,
+   "lng": -6.42447,
+   "source": "https://www.openstreetmap.org/relation/16757907",
+   "sources": [
+    "https://www.openstreetmap.org/relation/16757907"
+   ],
+   "osm": "relation/16757907",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b5-3w2evg",
+   "q": 5,
+   "canonical": "Our Lady's Well",
+   "aliases": [
+    "Lady's Well",
+    "Lady's Well Mulhuddart",
+    "Mulhuddart Holy Well"
+   ],
+   "area": "Mulhuddart",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Heritage",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.4084,
+   "lng": -6.39177,
+   "source": "https://www.openstreetmap.org/node/3234606193",
+   "sources": [
+    "https://www.openstreetmap.org/node/3234606193"
+   ],
+   "osm": "node/3234606193",
+   "flag": null,
+   "note": "A holy well at Mulhuddart."
+  },
+  {
+   "id": "b5-ggfb90",
+   "q": 5,
+   "canonical": "Mulhuddart Church and Graveyard",
+   "aliases": [
+    "Church of the Virgin Mary Graveyard",
+    "Church of Virgin Mary Graveyard",
+    "Mulhuddart Old Church",
+    "Mulhuddart Graveyard",
+    "Mulhuddart Church",
+    "Mulhuddart Old Graveyard"
+   ],
+   "area": "Mulhuddart",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Heritage",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.41034,
+   "lng": -6.38934,
+   "source": "https://www.openstreetmap.org/relation/5944297",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5944297"
+   ],
+   "osm": "relation/5944297",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b5-kz3k66",
+   "q": 5,
+   "canonical": "St Mary's Graveyard, Clonsilla",
+   "aliases": [
+    "St Mary's Church Clonsilla",
+    "St Marys Graveyard",
+    "Clonsilla Graveyard",
+    "Clonsilla Old Church",
+    "St Mary's Clonsilla"
+   ],
+   "area": "Clonsilla",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Heritage",
+   "location": "Clonsilla, Dublin 15",
+   "lat": 53.38417,
+   "lng": -6.42288,
+   "source": "https://www.openstreetmap.org/way/305759785",
+   "sources": [
+    "https://www.openstreetmap.org/way/305759785"
+   ],
+   "osm": "way/305759785",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b5-492da3",
+   "q": 5,
+   "canonical": "Bunchloch Foundation Stone",
+   "aliases": [
+    "Bunchloch",
+    "Bunchloch Monument",
+    "Bunchloch Stone"
+   ],
+   "area": "Castleknock",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Heritage",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.36587,
+   "lng": -6.35381,
+   "source": "https://www.openstreetmap.org/node/886520168",
+   "sources": [
+    "https://www.openstreetmap.org/node/886520168"
+   ],
+   "osm": "node/886520168",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b5-i1j39s",
+   "q": 5,
+   "canonical": "Martin Savage Memorial Monument",
+   "aliases": [
+    "Martin Savage Monument",
+    "Martin Savage Memorial",
+    "Martin Savage Ambush Memorial"
+   ],
+   "area": "Castleknock",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Heritage",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.37196,
+   "lng": -6.3323,
+   "source": "https://www.openstreetmap.org/node/3342267914",
+   "sources": [
+    "https://www.openstreetmap.org/node/3342267914"
+   ],
+   "osm": "node/3342267914",
+   "flag": "Borderline: OpenStreetMap places this monument at the Ashtown end of Castleknock Road (53.372, -6.332), near the Dublin 7/15 edge. Confirm it is inside the boundary.",
+   "note": null
+  },
+  {
+   "id": "b5-bh5r9z",
+   "q": 5,
+   "canonical": "Proclamation Memorial Monument",
+   "aliases": [
+    "Proclamation Monument",
+    "Proclamation Memorial",
+    "Mulhuddart Proclamation Monument"
+   ],
+   "area": "Mulhuddart",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Heritage",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.40276,
+   "lng": -6.39838,
+   "source": "https://www.openstreetmap.org/node/4194842945",
+   "sources": [
+    "https://www.openstreetmap.org/node/4194842945"
+   ],
+   "osm": "node/4194842945",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b5-86rjwb",
+   "q": 5,
+   "canonical": "Hollywoodrath Monuments",
+   "aliases": [
+    "Hollywoodrath Monument",
+    "Hollywoodrath"
+   ],
+   "area": "Hollywoodrath",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Heritage",
+   "location": "Hollywoodrath, Dublin 15",
+   "lat": 53.42424,
+   "lng": -6.37471,
+   "source": "https://www.openstreetmap.org/node/9137210184",
+   "sources": [
+    "https://www.openstreetmap.org/node/9137210184"
+   ],
+   "osm": "node/9137210184",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b5-14y8i8o",
+   "q": 5,
+   "canonical": "Farmleigh House",
+   "aliases": [
+    "Farmleigh",
+    "Farmleigh Estate",
+    "Farmleigh House and Estate"
+   ],
+   "area": "Castleknock",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Heritage",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.364,
+   "lng": -6.358,
+   "source": "https://www.openstreetmap.org/way/20487299",
+   "sources": [
+    "https://www.openstreetmap.org/way/20487299"
+   ],
+   "osm": "way/20487299",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-192y5tl",
+   "q": 6,
+   "canonical": "Ballycoolen",
+   "aliases": [
+    "Ballycoolin",
+    "Ballycoolen Dublin 15"
+   ],
+   "area": "Ballycoolen",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Ballycoolen, Dublin 15",
+   "lat": 53.40628,
+   "lng": -6.36126,
+   "source": "https://www.openstreetmap.org/relation/5431954",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5431954"
+   ],
+   "osm": "relation/5431954",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-feqs1u",
+   "q": 6,
+   "canonical": "Buzzardstown",
+   "aliases": [],
+   "area": "Buzzardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Buzzardstown, Dublin 15",
+   "lat": 53.40623,
+   "lng": -6.38461,
+   "source": "https://www.openstreetmap.org/relation/5409145",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5409145"
+   ],
+   "osm": "relation/5409145",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-4tqn5l",
+   "q": 6,
+   "canonical": "Cappogue",
+   "aliases": [
+    "Cappoge",
+    "Cappagh"
+   ],
+   "area": "Cappogue",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Cappogue, Dublin 15",
+   "lat": 53.39882,
+   "lng": -6.33396,
+   "source": "https://www.openstreetmap.org/relation/5378346",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5378346"
+   ],
+   "osm": "relation/5378346",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-1nashye",
+   "q": 6,
+   "canonical": "Castaheany",
+   "aliases": [
+    "Castaheany Dublin 15"
+   ],
+   "area": "Castaheany",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Castaheany, Dublin 15",
+   "lat": 53.40199,
+   "lng": -6.43461,
+   "source": "https://www.openstreetmap.org/relation/5378696",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5378696"
+   ],
+   "osm": "relation/5378696",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-japivz",
+   "q": 6,
+   "canonical": "Cruiserath",
+   "aliases": [
+    "Cruiserath Dublin 15"
+   ],
+   "area": "Cruiserath",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Cruiserath, Dublin 15",
+   "lat": 53.41722,
+   "lng": -6.37577,
+   "source": "https://www.openstreetmap.org/relation/5409087",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5409087"
+   ],
+   "osm": "relation/5409087",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-kwomcd",
+   "q": 6,
+   "canonical": "Deanestown",
+   "aliases": [
+    "Deanstown"
+   ],
+   "area": "Deanestown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Deanestown, Dublin 15",
+   "lat": 53.39485,
+   "lng": -6.37032,
+   "source": "https://www.openstreetmap.org/relation/5431956",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5431956"
+   ],
+   "osm": "relation/5431956",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-cvxvvl",
+   "q": 6,
+   "canonical": "Dunsink",
+   "aliases": [
+    "Dunsink Dublin 15"
+   ],
+   "area": "Dunsink",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Dunsink, Dublin 15",
+   "lat": 53.38768,
+   "lng": -6.33947,
+   "source": "https://www.openstreetmap.org/relation/5378006",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5378006"
+   ],
+   "osm": "relation/5378006",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-bbzt3p",
+   "q": 6,
+   "canonical": "Hollywoodrath",
+   "aliases": [
+    "Hollywood Rath"
+   ],
+   "area": "Hollywoodrath",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Hollywoodrath, Dublin 15",
+   "lat": 53.42391,
+   "lng": -6.3743,
+   "source": "https://www.openstreetmap.org/relation/5409089",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5409089"
+   ],
+   "osm": "relation/5409089",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-wghg6m",
+   "q": 6,
+   "canonical": "Macetown North",
+   "aliases": [],
+   "area": "Macetown North",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Macetown North, Dublin 15",
+   "lat": 53.41747,
+   "lng": -6.4076,
+   "source": "https://www.openstreetmap.org/relation/5407638",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5407638"
+   ],
+   "osm": "relation/5407638",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-wk0m0m",
+   "q": 6,
+   "canonical": "Macetown South",
+   "aliases": [],
+   "area": "Macetown South",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Macetown South, Dublin 15",
+   "lat": 53.41233,
+   "lng": -6.40684,
+   "source": "https://www.openstreetmap.org/relation/5407639",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5407639"
+   ],
+   "osm": "relation/5407639",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-9fczl2",
+   "q": 6,
+   "canonical": "Mitchelstown",
+   "aliases": [
+    "Mitchelstown Dublin 15"
+   ],
+   "area": "Mitchelstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Mitchelstown, Dublin 15",
+   "lat": 53.41631,
+   "lng": -6.35054,
+   "source": "https://www.openstreetmap.org/relation/5431957",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5431957"
+   ],
+   "osm": "relation/5431957",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-14um96r",
+   "q": 6,
+   "canonical": "Sheephill",
+   "aliases": [
+    "Sheep Hill"
+   ],
+   "area": "Sheephill",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Sheephill, Dublin 15",
+   "lat": 53.3939,
+   "lng": -6.35619,
+   "source": "https://www.openstreetmap.org/relation/5431959",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5431959"
+   ],
+   "osm": "relation/5431959",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-10ugspy",
+   "q": 6,
+   "canonical": "Scribblestown",
+   "aliases": [
+    "Scribblestown Dublin 15"
+   ],
+   "area": "Scribblestown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Scribblestown, Dublin 15",
+   "lat": 53.38238,
+   "lng": -6.33275,
+   "source": "https://www.openstreetmap.org/relation/5378007",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5378007"
+   ],
+   "osm": "relation/5378007",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-1oipm7k",
+   "q": 6,
+   "canonical": "Woodlands",
+   "aliases": [
+    "Woodlands Clonsilla",
+    "Woodlands Dublin 15"
+   ],
+   "area": "Woodlands",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Woodlands, Dublin 15",
+   "lat": 53.37411,
+   "lng": -6.42525,
+   "source": "https://www.openstreetmap.org/relation/5373071",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5373071"
+   ],
+   "osm": "relation/5373071",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-bjzh75",
+   "q": 6,
+   "canonical": "Barnhill",
+   "aliases": [
+    "Barnhill Dublin 15",
+    "Barnhill Clonsilla"
+   ],
+   "area": "Barnhill",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Barnhill, Dublin 15",
+   "lat": 53.38744,
+   "lng": -6.45118,
+   "source": "https://www.openstreetmap.org/relation/3647701",
+   "sources": [
+    "https://www.openstreetmap.org/relation/3647701"
+   ],
+   "osm": "relation/3647701",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-19f8iks",
+   "q": 6,
+   "canonical": "Littlepace",
+   "aliases": [
+    "Littlepace Dublin 15"
+   ],
+   "area": "Littlepace",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Littlepace, Dublin 15",
+   "lat": 53.40622,
+   "lng": -6.43082,
+   "source": "https://www.openstreetmap.org/relation/5375482",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5375482"
+   ],
+   "osm": "relation/5375482",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-inl04m",
+   "q": 6,
+   "canonical": "Astagob",
+   "aliases": [
+    "Astagob Clonsilla",
+    "Astagob Dublin 15"
+   ],
+   "area": "Astagob",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Astagob, Dublin 15",
+   "lat": 53.3681,
+   "lng": -6.40409,
+   "source": "https://www.openstreetmap.org/relation/5373160",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5373160"
+   ],
+   "osm": "relation/5373160",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-1utl3n7",
+   "q": 6,
+   "canonical": "Hansfield",
+   "aliases": [
+    "Phibblestown",
+    "Hansfield or Phibblestown",
+    "Hansfield Dublin 15"
+   ],
+   "area": "Hansfield",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Hansfield, Dublin 15",
+   "lat": 53.39431,
+   "lng": -6.43951,
+   "source": "https://www.openstreetmap.org/relation/5373069",
+   "sources": [
+    "https://www.openstreetmap.org/relation/5373069"
+   ],
+   "osm": "relation/5373069",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b6-7umzy7",
+   "q": 6,
+   "canonical": "Westmanstown",
+   "aliases": [
+    "Westmanstown Dublin 15"
+   ],
+   "area": "Westmanstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Neighbourhoods",
+   "location": "Westmanstown, Dublin 15",
+   "lat": 53.37578,
+   "lng": -6.44813,
+   "source": "https://www.openstreetmap.org/relation/2826014",
+   "sources": [
+    "https://www.openstreetmap.org/relation/2826014"
+   ],
+   "osm": "relation/2826014",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b7-xxlg5e",
+   "q": 7,
+   "canonical": "Hazel Lawn Tennis Club",
+   "aliases": [
+    "Hazel Lawn",
+    "Hazel Tennis Club",
+    "Hazel Lawn TC"
+   ],
+   "area": "Blanchardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Sport",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.38558,
+   "lng": -6.37975,
+   "source": "https://www.openstreetmap.org/way/28025105",
+   "sources": [
+    "https://www.openstreetmap.org/way/28025105"
+   ],
+   "osm": "way/28025105",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b7-sgdva2",
+   "q": 7,
+   "canonical": "Westmanstown RFC",
+   "aliases": [
+    "Westmanstown Rugby",
+    "Westmanstown Rugby Club",
+    "Westmanstown Rugby Football Club"
+   ],
+   "area": "Westmanstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Sport",
+   "location": "Westmanstown, Dublin 15",
+   "lat": 53.38007,
+   "lng": -6.44401,
+   "source": "https://www.openstreetmap.org/way/33696349",
+   "sources": [
+    "https://www.openstreetmap.org/way/33696349"
+   ],
+   "osm": "way/33696349",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b7-1czc9pe",
+   "q": 7,
+   "canonical": "Elmgreen Golf Club",
+   "aliases": [
+    "Elmgreen",
+    "Elmgreen Golf",
+    "Elmgreen Golf and Pitch and Putt"
+   ],
+   "area": "Castleknock",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Sport",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.3847,
+   "lng": -6.3494,
+   "source": "https://www.openstreetmap.org/way/24497537",
+   "sources": [
+    "https://www.openstreetmap.org/way/24497537"
+   ],
+   "osm": "way/24497537",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b7-165m5pp",
+   "q": 7,
+   "canonical": "Westmanstown Golf Club",
+   "aliases": [
+    "Westmanstown Golf",
+    "Westmanstown GC"
+   ],
+   "area": "Westmanstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Sport",
+   "location": "Westmanstown, Dublin 15",
+   "lat": 53.37621,
+   "lng": -6.44484,
+   "source": "https://www.openstreetmap.org/way/33696339",
+   "sources": [
+    "https://www.openstreetmap.org/way/33696339"
+   ],
+   "osm": "way/33696339",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b7-d9llfp",
+   "q": 7,
+   "canonical": "Castleknock Golf Club",
+   "aliases": [
+    "Castleknock Golf and Country Club",
+    "Castleknock Golf",
+    "Castleknock Golf Course",
+    "Castleknock Country Club"
+   ],
+   "area": "Carpenterstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Sport",
+   "location": "Carpenterstown, Dublin 15",
+   "lat": 53.36539,
+   "lng": -6.39816,
+   "source": "https://www.openstreetmap.org/way/50897169",
+   "sources": [
+    "https://www.openstreetmap.org/way/50897169"
+   ],
+   "osm": "way/50897169",
+   "flag": null,
+   "note": null
+  },
+  {
+   "id": "b7-a3la15",
+   "q": 7,
+   "canonical": "Phoenix FC",
+   "aliases": [
+    "Phoenix Football Club",
+    "Phoenix F.C.",
+    "Phoenix Soccer Club"
+   ],
+   "area": "Abbotstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Sport",
+   "location": "Abbotstown, Dublin 15",
+   "lat": 53.3832,
+   "lng": -6.33424,
+   "source": "https://www.openstreetmap.org/way/294033891",
+   "sources": [
+    "https://www.openstreetmap.org/way/294033891"
+   ],
+   "osm": "way/294033891",
+   "flag": "Needs geo-check: OpenStreetMap places Phoenix FC in the Blanchardstown-Abbotstown area; confirm it is a local club based inside the boundary.",
+   "note": null
+  },
+  {
+   "id": "b7-9q4fia",
+   "q": 7,
+   "canonical": "Spartan Martial Arts",
+   "aliases": [
+    "Spartan Martial Arts Club",
+    "Spartan Martial Arts Blanchardstown",
+    "Spartan MMA"
+   ],
+   "area": "Blanchardstown",
+   "areaBasis": "curated-from-osm-label",
+   "category": "Sport",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.40245,
+   "lng": -6.35076,
+   "source": "https://www.openstreetmap.org/node/2879524003",
+   "sources": [
+    "https://www.openstreetmap.org/node/2879524003"
+   ],
+   "osm": "node/2879524003",
+   "flag": null,
+   "note": null
+  }
+ ],
+ "enrich": {
+  "a3-01": {
+   "lat": 53.3895,
+   "lng": -6.3986,
+   "source": "https://www.openstreetmap.org/way/26837624",
+   "osm": "way/26837624"
+  },
+  "a3-02": {
+   "lat": 53.37895,
+   "lng": -6.32598,
+   "source": "https://www.openstreetmap.org/way/273985056",
+   "osm": "way/273985056"
+  },
+  "a3-04": {
+   "lat": 53.39571,
+   "lng": -6.41249,
+   "source": "https://www.openstreetmap.org/way/28158281",
+   "osm": "way/28158281",
+   "area": "Hartstown"
+  },
+  "a3-05": {
+   "lat": 53.39748,
+   "lng": -6.37902,
+   "source": "https://www.openstreetmap.org/way/26840998",
+   "osm": "way/26840998",
+   "area": "Corduff"
+  },
+  "a3-07": {
+   "lat": 53.38999,
+   "lng": -6.37525,
+   "source": "https://www.openstreetmap.org/relation/15044403",
+   "osm": "relation/15044403"
+  },
+  "a3-06": {
+   "lat": 53.40892,
+   "lng": -6.3898,
+   "source": "https://www.openstreetmap.org/way/28277509",
+   "osm": "way/28277509",
+   "area": "Mulhuddart",
+   "flag": null,
+   "aliases": [
+    "Mick Walsh Park",
+    "Lady's Well Park / Mick Walsh Park"
+   ]
+  },
+  "a3-03": {
+   "lat": 53.36447,
+   "lng": -6.46798,
+   "source": "https://www.openstreetmap.org/way/37136359",
+   "osm": "way/37136359",
+   "flag": "LIKELY OUTSIDE THE BOUNDARY: OpenStreetMap locates St Catherine's Park at the Leixlip/Lucan edge (53.3645, -6.468), at the western limit of the Dublin 15 box. Suspend it unless you can show it lies inside the BLANION boundary."
+  },
+  "a4-01": {
+   "lat": 53.38695,
+   "lng": -6.39746,
+   "source": "https://www.openstreetmap.org/way/12208787",
+   "osm": "way/12208787"
+  },
+  "a4-02": {
+   "lat": 53.38268,
+   "lng": -6.38323,
+   "source": "https://www.openstreetmap.org/relation/3614753",
+   "osm": "relation/3614753",
+   "aliases": [
+    "St Francis Xavier Senior National Schools",
+    "Saint Francis Xavier Senior National School"
+   ]
+  },
+  "a4-03": {
+   "lat": 53.38353,
+   "lng": -6.38327,
+   "source": "https://www.openstreetmap.org/relation/3614752",
+   "osm": "relation/3614752",
+   "aliases": [
+    "St Francis Xavier Junior National Schools",
+    "Saint Francis Xavier Junior National School"
+   ]
+  },
+  "a4-04": {
+   "lat": 53.38427,
+   "lng": -6.37248,
+   "source": "https://www.openstreetmap.org/way/270248253",
+   "osm": "way/270248253",
+   "aliases": [
+    "St Brigid's Boys National School",
+    "St Brigids Boys NS",
+    "St Brigids Boys School"
+   ]
+  },
+  "a4-05": {
+   "lat": 53.38466,
+   "lng": -6.37345,
+   "source": "https://www.openstreetmap.org/way/634011689",
+   "osm": "way/634011689",
+   "aliases": [
+    "St Brigid's Girls National School",
+    "St Brigids Girls NS",
+    "St Brigids Girls School"
+   ]
+  },
+  "a4-06": {
+   "lat": 53.38783,
+   "lng": -6.39592,
+   "source": "https://www.openstreetmap.org/way/12208794",
+   "osm": "way/12208794"
+  },
+  "a4-07": {
+   "lat": 53.37183,
+   "lng": -6.39126,
+   "source": "https://www.openstreetmap.org/way/27428782",
+   "osm": "way/27428782"
+  },
+  "a4-08": {
+   "lat": 53.36903,
+   "lng": -6.36829,
+   "source": "https://www.openstreetmap.org/way/38553163",
+   "osm": "way/38553163"
+  },
+  "a4-09": {
+   "lat": 53.39612,
+   "lng": -6.41573,
+   "source": "https://www.openstreetmap.org/way/121284657",
+   "osm": "way/121284657"
+  },
+  "a4-10": {
+   "lat": 53.39589,
+   "lng": -6.40294,
+   "source": "https://www.openstreetmap.org/way/57805541",
+   "osm": "way/57805541"
+  },
+  "a4-11": {
+   "lat": 53.42426,
+   "lng": -6.38549,
+   "source": "https://www.openstreetmap.org/way/518340487",
+   "osm": "way/518340487",
+   "area": "Mulhuddart"
+  },
+  "a4-12": {
+   "lat": 53.42362,
+   "lng": -6.38281,
+   "source": "https://www.openstreetmap.org/way/518376815",
+   "osm": "way/518376815",
+   "area": "Tyrrelstown",
+   "flag": null
+  },
+  "a4-13": {
+   "lat": 53.42332,
+   "lng": -6.37457,
+   "source": "https://www.openstreetmap.org/way/798630293",
+   "osm": "way/798630293"
+  },
+  "a4-14": {
+   "lat": 53.41449,
+   "lng": -6.39165,
+   "source": "https://www.openstreetmap.org/way/106926739",
+   "osm": "way/106926739",
+   "area": "Mulhuddart"
+  },
+  "a4-15": {
+   "lat": 53.41443,
+   "lng": -6.38938,
+   "source": "https://www.openstreetmap.org/way/106926737",
+   "osm": "way/106926737",
+   "area": "Mulhuddart"
+  },
+  "a4-16": {
+   "lat": 53.36051,
+   "lng": -6.35755,
+   "source": "https://www.openstreetmap.org/way/131450162",
+   "osm": "way/131450162",
+   "area": "Castleknock",
+   "flag": "Borderline: OpenStreetMap places Mount Sackville in Castleknock (53.3605, -6.3575), on the Chapelizod Hill side of the Liffey. Its postal district is usually given as Dublin 20, so confirm it counts as inside the boundary."
+  },
+  "a5-04": {
+   "lat": 53.36826,
+   "lng": -6.36976,
+   "source": "https://www.openstreetmap.org/node/8165035521",
+   "osm": "node/8165035521"
+  },
+  "a5-05": {
+   "lat": 53.38848,
+   "lng": -6.35907,
+   "source": "https://www.openstreetmap.org/way/305432044",
+   "osm": "way/305432044"
+  },
+  "a5-13": {
+   "lat": 53.38242,
+   "lng": -6.43132,
+   "source": "https://www.openstreetmap.org/way/988025269",
+   "osm": "way/988025269",
+   "area": "Clonsilla",
+   "flag": "OpenStreetMap locates \"The Shackleton Garden\" at Clonsilla (inside the boundary). Open question: is a garden a \"historical landmark\"? Shackleton Mills is a separate answer."
+  },
+  "a5-03": {
+   "lat": 53.38503,
+   "lng": -6.37484,
+   "source": "https://www.openstreetmap.org/way/27370024",
+   "osm": "way/27370024",
+   "flag": "OpenStreetMap lists two St Brigid's Churches, one in Castleknock and one in Blanchardstown, both inside the boundary. Both resolve to this single answer."
+  },
+  "a5-09": {
+   "lat": 53.3681,
+   "lng": -6.40409,
+   "source": "https://www.openstreetmap.org/relation/5373160",
+   "osm": "relation/5373160",
+   "flag": "The Astagob townland exists in Dublin 15 (OpenStreetMap), but the ringfort itself is not located. Confirm against the National Monuments Service Sites and Monuments Record."
+  },
+  "a5-08": {
+   "lat": 53.39882,
+   "lng": -6.33396,
+   "source": "https://www.openstreetmap.org/relation/5378346",
+   "osm": "relation/5378346",
+   "flag": "The Cappogue townland exists in Dublin 15 (OpenStreetMap), but the ringfort itself is not located. Confirm against the National Monuments Service Sites and Monuments Record."
+  },
+  "a6-01": {
+   "lat": 53.38446,
+   "lng": -6.38294,
+   "source": "https://www.openstreetmap.org/node/52270304",
+   "osm": "node/52270304"
+  },
+  "a6-02": {
+   "lat": 53.37296,
+   "lng": -6.36247,
+   "source": "https://www.openstreetmap.org/node/52254164",
+   "osm": "node/52254164"
+  },
+  "a6-03": {
+   "lat": 53.39295,
+   "lng": -6.39533,
+   "source": "https://www.openstreetmap.org/relation/5373265",
+   "osm": "relation/5373265"
+  },
+  "a6-04": {
+   "lat": 53.39295,
+   "lng": -6.41683,
+   "source": "https://www.openstreetmap.org/relation/5373070",
+   "osm": "relation/5373070"
+  },
+  "a6-05": {
+   "lat": 53.40379,
+   "lng": -6.41334,
+   "source": "https://www.openstreetmap.org/relation/5375481",
+   "osm": "relation/5375481"
+  },
+  "a6-06": {
+   "lat": 53.39581,
+   "lng": -6.3791,
+   "source": "https://www.openstreetmap.org/relation/5409146",
+   "osm": "relation/5409146"
+  },
+  "a6-07": {
+   "lat": 53.40278,
+   "lng": -6.3982,
+   "source": "https://www.openstreetmap.org/node/52253841",
+   "osm": "node/52253841"
+  },
+  "a6-08": {
+   "lat": 53.38333,
+   "lng": -6.41667,
+   "source": "https://www.openstreetmap.org/relation/5373068",
+   "osm": "relation/5373068"
+  },
+  "a6-09": {
+   "lat": 53.37543,
+   "lng": -6.38341,
+   "source": "https://www.openstreetmap.org/relation/5377596",
+   "osm": "relation/5377596"
+  },
+  "a6-11": {
+   "lat": 53.41654,
+   "lng": -6.39222,
+   "source": "https://www.openstreetmap.org/relation/5407903",
+   "osm": "relation/5407903"
+  },
+  "a6-13": {
+   "lat": 53.39537,
+   "lng": -6.43878,
+   "source": "https://www.openstreetmap.org/node/1115914515",
+   "osm": "node/1115914515"
+  },
+  "a6-14": {
+   "lat": 53.3797,
+   "lng": -6.40527,
+   "source": "https://www.openstreetmap.org/relation/5373267",
+   "osm": "relation/5373267"
+  },
+  "a6-15": {
+   "lat": 53.41455,
+   "lng": -6.4232,
+   "source": "https://www.openstreetmap.org/relation/5407668",
+   "osm": "relation/5407668"
+  },
+  "a6-16": {
+   "lat": 53.40693,
+   "lng": -6.40605,
+   "source": "https://www.openstreetmap.org/relation/5409185",
+   "osm": "relation/5409185"
+  },
+  "a6-19": {
+   "lat": 53.37124,
+   "lng": -6.38815,
+   "source": "https://www.openstreetmap.org/relation/5377597",
+   "osm": "relation/5377597"
+  },
+  "a7-01": {
+   "lat": 53.39439,
+   "lng": -6.4053,
+   "source": "https://www.openstreetmap.org/way/1387205654",
+   "osm": "way/1387205654",
+   "area": "Hartstown",
+   "flag": null,
+   "aliases": [
+    "St Peregrine's GAA Club"
+   ]
+  },
+  "a7-05": {
+   "lat": 53.37874,
+   "lng": -6.4455,
+   "source": "https://www.openstreetmap.org/way/33696347",
+   "osm": "way/33696347",
+   "aliases": [
+    "Garda Westmanstown Gaels",
+    "Garda Westmanstown Gaels GAA Club",
+    "Garda Westmanstown Gaels GAA"
+   ]
+  },
+  "a7-03": {
+   "lat": 53.37718,
+   "lng": -6.35033,
+   "source": "https://www.openstreetmap.org/way/257317333",
+   "osm": "way/257317333"
+  },
+  "a7-06": {
+   "lat": 53.3781,
+   "lng": -6.37892,
+   "source": "https://www.openstreetmap.org/way/27428643",
+   "osm": "way/27428643",
+   "area": "Carpenterstown"
+  },
+  "a7-08": {
+   "lat": 53.37791,
+   "lng": -6.34253,
+   "source": "https://www.openstreetmap.org/way/138743903",
+   "osm": "way/138743903",
+   "area": "Castleknock",
+   "flag": "OpenStreetMap places the Coolmine RFC ground at the Castleknock/Ashtown side of Dublin 15 (53.378, -6.3425), not at Coolmine itself. Still inside the boundary; area label updated to Castleknock."
+  },
+  "a7-09": {
+   "lat": 53.3806,
+   "lng": -6.36304,
+   "source": "https://www.openstreetmap.org/way/164361320",
+   "osm": "way/164361320"
+  },
+  "a7-10": {
+   "lat": 53.38981,
+   "lng": -6.39193,
+   "source": "https://www.openstreetmap.org/way/26355929",
+   "osm": "way/26355929",
+   "area": "Blanchardstown",
+   "flag": null,
+   "aliases": [
+    "Verona Sports and Leisure Club",
+    "Verona Sports and Leisure",
+    "Verona Sports Club"
+   ]
+  },
+  "a7-11": {
+   "lat": 53.37825,
+   "lng": -6.40517,
+   "source": "https://www.openstreetmap.org/way/971922064",
+   "osm": "way/971922064",
+   "aliases": [
+    "Saint Mochta's Football Club"
+   ]
+  }
+ }
+}

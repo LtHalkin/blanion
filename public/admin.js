@@ -32,8 +32,8 @@
   function logout() { token = null; try { sessionStorage.removeItem('blanion.admin'); } catch {} $('shell').classList.add('hidden'); $('login').classList.remove('hidden'); }
   $('logout').onclick = logout;
 
-  const TABS = ['review', 'flagged', 'answers', 'stats', 'audit'];
-  const loaders = { review: renderReview, flagged: renderFlagged, answers: renderAnswers, stats: renderStats, audit: renderAudit };
+  const TABS = ['review', 'flagged', 'answers', 'import', 'stats', 'audit'];
+  const loaders = { review: renderReview, flagged: renderFlagged, answers: renderAnswers, import: renderImport, stats: renderStats, audit: renderAudit };
   let tab = 'review';
   function setTab(t) {
     tab = t;
@@ -151,6 +151,32 @@
       tb.append(tr);
     });
     root.append(tbl, h('p', { class: 'meta' }, 'Click a row to edit. There is deliberately no way to edit a player’s score directly.'));
+  }
+
+  /* ------------------------------------------------------------ IMPORT */
+  function renderImport() {
+    const root = $('t-import'); root.textContent = '';
+    const ta = h('textarea', { rows: 12, placeholder: '4 | Coolmine Community School | Coolmine; Coolmine CS | Coolmine | https://source.example/page | 53.3878 | -6.3959 | School Rd, Coolmine' });
+    const reason = h('input', { placeholder: 'reason (required, recorded in the audit log), e.g. "Day 002 answers from Fingal list"' });
+    const out = h('div');
+    const parse = () => ta.value.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#')).map(l => {
+      const c = l.split('|').map(x => x.trim());
+      return { q: c[0], canonical: c[1], aliases: c[2] || '', area: c[3], source: c[4], lat: c[5] || '', lng: c[6] || '', location: c[7] || '' };
+    });
+    const run = async dry => {
+      try {
+        const rows = parse(); if (!rows.length) return toast('Paste some rows first.', true);
+        const r = await api('/api/admin/answers/import', { rows, dryRun: dry, reason: reason.value });
+        out.textContent = '';
+        out.append(h('p', { class: 'meta' }, (dry ? 'PREVIEW: ' : 'IMPORTED: ') + r.added + ' to add · ' + r.duplicates + ' duplicates · ' + r.errors + ' errors'),
+          h('table', {}, h('thead', {}, h('tr', {}, ...['ROW', 'ANSWER', 'RESULT', 'NOTE'].map(x => h('th', {}, x)))), h('tbody', {}, ...r.results.map(x => h('tr', {}, h('td', {}, x.row), h('td', {}, x.canonical), h('td', {}, h('span', { class: 'tag ' + (x.status === 'added' ? 'approved' : x.status === 'duplicate' ? 'research' : 'rejected') }, x.status.toUpperCase())), h('td', {}, x.message || ''))))));
+        if (!dry) { toast('Imported ' + r.added + ' answers.'); refreshBadges(); }
+      } catch (e) { toast(e.message, true); }
+    };
+    root.append(h('h2', {}, 'BULK IMPORT ANSWERS'),
+      h('p', { class: 'meta' }, 'One answer per line, fields separated by | :  question 1–7 | canonical name | aliases (separate with ;) | area | source URL | lat | lng | location. Lat/lng/location optional. Lines starting with # are ignored. Each row obeys the same rules as approval: a source URL, an in-boundary area, no duplicates. Preview first.'),
+      ta, h('div', { class: 'grid' }, field('REASON', reason)),
+      h('div', { class: 'act' }, h('button', { class: 'btn alt', onclick: () => run(true) }, 'PREVIEW (NO CHANGES)'), h('button', { class: 'btn ok', onclick: () => run(false) }, 'IMPORT')), out);
   }
 
   /* ------------------------------------------------------------ STATS */

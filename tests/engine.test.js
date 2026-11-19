@@ -1,10 +1,11 @@
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert');
-const { buildSeedAnswers } = require('../lib/day001');
+const { buildSeedAnswers, COVERAGE } = require('../lib/day001');
+const { blankState, syncSeeds } = require('../lib/state');
 const E = require('../lib/engine');
 
-const answers = buildSeedAnswers('2026-01-01');
+const answers = blankState('2026-01-01').answers;   // seed + expanded bank
 const idx = q => E.buildIndex(answers, q);
 const canon = (q, text) => { const r = E.resolve(idx(q), text); return r.kind === 'match' ? r.answer.canonical : r.kind; };
 
@@ -45,4 +46,38 @@ test('rarity tiers follow answer share', () => {
 test('day-one provisional tiers come from priors when nobody has played', () => {
   assert.equal(E.tierFor(0, 0, 0.40).id, 'plankton');
   assert.equal(E.tierFor(0, 0, 0.005).id, 'one_in_blanion');
+});
+
+test('expanded bank: every answer has a source, in-box coordinates and an in-boundary area', () => {
+  const allowed = new Set([...COVERAGE.core, ...COVERAGE.extended]);
+  assert.ok(answers.length > 130, 'bank should be well over 130 answers, got ' + answers.length);
+  for (const a of answers) {
+    assert.match(a.source, /^https?:\/\//, a.canonical + ' needs a source');
+    assert.ok(allowed.has(a.area), `${a.canonical}: area "${a.area}" outside boundary`);
+    assert.ok(a.lat >= COVERAGE.bbox.minLat && a.lat <= COVERAGE.bbox.maxLat && a.lng >= COVERAGE.bbox.minLng && a.lng <= COVERAGE.bbox.maxLng, `${a.canonical}: coords outside box`);
+  }
+});
+test('expanded bank resolves new answers and keeps ambiguity prompts', () => {
+  assert.equal(canon(6, 'Cruiserath'), 'Cruiserath');
+  assert.equal(canon(6, 'Macetown'), 'ambiguous');
+  assert.equal(canon(4, 'Hansfield Educate Together'), 'ambiguous');
+  assert.equal(canon(4, "St Brigid's Boys National School"), 'Scoil Bhríde Boys National School');
+  assert.equal(canon(5, "lady's well"), "Our Lady's Well");
+  assert.equal(canon(1, 'pinkeen'), 'Pinkeen River');
+  assert.equal(canon(7, 'Westmanstown Rugby'), 'Westmanstown RFC');
+});
+test('syncSeeds upgrades an old store without touching admin-edited answers', () => {
+  const db = blankState('2026-01-01');
+  const old = JSON.parse(JSON.stringify(db));
+  old.answers = old.answers.filter(a => a.addedBy !== 'seed:osm');         // simulate the original 76-answer deployment
+  old.meta.seedVersion = 1;
+  const edited = old.answers.find(a => a.canonical === 'Hartstown Park'); edited.edited = true; edited.lat = 1;
+  const legacy = old.answers.find(a => a.canonical === 'Waterville Park'); legacy.lat = 2;   // edited under the OLD code: no flag, but an audit entry
+  old.audit.push({ seq: old.audit.length + 1, at: 1, actor: 'admin', action: 'answer.update', target: 'answer:' + legacy.id, detail: {}, prev: 'x', hash: 'x' });
+  const r = syncSeeds(old);
+  assert.equal(old.answers.find(a => a.canonical === 'Waterville Park').lat, 2, 'legacy admin edit protected via audit log');
+  assert.ok(r && r.added === db.answers.length - old.answers.length + r.added && r.added > 50);
+  assert.equal(old.answers.find(a => a.canonical === 'Hartstown Park').lat, 1, 'admin-edited answer left alone');
+  assert.ok(old.answers.find(a => a.canonical === 'Coolmine Community School').coordPrecision === 'osm-point', 'untouched seed enriched');
+  assert.equal(syncSeeds(old), null, 'idempotent');
 });
