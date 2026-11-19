@@ -17,7 +17,7 @@ if (!ADMIN_PASSWORD) {
   ADMIN_PASSWORD = crypto.randomBytes(9).toString('base64url');
   console.log(`[blanion] ADMIN_PASSWORD not set. Temporary admin password for this run: ${ADMIN_PASSWORD}`);
 }
-const app = createApp({ store: S, adminPassword: ADMIN_PASSWORD });
+const app = createApp({ store: S, adminPassword: ADMIN_PASSWORD, botUserAgent: process.env.BOT_USER_AGENT });
 
 const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.txt': 'text/plain; charset=utf-8' };
 
@@ -66,5 +66,6 @@ if (require.main === module) {
   const bye = () => { S.flush(); process.exit(0); };
   process.on('SIGINT', bye); process.on('SIGTERM', bye);
   setInterval(app.autoFinalize, 30000).unref();
+  setInterval(() => app.runBot(8).then(r => { if (r.checked) console.log('[blanion] bot', JSON.stringify({ checked: r.checked, approved: r.approved, merged: r.merged, rejected: r.rejected })); }).catch(e => console.error('[blanion] bot error', e.message)), 5 * 60e3).unref();
 }
 module.exports = { server };

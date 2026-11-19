@@ -32,8 +32,8 @@
   function logout() { token = null; try { sessionStorage.removeItem('blanion.admin'); } catch {} $('shell').classList.add('hidden'); $('login').classList.remove('hidden'); }
   $('logout').onclick = logout;
 
-  const TABS = ['review', 'flagged', 'answers', 'import', 'stats', 'audit'];
-  const loaders = { review: renderReview, flagged: renderFlagged, answers: renderAnswers, import: renderImport, stats: renderStats, audit: renderAudit };
+  const TABS = ['review', 'bot', 'flagged', 'answers', 'import', 'stats', 'audit'];
+  const loaders = { review: renderReview, bot: renderBot, flagged: renderFlagged, answers: renderAnswers, import: renderImport, stats: renderStats, audit: renderAudit };
   let tab = 'review';
   function setTab(t) {
     tab = t;
@@ -60,7 +60,10 @@
     const sel = h('select', { id: 'rvFilter' }, ...[['pending', 'Pending'], ['research', 'Flagged for research'], ['decided', 'Decided'], ['all', 'All']].map(([v, l]) => h('option', { value: v }, l)));
     sel.value = renderReview.filter || 'pending';
     sel.onchange = () => { renderReview.filter = sel.value; renderReview(); };
-    root.append(h('h2', {}, 'ANSWER REVIEW'), h('div', { class: 'toolbar' }, sel, h('span', { class: 'meta' }, 'Nothing is auto-accepted. Approving needs a source and an in-boundary area; every decision is written to the audit log and rescores players automatically.')));
+    const botInfo = await api('/api/admin/bot');
+    const bs = botInfo.settings;
+    const strip = h('div', { class: 'sug' }, h('b', {}, 'BOT '), bs.enabled ? ('ON · auto-approve ' + (bs.autoApprove ? '≥ ' + bs.threshold + '%' : 'off') + ' · ' + botInfo.unchecked + ' unchecked') : 'OFF', ' ', h('button', { class: 'btn alt', onclick: async e => { e.target.disabled = true; try { const r = await api('/api/admin/bot/run', {}); toast(r.skipped || ('Bot checked ' + r.checked + ': ' + r.approved + ' approved, ' + r.merged + ' merged, ' + r.rejected + ' rejected, ' + r.recommendedOnly + ' left for you.')); await refreshBadges(); renderReview(); } catch (err) { toast(err.message, true); e.target.disabled = false; } } }, 'RUN BOT NOW'));
+    root.append(h('h2', {}, 'ANSWER REVIEW'), strip, h('div', { class: 'toolbar' }, sel, h('span', { class: 'meta' }, 'Approving needs a source and an in-boundary area (the bot obeys the same rules); every decision is written to the audit log and rescores players automatically.')));
     const { groups } = await api('/api/admin/review?status=' + sel.value);
     if (!groups.length) root.append(h('p', { class: 'meta' }, 'Nothing here. The harbour is quiet.'));
     for (const g of groups) root.append(await reviewCard(g));
@@ -81,13 +84,15 @@
     g.appeals.forEach(a => card.append(h('div', { class: 'appeal' }, 'PLAYER APPEAL (' + when(a.at) + '): ' + a.note)));
     if (!open) return card;
 
+    const bot = g.bot, ap = bot && bot.apply;
+    if (bot) card.append(botBlock(bot));
     const all = (await api('/api/admin/answers?q=' + g.q)).answers.filter(a => a.active);
-    const canonical = h('input', { value: g.suggestion && g.suggestion.confidence >= 80 ? '' : first.replace(/\b\w/g, c => c.toUpperCase()) });
-    const aliases = h('input', { placeholder: 'comma separated: alt spellings, abbreviations' });
-    const area = h('select', {}, h('option', { value: '' }, '— choose area —'), ...areas().map(a => h('option', {}, a)));
-    const loc = h('input', { placeholder: 'verified address / description (optional)' });
-    const lat = h('input', { placeholder: 'lat (optional)' }), lng = h('input', { placeholder: 'lng (optional)' });
-    const src = h('input', { placeholder: 'https://… (required to approve)', value: g.proposedSource || '' });
+    const canonical = h('input', { value: ap ? ap.canonical : g.suggestion && g.suggestion.confidence >= 80 ? '' : first.replace(/\b\w/g, c => c.toUpperCase()) });
+    const aliases = h('input', { placeholder: 'comma separated: alt spellings, abbreviations', value: ap && ap.aliases ? ap.aliases.join('; ') : '' });
+    const area = h('select', {}, h('option', { value: '' }, '— choose area —'), ...areas().map(a => h('option', ap && ap.area === a ? { selected: true } : {}, a)));
+    const loc = h('input', { placeholder: 'verified address / description (optional)', value: ap ? ap.location : '' });
+    const lat = h('input', { placeholder: 'lat (optional)', value: ap ? ap.lat : '' }), lng = h('input', { placeholder: 'lng (optional)', value: ap ? ap.lng : '' });
+    const src = h('input', { placeholder: 'https://… (required to approve)', value: (ap && ap.source) || g.proposedSource || '' });
     const note = h('input', { placeholder: 'internal note (optional)' });
     const reason = h('input', { placeholder: 'reason (required to reject)' });
     const merge = h('select', {}, h('option', { value: '' }, '— merge into existing —'), ...all.map(a => h('option', { value: a.id, ...(g.suggestion && g.suggestion.answerId === a.id ? { selected: true } : {}) }, a.canonical)));
@@ -105,6 +110,47 @@
         h('button', { class: 'btn no', onclick: () => decide('reject', { reason: reason.value }) }, 'REJECT'),
         h('button', { class: 'btn meh', onclick: () => decide('research', {}) }, 'FLAG FOR RESEARCH')));
     return card;
+  }
+
+  function botBlock(bot) {
+    const rec = bot.recommendation, tone = rec === 'approve' ? 'approved' : rec === 'reject' ? 'rejected' : rec === 'merge' ? 'merged' : 'research';
+    return h('div', { class: 'sug' },
+      h('span', { class: 'tag ' + tone }, 'BOT: ' + rec.toUpperCase() + ' ' + bot.confidence + '%'), bot.applied ? h('span', { class: 'tag' }, 'APPLIED: ' + bot.applied) : null, ' ',
+      h('span', { class: 'meta' }, 'checked ' + when(bot.checkedAt)),
+      ...(bot.reasons || []).map(r => h('div', { class: 'meta' }, '• ' + r)),
+      ...(bot.candidates || []).map(c => h('div', { class: 'meta' }, '→ ', h('a', { href: c.url, target: '_blank', rel: 'noopener noreferrer' }, c.name), ' · ' + c.kind + ' · ' + (c.area || 'no approved area') + ' · name ' + Math.round(c.nameSimilarity * 100) + '% · type ' + Math.round(c.typeFit * 100) + '%')));
+  }
+
+  /* ---------------------------------------------------------------- BOT */
+  async function renderBot() {
+    const root = $('t-bot'); root.textContent = '';
+    const d = await api('/api/admin/bot'), s = d.settings;
+    const cb = (v, label) => { const i = h('input', { type: 'checkbox', ...(v ? { checked: true } : {}) }); return [i, h('label', { class: 'inline' }, label)]; };
+    const [en, enL] = cb(s.enabled, 'BOT ENABLED (checks unknown answers every 10 minutes)');
+    const [ap, apL] = cb(s.autoApprove, 'AUTO-APPROVE when confidence ≥ threshold');
+    const [mg, mgL] = cb(s.autoMerge, 'AUTO-MERGE near-duplicates (≥ 90% similar)');
+    const [rj, rjL] = cb(s.autoReject, 'AUTO-REJECT places OpenStreetMap puts outside the boundary (≥ 85%)');
+    const th = h('input', { type: 'number', min: 50, max: 100, value: s.threshold });
+    const reason = h('input', { placeholder: 'reason for the change (required)' });
+    root.append(h('h2', {}, 'VERIFICATION BOT'),
+      h('p', { class: 'meta' }, 'For every answer nobody has seen before, the bot looks it up on OpenStreetMap inside the Dublin 15 box and scores it from evidence: name similarity × place-type fit × uniqueness. It never approves anything it cannot place inside an approved area, and every action is audited as "bot". No AI model is involved, so players cannot talk it into anything.'),
+      h('p', { class: 'meta' }, d.pending + ' pending groups, ' + d.unchecked + ' not yet checked.'),
+      h('div', { class: 'card' },
+        h('div', {}, en, enL), h('div', {}, ap, apL), h('div', {}, mg, mgL), h('div', {}, rj, rjL),
+        h('div', { class: 'grid' }, field('CONFIDENCE THRESHOLD (50–100)', th), field('REASON', reason)),
+        h('div', { class: 'act' },
+          h('button', { class: 'btn ok', onclick: async () => { try { await api('/api/admin/bot/settings', { enabled: en.checked, autoApprove: ap.checked, autoMerge: mg.checked, autoReject: rj.checked, threshold: th.value, reason: reason.value }); toast('Bot settings saved.'); renderBot(); } catch (e) { toast(e.message, true); } } }, 'SAVE SETTINGS'),
+          h('button', { class: 'btn alt', onclick: async e => { e.target.disabled = true; try { const r = await api('/api/admin/bot/run', {}); toast(r.skipped || ('Checked ' + r.checked + ': ' + r.approved + ' approved, ' + r.merged + ' merged, ' + r.rejected + ' rejected.')); await refreshBadges(); renderBot(); } catch (err) { toast(err.message, true); e.target.disabled = false; } } }, 'RUN BOT NOW'))),
+      h('h2', {}, 'RECENT BOT DECISIONS'),
+      h('p', { class: 'meta' }, 'Spot-check these. UNDO suspends an approved answer (players holding it drop back to 0 for that question) and is recorded in the audit log.'));
+    const rows = d.recent.filter(e => e.action !== 'bot.settings');
+    if (!rows.length) root.append(h('p', { class: 'meta' }, 'The bot has not made any decisions yet.'));
+    else root.append(h('table', {}, h('thead', {}, h('tr', {}, ...['WHEN', 'ACTION', 'DETAIL', ''].map(x => h('th', {}, x)))), h('tbody', {}, ...rows.map(e => {
+      const dt = e.detail || {};
+      const undo = e.action === 'review.approve' && dt.newAnswerId ? h('button', { class: 'btn no', onclick: async () => { const why = prompt('Reason for undoing this bot approval?'); if (!why) return; try { await api('/api/admin/answer', { id: dt.newAnswerId, status: 'suspended', reason: 'Bot approval undone: ' + why }); toast('Suspended.'); renderBot(); } catch (err) { toast(err.message, true); } } }, 'UNDO (SUSPEND)') : '';
+      const text = e.action === 'bot.run' ? `checked ${dt.checked}, approved ${dt.approved}, merged ${dt.merged}, rejected ${dt.rejected}, left for humans ${dt.recommendedOnly}` : `${(dt.raws || []).join(' / ')} → ${dt.canonical || dt.mergedInto || dt.reason || ''} ${dt.bot ? '(' + dt.bot.confidence + '%)' : ''} ${dt.bot && dt.bot.evidence && dt.bot.evidence.top ? dt.bot.evidence.top.url : ''}`;
+      return h('tr', {}, h('td', {}, when(e.at)), h('td', {}, e.action), h('td', {}, text), h('td', {}, undo));
+    }))));
   }
 
   /* ------------------------------------------------------------ FLAGGED */

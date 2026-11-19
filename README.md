@@ -78,6 +78,27 @@ The Wikipedia, fingal.ie and mytown.ie pages named in the brief could not be rea
 
 **Attribution:** place names and coordinates © OpenStreetMap contributors, licensed under the ODbL 1.0 (https://www.openstreetmap.org/copyright). The site footer carries the credit; keep it.
 
+## Verification bot (auto-approve)
+
+A bot checks answers nobody has seen before. It is **not** an AI model: it gathers evidence from OpenStreetMap (Nominatim) and computes a confidence score, so player text can never "instruct" it.
+
+For each unknown answer, in order:
+1. **Near-duplicate?** ≥ 90% similar to an existing answer → merge it in as an alias.
+2. **OpenStreetMap lookup** inside the Dublin 15 box. Best hit is scored: `confidence = name similarity × place-type fit for the question × uniqueness` (a second, equally good place elsewhere cuts it by 20%).
+   Place-type fit is strict: a school must be tagged as a school, a station as a station, a park/garden/common as green space, and so on (a pub is never a school; a bare pitch is not a club; colleges and woods count for less).
+3. **Hard gates the threshold cannot override:** the place must be inside the box *and* mappable to an approved BLANION area, a source URL is required, and places within ~1 km of the box edge (where the true border is uncertain) are only ever recommended to a human.
+4. **Outside the boundary?** If the same place exists but OpenStreetMap puts it outside (e.g. labelled Lucan, Dunboyne, Chapelizod) it is auto-rejected with the evidence (the player can still appeal).
+
+**Defaults (admin → BOT tab, every change audited):** enabled · **auto-approve at ≥ 70%** · auto-merge ≥ 90% · auto-reject ≥ 85% · threshold adjustable 50–100.
+Anything it will not or cannot act on stays in ANSWER REVIEW with the bot's recommendation, reasons and OpenStreetMap links shown and the approval form pre-filled.
+Bot approvals use the same validation code as a human admin, create answers marked `bot-verified` (with the confidence and evidence stored), rescore players like any approval, and are logged with actor `bot`. **UNDO (SUSPEND)** in the BOT tab reverses an approval.
+
+It runs every 10 minutes (Cloudflare cron trigger in `wrangler.jsonc`; a 5-minute timer on Node) and on demand with **RUN BOT NOW**. It handles at most 8 answers per run (1 request/second to OpenStreetMap, per their usage policy) and re-checks "couldn't tell" answers at most 3 times, 24 h apart.
+Set a `BOT_USER_AGENT` variable (e.g. `blanion-answer-bot/1.0 (you@example.com)`) so OpenStreetMap can contact you, as their policy asks.
+
+**Know the trade-off:** 70% means roughly three in ten borderline approvals could be wrong, and an approved answer scores for every player who gave it. In a live test it approved "Rabbit Warren" (a woodland OpenStreetMap lists in Blanchardstown) at 75%, which a human might have questioned. Spot-check the BOT tab regularly, or raise the threshold (85–90 makes it approve only near-exact matches).
+Clubs and heritage sites are thinly mapped on OpenStreetMap, so most of those will still land with a human.
+
 ## Rarity & fairness
 
 `share = (count + prior·k) / (total + k)` with `k = max(0, 100 − total)` — day-one priors (expected popularity) fade out as real answers arrive and are gone at 100 valid answers per question.

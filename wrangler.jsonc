@@ -13,8 +13,10 @@
     "bindings": [{ "name": "BLANION", "class_name": "Blanion" }]
   },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Blanion"] }],
+  "triggers": { "crons": ["*/10 * * * *"] },   // the verification bot runs every 10 minutes
   "observability": { "enabled": true }
   // Optional plain-text settings (not secrets):
+  //   "vars": { "BOT_USER_AGENT": "blanion-answer-bot/1.0 (you@example.com)" }  // identifies the bot to OpenStreetMap; add a contact address
   //   "vars": { "LAUNCH_DATE": "2026-12-01" }     // date Day 001 opens (YYYY-MM-DD, Europe/Dublin). Default: first request.
   // Secrets (never put in this file):
   //   npx wrangler secret put ADMIN_PASSWORD

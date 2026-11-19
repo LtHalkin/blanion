@@ -15,8 +15,15 @@ export class Blanion extends DurableObject {
     this.app = null;
     ctx.blockConcurrencyWhile(async () => {
       await this.store.load();
-      this.app = createApp({ store: this.store, adminPassword: env.ADMIN_PASSWORD });
+      this.app = createApp({ store: this.store, adminPassword: env.ADMIN_PASSWORD, botUserAgent: env.BOT_USER_AGENT });
     });
+  }
+
+  /** Called by the cron trigger: check unknown answers against OpenStreetMap and act on high-confidence ones. */
+  async runBot() {
+    const r = await this.app.runBot(8);
+    await this.store.persist();
+    return r;
   }
 
   async fetch(request) {
@@ -45,6 +52,11 @@ const withSec = res => {
 };
 
 export default {
+  async scheduled(event, env, ctx) {
+    const stub = env.BLANION.get(env.BLANION.idFromName('main'));
+    ctx.waitUntil(stub.runBot().catch(e => console.error('bot run failed', e)));
+  },
+
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname.startsWith('/api/')) {
