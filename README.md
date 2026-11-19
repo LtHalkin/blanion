@@ -79,6 +79,14 @@ The Wikipedia, fingal.ie and mytown.ie pages named in the brief could not be rea
 
 **Attribution:** place names and coordinates © OpenStreetMap contributors, licensed under the ODbL 1.0 (https://www.openstreetmap.org/copyright). The site footer carries the credit; keep it.
 
+## BLANION STACK (second game, `/stack`)
+
+A block-stacking mini-game you can play before or after the daily dive (linked from the home and results screens): drop **20 blocks of different shapes and sizes** (planks, posts, cubes, triangles, wedges, hexagons, wheels, T, L and plus pieces) onto a small ledge and build the tallest tower you can. Blocks that fall off the ledge are lost; your score is the height (in metres) of what is still standing after the tower has had time to settle or collapse.
+Controls: move with the mouse / drag / ← →, turn with Q E / ↑ / the buttons / right-click / wheel (15° steps), drop with click / Space / DROP. Touch controls are on-screen.
+**Today's blocks are the same for everyone** (the sequence is seeded from the Dublin date); RANDOM BLOCKS is for practice. Personal bests are stored in the browser (`localStorage`); there is no server-side leaderboard for it.
+Physics: [Matter.js](https://brm.io/matter-js/) 0.20.0 (MIT), vendored in `public/vendor/` so the page works under the site's strict Content-Security-Policy with no CDN.
+Cross-promo: the home and results screens also link to the Lowfly flight sim.
+
 ## Reviewer panel (view only)
 
 `/reviewer` is a second, read-only panel that shows **only the ANSWER REVIEW list** (pending / flagged / decided / all, with the bot's recommendation and evidence, player appeals and proposed sources). It has no forms or buttons and cannot change anything.

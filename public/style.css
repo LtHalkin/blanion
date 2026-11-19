@@ -62,6 +62,9 @@ nav{display:flex;gap:14px}
 .promo-go{grid-area:go;font-size:26px;color:var(--lantern);animation:nudge 1.2s steps(2) infinite}
 @keyframes nudge{50%{transform:translateX(4px)}}
 #v-results .promo{margin-top:20px}
+.promo-stack{border-color:var(--coral)}
+.promo-stack .promo-title,.promo-stack .promo-go{color:#ffb199}
+.promo+.promo{margin-top:12px}
 
 /* inputs + buttons */
 input,textarea{font:inherit;font-size:26px;color:#fff;background:#04122c;border:3px solid var(--line);padding:10px 12px;width:100%;border-radius:0}

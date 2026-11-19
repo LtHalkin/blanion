@@ -19,7 +19,7 @@ if (!ADMIN_PASSWORD) {
 }
 const app = createApp({ store: S, adminPassword: ADMIN_PASSWORD, reviewerPassword: process.env.REVIEWER_PASSWORD, botUserAgent: process.env.BOT_USER_AGENT });
 
-const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.txt': 'text/plain; charset=utf-8' };
+const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.map': 'application/json', '.ico': 'image/x-icon', '.txt': 'text/plain; charset=utf-8' };
 
 function readJson(req) {
   return new Promise((resolve, reject) => {
@@ -34,6 +34,7 @@ function serveStatic(req, res, pathname) {
   if (pathname === '/') pathname = '/index.html';
   if (pathname === '/admin') pathname = '/admin.html';
   if (pathname === '/reviewer') pathname = '/reviewer.html';
+  if (pathname === '/stack') pathname = '/stack.html';
   const root = path.join(__dirname, 'public');
   const file = path.normalize(path.join(root, decodeURIComponent(pathname)));
   if (!file.startsWith(root + path.sep)) { res.writeHead(403); return res.end(); }

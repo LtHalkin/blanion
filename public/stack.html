@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>BLANION STACK — build the tallest tower</title>
+<meta name="description" content="Stack 20 odd-shaped blocks as high as you can. Play before or after the daily Blanchardstown dive.">
+<meta name="theme-color" content="#071a3a">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/stack.css">
+</head>
+<body class="stack-page">
+<header class="top">
+  <a class="brand" href="/" aria-label="BLANION home"><canvas id="logoMascot"></canvas><span>BLANION</span></a>
+  <nav>
+    <a class="link" href="/">THE DAILY DIVE</a>
+  </nav>
+</header>
+
+<main class="stack-main">
+  <div class="hud card thin stack-hud">
+    <div><small>BLOCK</small><b id="hBlock">1/20</b></div>
+    <div><small>HEIGHT</small><b id="hHeight">0.0m</b></div>
+    <div><small>BEST</small><b id="hBest">0.0m</b></div>
+    <div class="next"><small>NEXT</small><canvas id="nextCanvas" width="40" height="40"></canvas></div>
+  </div>
+
+  <div class="stage" id="stage">
+    <canvas id="game" width="240" height="360" aria-label="Block stacking game"></canvas>
+
+    <div class="overlay" id="startOverlay">
+      <div class="card">
+        <div class="day-chip" id="modeChip">DAILY BLOCKS</div>
+        <h1 class="res-title">BLANION STACK</h1>
+        <p class="support">Stack <b>20</b> blocks of different shapes and sizes as high as you can. Anything that falls off the ledge is lost.</p>
+        <ul class="how">
+          <li><b>Move</b> mouse / drag / &larr; &rarr;</li>
+          <li><b>Turn</b> Q E / &uarr; / buttons</li>
+          <li><b>Drop</b> click / Space / DROP</li>
+        </ul>
+        <div class="row center">
+          <button class="btn" id="startDaily">PLAY TODAY&rsquo;S BLOCKS</button>
+          <button class="btn ghost" id="startRandom">RANDOM BLOCKS</button>
+        </div>
+        <p class="hint center">Today&rsquo;s blocks are the same for everyone.</p>
+        <div class="row center"><a class="link" href="/">&larr; PLAY THE DAILY DIVE</a></div>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="endOverlay">
+      <div class="card">
+        <div class="day-chip" id="endChip">DAILY BLOCKS</div>
+        <h2 class="res-title">TOWER COMPLETE</h2>
+        <div class="res-zone" id="endTitle">Coral Spire</div>
+        <div class="res-score"><span id="endHeight">0.0</span><small>metres</small></div>
+        <div class="res-depth" id="endStanding"></div>
+        <div class="res-prov" id="endBest"></div>
+        <div class="row center">
+          <button class="btn" id="again">TRY AGAIN</button>
+          <button class="btn ghost" id="copy">COPY RESULT</button>
+        </div>
+        <p class="hint center" id="copyHint"></p>
+        <a class="promo" href="/">
+          <span class="promo-kicker">HAVE YOU DONE TODAY&rsquo;S DIVE?</span>
+          <span class="promo-title">PLAY THE DAILY DIVE</span>
+          <span class="promo-sub">Seven questions about Blanchardstown.</span>
+          <span class="promo-go" aria-hidden="true">&#9654;</span>
+        </a>
+        <div class="row center"><button class="link" id="toMenu">MENU</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pad" id="pad">
+    <button class="pb" id="bLeft" aria-label="Move left">&#9664;</button>
+    <button class="pb" id="bRotL" aria-label="Rotate left">&#10226;</button>
+    <button class="btn" id="bDrop">DROP</button>
+    <button class="pb" id="bRotR" aria-label="Rotate right">&#10227;</button>
+    <button class="pb" id="bRight" aria-label="Move right">&#9654;</button>
+  </div>
+</main>
+
+<script src="/mascot.js"></script>
+<script src="/vendor/matter.min.js"></script>
+<script src="/stack.js"></script>
+</body>
+</html>
