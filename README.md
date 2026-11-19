@@ -81,11 +81,15 @@ The Wikipedia, fingal.ie and mytown.ie pages named in the brief could not be rea
 
 ## BLANION STACK (second game, `/stack`)
 
-A block-stacking mini-game you can play before or after the daily dive (linked from the home and results screens): drop **20 blocks of different shapes and sizes** (planks, posts, cubes, triangles, wedges, hexagons, wheels, T, L and plus pieces) onto a small ledge and build the tallest tower you can. Blocks that fall off the ledge are lost; your score is the height (in metres) of what is still standing after the tower has had time to settle or collapse.
-Controls: move with the mouse / drag / ← →, turn with Q E / ↑ / the buttons / right-click / wheel (15° steps), drop with click / Space / DROP. Touch controls are on-screen.
-**Today's blocks are the same for everyone** (the sequence is seeded from the Dublin date); RANDOM BLOCKS is for practice. Personal bests are stored in the browser (`localStorage`); there is no server-side leaderboard for it.
-Physics: [Matter.js](https://brm.io/matter-js/) 0.20.0 (MIT), vendored in `public/vendor/` so the page works under the site's strict Content-Security-Policy with no CDN.
-Cross-promo: the home and results screens also link to the Lowfly flight sim.
+A block-stacking game you can play before or after the daily dive (linked from the home and results screens): drop **20 blocks of different shapes and sizes** (planks, posts, cubes, triangles, wedges, hexagons, wheels, T, L and plus pieces) onto a ledge and build the tallest tower you can. Blocks that fall off are lost; your score is the height (metres) of what is standing once the tower has settled or collapsed.
+
+- **Drag anything.** Grab any block with the mouse or a finger, even one still falling, to nudge, fix or rescue your tower (a soft spring ties it to the pointer, so it still collides with everything; released blocks are speed-capped so you cannot fling them). The block waiting at the top can be dragged anywhere above the tower; click it (mouse) or press DROP/Space to drop it. Keys: ← → move, Q E / ↑ turn (15° steps), Space/Enter drop, Esc/P pause. Touch: on-screen buttons, drag the block, tap empty water to steer.
+- **Daily leaderboard.** Today's blocks are the same for everyone (seeded from the Dublin date; `public/stack-shapes.js` is shared by the browser and the server). Your best height of the day goes on the leaderboard under your diver name (shared with the trivia player profile). RANDOM BLOCKS is practice and is not submitted.
+- **How scores are checked (honest limits).** The physics runs in the player's browser, so the server cannot fully verify a score. It checks a signed start token (issued when a daily game begins), a minimum play time (20 s), a physical upper bound on height for that day's actual blocks, and sane block counts, and it keeps only each player's best. A determined cheater could still submit a high-but-possible number, so admins get a **STACK SCORES** tab to review and remove scores (reason required, audited). Real verification would mean replaying recorded inputs on the server.
+- **Tuning for fairness/ease:** wider ledge, grippier blocks with a little water drag, the waiting block can be lowered close to the tower, and the daily sequence never repeats a shape back-to-back, has at most 3 awkward shapes (wheel, small triangle, wedge) and at least 7 easy ones.
+- **Polish:** impact shake, splash particles, sound effects (mute button; Web Audio, nothing downloaded), height ruler with labels, best-height marker, "+x m" popups, pause (auto-pauses when the tab is hidden), result titles from *Pebble Pile* to *Reaching the Surface*.
+- Physics: [Matter.js](https://brm.io/matter-js/) 0.20.0 (MIT), vendored in `public/vendor/` so the page works under the strict Content-Security-Policy with no CDN. Personal bests are also kept in `localStorage`.
+- Cross-promo: the home and results screens also link to the Lowfly flight sim.
 
 ## Reviewer panel (view only)
 

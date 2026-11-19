@@ -13,7 +13,8 @@ function createDoStore(storage, env) {
   const subIndex = new Map();
   const snap = new Map();            // storage key -> last persisted JSON string
   let auditDone = 0, subsDone = 0;
-  const touched = { full: false, plays: new Set(), players: new Set(), subs: new Set() };
+  const touched = { full: false, plays: new Set(), players: new Set(), subs: new Set(), stack: new Set() };
+  const deleted = new Set();
 
   async function load() {
     const all = await storage.list();
@@ -24,7 +25,7 @@ function createDoStore(storage, env) {
       await persist(true);
       return;
     }
-    db = { meta: all.get('meta'), days: all.get('days') || {}, answers: [], players: {}, plays: [], submissions: [], audit: [] };
+    db = { meta: all.get('meta'), days: all.get('days') || {}, answers: [], players: {}, plays: [], submissions: [], audit: [], stack: { scores: {} } };
     for (const [k, v] of all) {
       snap.set(k, JSON.stringify(v));
       if (k.startsWith('ans:')) db.answers.push(v);
@@ -32,6 +33,7 @@ function createDoStore(storage, env) {
       else if (k.startsWith('play:')) db.plays.push(v);
       else if (k.startsWith('sub:')) db.submissions.push(v);
       else if (k.startsWith('aud:')) db.audit.push(v);
+      else if (k.startsWith('stk:')) db.stack.scores[k.slice(4)] = v;
     }
     db.plays.sort((a, b) => a.startedAt - b.startedAt);
     db.submissions.sort((a, b) => a.at - b.at);
@@ -59,15 +61,17 @@ function createDoStore(storage, env) {
     }
     touched.subs.forEach(id => { const s = subIndex.get(id); if (s) check('sub:' + id, s); });
     touched.players.forEach(id => { if (db.players[id]) check('pl:' + id, db.players[id]); });
+    touched.stack.forEach(key => { if (db.stack.scores[key]) check('stk:' + key, db.stack.scores[key]); });
     if (touched.plays.size) {
       const ids = touched.plays;
       for (const p of db.plays) if (ids.has(p.id)) check('play:' + p.id, p);
     }
-    touched.full = false; touched.plays.clear(); touched.players.clear(); touched.subs.clear();
+    touched.full = false; touched.plays.clear(); touched.players.clear(); touched.subs.clear(); touched.stack.clear();
     const keys = Object.keys(writes);
     // issue all puts synchronously, in order, so concurrent requests cannot reorder writes
     const jobs = [];
     for (let i = 0; i < keys.length; i += 100) { const chunk = {}; keys.slice(i, i + 100).forEach(k => chunk[k] = writes[k]); jobs.push(storage.put(chunk)); }
+    if (deleted.size) { const ks = [...deleted]; deleted.clear(); ks.forEach(k => snap.delete(k)); for (let i = 0; i < ks.length; i += 128) jobs.push(storage.delete(ks.slice(i, i + 128))); }
     await Promise.all(jobs);
   }
 
@@ -85,7 +89,9 @@ function createDoStore(storage, env) {
       else if (kind === 'play') touched.plays.add(id);
       else if (kind === 'player') touched.players.add(id);
       else if (kind === 'sub') touched.subs.add(id);
+      else if (kind === 'stack') touched.stack.add(id);
     },
+    removeStack(key) { if (db.stack.scores[key]) { delete db.stack.scores[key]; deleted.add('stk:' + key); } },
   };
 }
 

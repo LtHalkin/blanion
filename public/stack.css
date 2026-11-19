@@ -20,3 +20,17 @@ body.stack-page{background:linear-gradient(#58c6ee 0%,#1b7fc0 28%,#0a3f78 62%,#0
 @media (max-height:700px){.stack-main{padding-top:70px}}
 .stack-page .brand{color:var(--ink);text-decoration:none}
 .stack-page .top nav .link{text-decoration:none}
+
+.stack-hud .tools{display:flex;gap:6px}
+.tb{font-size:15px;width:34px;height:34px;color:var(--ink);background:rgba(5,20,50,.9);border:3px solid var(--line);padding:0}
+.tb:hover{border-color:var(--lantern)}
+.tb.off{opacity:.45;text-decoration:line-through}
+.overlay .nick{display:block;margin:10px 0 4px}
+.overlay .nick input{margin-top:6px;font-size:22px;text-align:center}
+.board.mini{max-height:none;margin:8px 0;gap:3px}
+.board.mini li{padding:4px 8px;grid-template-columns:34px 1fr auto}
+.toast{position:absolute;left:50%;top:14%;transform:translateX(-50%);font-family:var(--px);font-size:10px;color:#fff;background:rgba(190,40,40,.9);border:3px solid #ffd0d0;padding:8px 10px;pointer-events:none;animation:pop .25s steps(4)}
+.stage.grabbing{cursor:grabbing}
+
+#hBlock.flash{color:#ff8a80}
+.stage.grabbing #game{cursor:grabbing}

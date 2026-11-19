@@ -25,6 +25,7 @@
     <div><small>HEIGHT</small><b id="hHeight">0.0m</b></div>
     <div><small>BEST</small><b id="hBest">0.0m</b></div>
     <div class="next"><small>NEXT</small><canvas id="nextCanvas" width="40" height="40"></canvas></div>
+    <div class="tools"><button class="tb" id="bPause" aria-label="Pause">&#10074;&#10074;</button><button class="tb" id="bMute" aria-label="Sound on or off">&#9835;</button></div>
   </div>
 
   <div class="stage" id="stage">
@@ -32,19 +33,24 @@
 
     <div class="overlay" id="startOverlay">
       <div class="card">
-        <div class="day-chip" id="modeChip">DAILY BLOCKS</div>
+        <div class="day-chip">20 BLOCKS &middot; HOW HIGH?</div>
         <h1 class="res-title">BLANION STACK</h1>
-        <p class="support">Stack <b>20</b> blocks of different shapes and sizes as high as you can. Anything that falls off the ledge is lost.</p>
+        <p class="support">Stack 20 odd-shaped blocks as high as you can. <b>Drag any block</b> to nudge, fix or rescue your tower.</p>
         <ul class="how">
-          <li><b>Move</b> mouse / drag / &larr; &rarr;</li>
+          <li><b>Move</b> drag the block / &larr; &rarr;</li>
           <li><b>Turn</b> Q E / &uarr; / buttons</li>
           <li><b>Drop</b> click / Space / DROP</li>
+          <li><b>Rescue</b> drag any block, even in mid-air</li>
         </ul>
+        <label class="nick">DIVER NAME <input id="nick" maxlength="16" placeholder="for the leaderboard" autocomplete="nickname" spellcheck="false"></label>
         <div class="row center">
           <button class="btn" id="startDaily">PLAY TODAY&rsquo;S BLOCKS</button>
-          <button class="btn ghost" id="startRandom">RANDOM BLOCKS</button>
         </div>
-        <p class="hint center">Today&rsquo;s blocks are the same for everyone.</p>
+        <div class="row center">
+          <button class="btn ghost small" id="startRandom">RANDOM BLOCKS</button>
+          <button class="btn ghost small" id="showBoard">LEADERBOARD</button>
+        </div>
+        <p class="hint center">Today&rsquo;s blocks are the same for everyone, and your best goes on the leaderboard.</p>
         <div class="row center"><a class="link" href="/">&larr; PLAY THE DAILY DIVE</a></div>
       </div>
     </div>
@@ -57,10 +63,13 @@
         <div class="res-score"><span id="endHeight">0.0</span><small>metres</small></div>
         <div class="res-depth" id="endStanding"></div>
         <div class="res-prov" id="endBest"></div>
+        <div class="res-rank" id="endRank"></div>
+        <ol class="board mini" id="endBoard"></ol>
         <div class="row center">
           <button class="btn" id="again">TRY AGAIN</button>
           <button class="btn ghost" id="copy">COPY RESULT</button>
         </div>
+        <div class="row center"><button class="btn ghost small" id="endFull">FULL LEADERBOARD</button></div>
         <p class="hint center" id="copyHint"></p>
         <a class="promo" href="/">
           <span class="promo-kicker">HAVE YOU DONE TODAY&rsquo;S DIVE?</span>
@@ -71,6 +80,19 @@
         <div class="row center"><button class="link" id="toMenu">MENU</button></div>
       </div>
     </div>
+    <div class="overlay hidden" id="pauseOverlay">
+      <div class="card"><h2 class="res-title">PAUSED</h2><div class="row center"><button class="btn" id="resume">RESUME</button></div></div>
+    </div>
+
+    <div class="overlay hidden" id="boardOverlay">
+      <div class="card">
+        <h2 class="res-title">TODAY&rsquo;S TOWERS</h2>
+        <div class="res-prov" id="boardInfo"></div>
+        <ol class="board" id="boardList"></ol>
+        <div class="row center"><button class="btn ghost" id="boardClose">BACK</button></div>
+      </div>
+    </div>
+    <div class="toast hidden" id="toast" aria-live="polite"></div>
   </div>
 
   <div class="pad" id="pad">
@@ -84,6 +106,7 @@
 
 <script src="/mascot.js"></script>
 <script src="/vendor/matter.min.js"></script>
+<script src="/stack-shapes.js"></script>
 <script src="/stack.js"></script>
 </body>
 </html>

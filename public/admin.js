@@ -32,8 +32,8 @@
   function logout() { token = null; try { sessionStorage.removeItem('blanion.admin'); } catch {} $('shell').classList.add('hidden'); $('login').classList.remove('hidden'); }
   $('logout').onclick = logout;
 
-  const TABS = ['review', 'bot', 'flagged', 'answers', 'import', 'stats', 'audit'];
-  const loaders = { review: renderReview, bot: renderBot, flagged: renderFlagged, answers: renderAnswers, import: renderImport, stats: renderStats, audit: renderAudit };
+  const TABS = ['review', 'bot', 'flagged', 'answers', 'import', 'stack', 'stats', 'audit'];
+  const loaders = { review: renderReview, bot: renderBot, flagged: renderFlagged, answers: renderAnswers, import: renderImport, stack: renderStack, stats: renderStats, audit: renderAudit };
   let tab = 'review';
   function setTab(t) {
     tab = t;
@@ -223,6 +223,16 @@
       h('p', { class: 'meta' }, 'One answer per line, fields separated by | :  question 1–7 | canonical name | aliases (separate with ;) | area | source URL | lat | lng | location. Lat/lng/location optional. Lines starting with # are ignored. Each row obeys the same rules as approval: a source URL, an in-boundary area, no duplicates. Preview first.'),
       ta, h('div', { class: 'grid' }, field('REASON', reason)),
       h('div', { class: 'act' }, h('button', { class: 'btn alt', onclick: () => run(true) }, 'PREVIEW (NO CHANGES)'), h('button', { class: 'btn ok', onclick: () => run(false) }, 'IMPORT')), out);
+  }
+
+  /* ------------------------------------------------------------ STACK SCORES */
+  async function renderStack() {
+    const root = $('t-stack'); root.textContent = '';
+    const d = await api('/api/admin/stack');
+    root.append(h('h2', {}, 'STACK LEADERBOARD · ' + d.day), h('p', { class: 'meta' }, 'Scores come from players\u2019 browsers. They are checked for plausibility (signed start token, minimum play time, physical height limit) but a determined cheater could still post a high-but-possible score. Remove any you do not believe; every removal is audited.'));
+    if (!d.rows.length) { root.append(h('p', { class: 'meta' }, 'No scores yet today.')); return; }
+    root.append(h('table', {}, h('thead', {}, h('tr', {}, ...['#', 'PLAYER', 'HEIGHT', 'STANDING', 'WHEN', ''].map(x => h('th', {}, x)))), h('tbody', {}, ...d.rows.map((r, i) => h('tr', {}, h('td', {}, i + 1), h('td', {}, r.nickname), h('td', {}, r.height.toFixed(1) + 'm'), h('td', {}, r.standing + '/20'), h('td', {}, when(r.at)),
+      h('td', {}, h('button', { class: 'btn no', onclick: async () => { const why = prompt('Reason for removing this score?'); if (!why) return; try { await api('/api/admin/stack/remove', { day: r.day, playerId: r.playerId, reason: why }); toast('Removed.'); renderStack(); } catch (e) { toast(e.message, true); } } }, 'REMOVE')))))));
   }
 
   /* ------------------------------------------------------------ STATS */
