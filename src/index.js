@@ -15,7 +15,7 @@ export class Blanion extends DurableObject {
     this.app = null;
     ctx.blockConcurrencyWhile(async () => {
       await this.store.load();
-      this.app = createApp({ store: this.store, adminPassword: env.ADMIN_PASSWORD, botUserAgent: env.BOT_USER_AGENT });
+      this.app = createApp({ store: this.store, adminPassword: env.ADMIN_PASSWORD, reviewerPassword: env.REVIEWER_PASSWORD, botUserAgent: env.BOT_USER_AGENT });
     });
   }
 
@@ -64,7 +64,7 @@ export default {
       return withSec(await stub.fetch(request));
     }
     if (request.method !== 'GET' && request.method !== 'HEAD') return new Response('Method not allowed', { status: 405 });
-    // /admin is resolved to admin.html by the assets layer (html_handling: auto-trailing-slash)
+    // /admin and /reviewer are resolved to admin.html / reviewer.html by the assets layer (html_handling: auto-trailing-slash)
     return withSec(await env.ASSETS.fetch(request));
   },
 };

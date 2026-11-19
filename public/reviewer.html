@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>BLANION — Answer Review (view only)</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+<div id="login" class="login">
+  <form id="loginForm" class="panel">
+    <h1>BLANION</h1><p class="sub">ANSWER REVIEW · VIEW ONLY</p>
+    <input id="pw" type="password" placeholder="Reviewer password" autocomplete="current-password" required>
+    <button class="btn" type="submit">ENTER</button>
+    <p id="loginErr" class="err"></p>
+  </form>
+</div>
+<div id="shell" class="hidden">
+  <header>
+    <h1>BLANION <small>ANSWER REVIEW · VIEW ONLY</small></h1>
+    <nav><button id="refresh" class="ghost">REFRESH</button><button id="logout" class="ghost">LOG OUT</button></nav>
+  </header>
+  <main><section id="list"></section></main>
+</div>
+<script src="/reviewer.js"></script>
+</body>
+</html>

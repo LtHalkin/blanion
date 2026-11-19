@@ -15,7 +15,8 @@ in the Durable Object's SQLite-backed storage (one key per record, only changes 
 ```bash
 npm install
 npx wrangler login                      # once
-npx wrangler secret put ADMIN_PASSWORD  # required — without it /admin is disabled
+npx wrangler secret put ADMIN_PASSWORD     # required — without it /admin is disabled
+npx wrangler secret put REVIEWER_PASSWORD  # optional — enables the read-only /reviewer panel
 npm run deploy                          # → https://blanion.<your-subdomain>.workers.dev
 ```
 
@@ -77,6 +78,13 @@ Places OpenStreetMap puts outside Dublin 15 (Lucan, Leixlip, Palmerstown, Chapel
 The Wikipedia, fingal.ie and mytown.ie pages named in the brief could not be reached from the build environment, so they were not used; bulk import is the way to add data from them.
 
 **Attribution:** place names and coordinates © OpenStreetMap contributors, licensed under the ODbL 1.0 (https://www.openstreetmap.org/copyright). The site footer carries the credit; keep it.
+
+## Reviewer panel (view only)
+
+`/reviewer` is a second, read-only panel that shows **only the ANSWER REVIEW list** (pending / flagged / decided / all, with the bot's recommendation and evidence, player appeals and proposed sources). It has no forms or buttons and cannot change anything.
+It is switched on by setting a **`REVIEWER_PASSWORD`** secret (separate from `ADMIN_PASSWORD`; unset = the panel is disabled).
+Reviewer tokens are signed with the reviewer password under a different role, so they are rejected by every `/api/admin/*` endpoint (and admin tokens are rejected by `/api/reviewer/*`), even if both passwords happen to be the same. The reviewer API exposes no write endpoints and strips internal ids from the list.
+Set it locally with `REVIEWER_PASSWORD=… node server.js`, or in `.dev.vars` for `npm run dev`. Rotating the password logs reviewers out.
 
 ## Verification bot (auto-approve)
 
