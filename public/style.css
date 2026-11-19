@@ -52,6 +52,17 @@ nav{display:flex;gap:14px}
 .pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
 .pills span{font-family:var(--px);font-size:8px;padding:7px 9px;background:rgba(3,12,32,.6);border:2px solid var(--line);color:#bfe0ff}
 
+/* cross-promo box */
+.promo{display:grid;grid-template-columns:1fr auto;grid-template-areas:"k go" "t go" "s go";gap:4px 14px;align-items:center;margin:18px auto 0;max-width:640px;padding:14px 18px;text-decoration:none;color:var(--ink);background:linear-gradient(135deg,rgba(14,58,115,.92),rgba(5,20,50,.92));border:4px solid var(--lantern);box-shadow:5px 5px 0 rgba(2,8,24,.85);transition:transform .08s,box-shadow .08s}
+.promo:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 rgba(2,8,24,.85)}
+.promo:active{transform:translate(3px,3px);box-shadow:2px 2px 0 rgba(2,8,24,.85)}
+.promo-kicker{grid-area:k;font-family:var(--px);font-size:8px;color:var(--mute);letter-spacing:1px}
+.promo-title{grid-area:t;font-family:var(--px);font-size:14px;color:var(--lantern);text-shadow:2px 2px #04122c}
+.promo-sub{grid-area:s;font-size:19px;color:#bfe0ff}
+.promo-go{grid-area:go;font-size:26px;color:var(--lantern);animation:nudge 1.2s steps(2) infinite}
+@keyframes nudge{50%{transform:translateX(4px)}}
+#v-results .promo{margin-top:20px}
+
 /* inputs + buttons */
 input,textarea{font:inherit;font-size:26px;color:#fff;background:#04122c;border:3px solid var(--line);padding:10px 12px;width:100%;border-radius:0}
 input:focus,textarea:focus{border-color:var(--lantern);outline:none}
@@ -141,7 +152,7 @@ summary{cursor:pointer;color:var(--lantern)}
 
 @media (max-width:640px){
   body{font-size:20px}
-  #app{padding:70px 10px 60px 40px}
+  #app{padding:96px 10px 60px 40px}
   .card{padding:16px 14px 18px}
   .question{font-size:28px}
   #answerForm{flex-direction:column}
