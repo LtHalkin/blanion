@@ -56,7 +56,7 @@ npm test                            # engine unit tests
 
 ## Answer bank
 
-The bank holds **141 answers** (Q1 waterways 5 · Q2 stations 5 · Q3 parks 16 · Q4 schools 36 · Q5 heritage 22 · Q6 areas 39 · Q7 clubs 20 roughly; see the admin Answer Database for the live numbers).
+The bank holds **141 answers** (Q1 waterways 5 · Q2 stations 5 · Q3 parks 16 · Q4 schools 36 · Q5 heritage 21 · Q6 areas 39 · Q7 clubs 19; the admin Answer Database shows live numbers).
 It has three layers:
 
 1. **Hand-curated Day 001 seed** (`lib/day001.js`), supplied by the editor.
