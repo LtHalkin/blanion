@@ -91,6 +91,15 @@ A block-stacking game you can play before or after the daily dive (linked from t
 - Physics: [Matter.js](https://brm.io/matter-js/) 0.20.0 (MIT), vendored in `public/vendor/` so the page works under the strict Content-Security-Policy with no CDN. Personal bests are also kept in `localStorage`.
 - Cross-promo: the home and results screens also link to the Lowfly flight sim.
 
+## BLANION WEIGH-IN (third game, `/weigh`)
+
+"How many eggs does an elephant weigh?" Five odd comparisons per day: a big thing (elephant, blue whale, Boeing 747, Statue of Liberty, hippo, T. rex…) against a small unit (eggs, paperclips, €1 coins, Lego bricks, pints of water, honey bees…). You guess how many of the small thing it takes (type a number or drag the log-scale slider, 1 to 1 billion).
+**Scoring:** 100 points for an exact answer, falling by 10 points per tenth of an order of magnitude you are out, so within 10% is about 96, twice or half is about 70, and ten times out (either way) is 0. Five rounds, 500 maximum. After each guess you see how far out you were (e.g. "2.3× too high"), the true answer on a log scale, the two weights used and a fun fact.
+**Daily:** today's five are the same for everyone (seeded from the Dublin date; never the same big object or unit twice, always at least one small answer and one huge one); RANDOM FIVE is practice. Your daily result is kept in `localStorage` and shown again if you revisit; results are copyable as an emoji grid.
+**Data:** `public/weigh-data.js` holds 18 big objects, 23 units and 30 curated pairs, with round, widely quoted average masses (shown as "≈" because real animals and objects vary). Unit tests check every pair has a sensible answer (10 to 1 billion), the scoring maths and the daily selection. To add content, add objects and pairs there and run `npm test`.
+**No leaderboard on purpose:** the answers are computable in the browser, so a leaderboard would be trivially cheatable.
+Linked from the home and results screens alongside Stack and Lowfly.
+
 ## Reviewer panel (view only)
 
 `/reviewer` is a second, read-only panel that shows **only the ANSWER REVIEW list** (pending / flagged / decided / all, with the bot's recommendation and evidence, player appeals and proposed sources). It has no forms or buttons and cannot change anything.

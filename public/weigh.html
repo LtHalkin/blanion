@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BLANION WEIGH-IN — how many eggs is an elephant?</title>
+<meta name="description" content="Guess how many eggs an elephant weighs. Five odd weight comparisons a day, scored on how close you get.">
+<meta name="theme-color" content="#071a3a">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/weigh.css">
+</head>
+<body class="weigh-page">
+<header class="top">
+  <a class="brand" href="/" aria-label="BLANION home"><canvas id="logoMascot"></canvas><span>BLANION</span></a>
+  <nav><a class="link" href="/">THE DAILY DIVE</a></nav>
+</header>
+
+<main class="weigh-main">
+  <div class="hud card thin" id="hud">
+    <div><small>ROUND</small><b id="hRound">1/5</b></div>
+    <div><small>SCORE</small><b id="hScore">0</b></div>
+    <div><small>MODE</small><b id="hMode">DAILY</b></div>
+  </div>
+
+  <!-- intro -->
+  <section class="card" id="intro">
+    <div class="day-chip">BLANION WEIGH-IN</div>
+    <h1 class="res-title">HOW MANY EGGS<br>IS AN ELEPHANT?</h1>
+    <p class="support">Five odd comparisons. Guess how many of the small thing it takes to weigh the same as the big thing. The closer you get, the more points (500 max).</p>
+    <div class="row center"><button class="btn big" id="startDaily">PLAY TODAY&rsquo;S FIVE</button></div>
+    <div class="row center"><button class="btn ghost small" id="startRandom">RANDOM FIVE</button></div>
+    <p class="hint center">Today&rsquo;s five are the same for everyone. All weights are everyday averages, so expect a little wiggle room.</p>
+    <div class="row center"><a class="link" href="/">&larr; PLAY THE DAILY DIVE</a></div>
+  </section>
+
+  <!-- question -->
+  <section class="card hidden" id="play">
+    <div class="duel" aria-hidden="true"><span class="big-e" id="eBig">🐘</span><span class="eq">=</span><span class="q">?</span><span class="small-e" id="eSmall">🥚</span></div>
+    <h2 class="question" id="qText">How many eggs does an elephant weigh?</h2>
+    <p class="desc" id="qDesc"></p>
+
+    <div id="guessBox">
+      <label class="lbl" for="guess">YOUR GUESS</label>
+      <div class="guess-row">
+        <input id="guess" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="e.g. 5,000">
+        <button class="btn" id="submit">LOCK IT IN</button>
+      </div>
+      <input id="slider" type="range" min="0" max="9" step="0.01" value="3" aria-label="Guess on a logarithmic scale">
+      <div class="ticks" aria-hidden="true"><span>1</span><span>10</span><span>100</span><span>1K</span><span>10K</span><span>100K</span><span>1M</span><span>10M</span><span>100M</span><span>1B</span></div>
+      <p class="hint" id="hint" aria-live="polite"></p>
+    </div>
+
+    <div id="reveal" class="hidden" aria-live="polite">
+      <div class="r-points" id="rPoints">+86</div>
+      <div class="r-err" id="rErr">1.2&times; too high</div>
+      <div class="r-true">It&rsquo;s about <b id="rTrue">103,448</b> <span id="rUnit">eggs</span></div>
+      <div class="scale" aria-hidden="true"><div class="track"></div><div class="pin truth" id="pTruth"><i>ANSWER</i></div><div class="pin you" id="pYou"><i>YOU</i></div></div>
+      <p class="r-masses" id="rMasses"></p>
+      <p class="r-fact" id="rFact"></p>
+      <div class="row center"><button class="btn" id="next">NEXT</button></div>
+    </div>
+  </section>
+
+  <!-- results -->
+  <section class="card hidden" id="end">
+    <div class="day-chip" id="endChip">TODAY&rsquo;S FIVE</div>
+    <h2 class="res-title">WEIGH-IN COMPLETE</h2>
+    <div class="res-zone" id="endTitle">Sharp Eye</div>
+    <div class="res-score"><span id="endScore">0</span><small>/ 500</small></div>
+    <ol class="res-list" id="endList"></ol>
+    <div class="res-prov" id="endBest"></div>
+    <div class="row center"><button class="btn" id="copy">COPY RESULT</button><button class="btn ghost" id="again">RANDOM FIVE</button></div>
+    <p class="hint center" id="copyHint"></p>
+    <a class="promo" href="/stack"><span class="promo-kicker">NEXT UP?</span><span class="promo-title">PLAY BLANION STACK</span><span class="promo-sub">Stack 20 odd-shaped blocks.</span><span class="promo-go" aria-hidden="true">&#9654;</span></a>
+    <a class="promo" href="/"><span class="promo-kicker">HAVE YOU DONE TODAY&rsquo;S DIVE?</span><span class="promo-title">PLAY THE DAILY DIVE</span><span class="promo-sub">Seven questions about Blanchardstown.</span><span class="promo-go" aria-hidden="true">&#9654;</span></a>
+  </section>
+</main>
+
+<script src="/mascot.js"></script>
+<script src="/weigh-data.js"></script>
+<script src="/weigh.js"></script>
+</body>
+</html>

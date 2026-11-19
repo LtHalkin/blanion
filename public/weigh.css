@@ -1,0 +1,41 @@
+body.weigh-page{background:linear-gradient(#58c6ee 0%,#1b7fc0 30%,#0a3f78 65%,#04122c 100%);min-height:100vh;background-attachment:fixed}
+.weigh-page .brand{color:var(--ink);text-decoration:none}
+.weigh-page .top nav .link{text-decoration:none}
+.weigh-main{max-width:600px;margin:0 auto;padding:78px 12px 30px;display:flex;flex-direction:column;gap:12px}
+.weigh-main .hud{margin-bottom:0}
+.weigh-main .card{padding:18px 18px 20px}
+.weigh-main .support{font-size:21px;margin:10px 0;text-align:center}
+.weigh-main .res-title{text-align:center;line-height:1.5}
+.weigh-main .day-chip{display:block;width:max-content;margin:0 auto}
+#intro .row{margin-top:12px}
+.duel{display:flex;align-items:center;justify-content:center;gap:12px;font-size:54px;line-height:1;margin:2px 0 8px}
+.duel .eq{font-family:var(--px);font-size:18px;color:var(--lantern)}
+.duel .q{font-family:var(--px);font-size:30px;color:var(--coral);animation:bob 1.6s ease-in-out infinite}
+.duel .big-e{font-size:72px}
+.duel .small-e{font-size:46px}
+.weigh-main .question{font-size:32px;text-align:center;margin:6px 0 4px}
+.desc{text-align:center;color:var(--mute);margin:0 0 14px;font-size:19px;min-height:24px}
+.lbl{display:block;font-family:var(--px);font-size:8px;color:var(--mute);margin-bottom:6px}
+.guess-row{display:flex;gap:10px}
+.guess-row input{font-size:28px}
+.guess-row .btn{white-space:nowrap}
+#slider{width:100%;margin:14px 0 2px;accent-color:#ffd54f;height:26px;background:transparent}
+.ticks{display:flex;justify-content:space-between;font-family:var(--px);font-size:7px;color:var(--mute)}
+#guessBox .hint{text-align:center}
+#reveal{text-align:center;animation:pop .3s steps(5)}
+.r-points{font-family:var(--px);font-size:clamp(34px,10vw,52px);color:var(--lantern);text-shadow:4px 4px 0 #04122c}
+.r-err{font-family:var(--px);font-size:11px;color:var(--mute);margin:6px 0 10px}
+.r-true{font-size:26px}
+.r-true b{color:#fff;font-size:34px}
+.scale{position:relative;height:56px;margin:14px 8px 4px}
+.scale .track{position:absolute;left:0;right:0;top:26px;height:6px;background:linear-gradient(90deg,#1d6fb5,#7fd8ff);border:2px solid #cfeaff}
+.pin{position:absolute;top:10px;width:0;transform:translateX(0)}
+.pin::after{content:"";position:absolute;left:-3px;top:0;width:6px;height:42px;background:var(--c)}
+.pin i{position:absolute;top:-10px;left:0;transform:translateX(-50%);font-family:var(--px);font-size:7px;font-style:normal;color:var(--c);white-space:nowrap}
+.pin.truth{--c:#5be3a1}.pin.you{--c:#ff9f43}.pin.you i{top:46px}
+.r-masses{color:var(--mute);margin:14px 0 4px;font-size:20px}
+.r-fact{font-size:21px;margin:6px 0 4px}
+@media (max-width:520px){.duel .big-e{font-size:58px}.duel .small-e{font-size:38px}.weigh-main .question{font-size:26px}.guess-row{flex-direction:column}}
+html{background:#04122c}
+.weigh-page .res-list .qn{font-size:24px;line-height:1}
+.weigh-page .res-list li{grid-template-columns:34px 1fr auto}

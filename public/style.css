@@ -62,6 +62,8 @@ nav{display:flex;gap:14px}
 .promo-go{grid-area:go;font-size:26px;color:var(--lantern);animation:nudge 1.2s steps(2) infinite}
 @keyframes nudge{50%{transform:translateX(4px)}}
 #v-results .promo{margin-top:20px}
+.promo-weigh{border-color:#5be3a1}
+.promo-weigh .promo-title,.promo-weigh .promo-go{color:#9ff0c8}
 .promo-stack{border-color:var(--coral)}
 .promo-stack .promo-title,.promo-stack .promo-go{color:#ffb199}
 .promo+.promo{margin-top:12px}
