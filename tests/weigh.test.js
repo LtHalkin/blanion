@@ -43,3 +43,11 @@ test('error wording and formatting', () => {
   assert.equal(W.fmtMass(6000), '6 tonnes'); assert.equal(W.fmtMass(0.058), '58 g'); assert.equal(W.fmtMass(0.000025), '25 mg');
   assert.equal(W.fmtCount(103448.2), '103,448');
 });
+
+test('every object in the game has a 3D model (and the gallery lists them)', () => {
+  const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'weigh-models.js'), 'utf8');
+  const ids = new Set([...src.matchAll(/^  (\w+): \(/gm)].map(m => m[1]));
+  for (const k of Object.keys(W.BIG)) assert.ok(ids.has(k), 'missing 3D model for big object: ' + k);
+  for (const k of Object.keys(W.SMALL)) assert.ok(ids.has(k), 'missing 3D model for unit: ' + k);
+  for (const k of Object.keys(W.BIG)) assert.ok(W.BIG[k].emoji && W.BIG[k].a, 'emoji/name fallback for ' + k);
+});
