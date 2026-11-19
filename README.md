@@ -55,6 +55,14 @@ npm test                            # engine unit tests
 5. **Admin decisions** — approve (needs a source URL + an in-boundary area; coords must fall inside the Dublin 15 box; duplicate of an existing answer is refused → use merge), merge, reject (reason required), flag for research. One decision applies to every player who gave that answer, and scores are **recomputed from decisions** — there is no endpoint to edit a score.
 6. **Audit trail**: every decision, coverage change, answer edit, day close and recalculation is appended to a hash-chained log (verify it in the admin AUDIT LOG tab).
 
+## Day 002 and the admin day tester
+
+`lib/day001.js` exports `DAY2` (pubs, places of worship, shops, food & drink, fitness, health, roads); it is registered in `DAYS` in `lib/core.js` and opens automatically on launch date + 1 (Europe/Dublin). A question has `n` (position in the day) and `q` (answer-bank category), so a day can use any bank category; Day 001 is unchanged.
+
+In **/admin → DAY & STATS → TEST A DAY** you can load any day's questions (default Day 002), see how many answers and abbreviations each has, and type answers or abbreviations to see exactly how the live game would match and score them (exact / typo / abbreviation, ambiguity, tier). It writes nothing: no plays, submissions or stats.
+
+Growing the bank: `NODE_USE_ENV_PROXY=1 node scripts/harvest.js` does a polite (1 req/s) Nominatim grid harvest into `scripts/osm-raw/nominatim-extra.json` (resumable); then `node scripts/build-bank.js` rebuilds `lib/bank.json`.
+
 ## Endless Dive (unlimited mode for the main game)
 
 The daily dive is seven questions once a day. **Endless Dive** (home screen: `∞ ENDLESS DIVE`, also on the results screen) is the unlimited version: as many runs as you like, any time.

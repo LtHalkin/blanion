@@ -3,3 +3,4 @@ data/store.json.tmp
 node_modules/
 .wrangler/
 .dev.vars
+.harvest-done.json

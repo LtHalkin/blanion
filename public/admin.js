@@ -247,10 +247,43 @@
       h('p', { class: 'meta' }, s.divers + ' divers · ' + s.finished + ' finished · closes ' + when(t.closesAt) + ' · launch date ' + overview.launchDate),
       h('div', { class: 'card' }, h('h2', {}, 'CLOSE DAY EARLY'), h('p', { class: 'meta' }, 'Locks rarity tiers from the actual answer counts so far. Cannot be undone.'), h('div', { class: 'grid' }, field('REASON', reasonClose)), h('div', { class: 'act' }, h('button', { class: 'btn no', disabled: s.final, onclick: async () => { try { await api('/api/admin/day/close', { day: s.day, reason: reasonClose.value }); toast('Day closed and finalised.'); renderStats(); } catch (e) { toast(e.message, true); } } }, 'CLOSE & FINALISE'))),
       h('div', { class: 'card' }, h('h2', {}, 'COVERAGE BOUNDARY'), h('p', { class: 'meta' }, 'Core: ' + overview.coverage.core.join(', ') + '.'), h('p', { class: 'meta' }, 'Extended Dublin 15 townlands (needed by several Day 001 answers): ' + overview.coverage.extended.join(', ') + '.'), h('label', {}, ext, ' INCLUDE EXTENDED TOWNLANDS (answers outside the core 7 areas score 0 when off)'), h('div', { class: 'grid' }, field('REASON', reasonCov)), h('div', { class: 'act' }, h('button', { class: 'btn alt', onclick: async () => { try { await api('/api/admin/coverage', { includeExtended: ext.checked, reason: reasonCov.value }); toast('Coverage updated; scores recalculated.'); await boot(); } catch (e) { toast(e.message, true); } } }, 'SAVE COVERAGE'))));
+    await dayTester(root);
     s.questions.forEach(q => {
       const tbl = h('table', {}, h('thead', {}, h('tr', {}, ...['ANSWER', 'COUNT', 'SHARE', 'TIER'].map(x => h('th', {}, x)))), h('tbody', {}, ...q.rows.map(r => h('tr', {}, h('td', {}, r.canonical), h('td', {}, r.count), h('td', {}, r.share + '%'), h('td', {}, r.tier)))));
       root.append(h('div', { class: 'card' }, h('div', { class: 'top' }, h('b', {}, 'Q' + q.n + ' · ' + q.text), h('span', { class: 'meta' }, q.total + ' valid · ' + q.pending + ' unresolved')), q.rows.length ? tbl : h('p', { class: 'meta' }, 'No valid answers yet.')));
     });
+  }
+
+  /* ------------------------------------------------------------ DAY TESTER */
+  async function dayTester(root) {
+    const card = h('div', { class: 'card' }, h('h2', {}, 'TEST A DAY'));
+    const dayIn = h('input', { type: 'number', min: 1, value: 2, style: 'width:5em' });
+    const body = h('div', {});
+    const load = async () => {
+      body.textContent = '';
+      let pv; try { pv = await api('/api/admin/day/preview?day=' + encodeURIComponent(dayIn.value)); } catch (e) { body.append(h('p', { class: 'meta' }, e.message)); return; }
+      body.append(h('p', { class: 'meta' }, 'DAY ' + String(pv.day).padStart(3, '0') + ' · ' + pv.date + (pv.open ? ' · OPEN NOW' : pv.final ? ' · FINAL' : ' · not open yet') + '. Type an answer to see exactly how the live game would score it. Nothing is saved.'));
+      pv.questions.forEach(q => {
+        const out = h('p', { class: 'meta' }, '');
+        const inp = h('input', { placeholder: 'try an answer or abbreviation…', style: 'min-width:16em' });
+        const go = async () => {
+          if (!inp.value.trim()) return;
+          try {
+            const r = await api('/api/admin/day/test', { day: pv.day, n: q.n, answer: inp.value });
+            out.textContent = r.kind === 'match' ? '✔ ' + r.canonical + ' (' + r.via + ') · ' + r.tier + ' · ' + r.points + ' pts' + (r.area ? ' · ' + r.area : '')
+              : r.kind === 'ambiguous' ? '? ambiguous: ' + r.options.join(' / ')
+              : r.kind === 'blocked' ? '✘ blocked: ' + r.reason
+              : r.kind === 'unknown' ? '✘ not in the bank (would go to ANSWER REVIEW)' + (r.suggestion ? ' · did you mean ' + r.suggestion + '?' : '')
+              : r.kind;
+          } catch (e) { out.textContent = e.message; }
+        };
+        inp.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+        body.append(h('div', { class: 'card' }, h('div', { class: 'top' }, h('b', {}, 'Q' + q.n + ' · ' + q.text), h('span', { class: 'meta' }, q.known + ' answers · ' + q.withAbbreviations + ' with abbreviations')),
+          h('p', { class: 'meta' }, 'e.g. ' + q.sample.join(' · ')), h('div', { class: 'act' }, inp, h('button', { class: 'btn alt', onclick: go }, 'TEST')), out));
+      });
+    };
+    card.append(h('div', { class: 'act' }, h('label', {}, 'DAY ', dayIn), h('button', { class: 'btn alt', onclick: load }, 'LOAD QUESTIONS')), body);
+    root.append(card); await load();
   }
 
   /* ------------------------------------------------------------ AUDIT */

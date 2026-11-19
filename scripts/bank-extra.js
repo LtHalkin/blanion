@@ -41,7 +41,7 @@ const SPEC = {
     drop: ['halfway house', 'maxol', 'dunnes', 'sodexo', 'roselawn shopping centre', 'snack bar', 'diner', 'falafel', 'roma', 'the gate', "jack's", 'the nook', 'w factor', '5 to go', 'half & half', 'rendevous', 'garden house', 'glass onion', 'bueno', 'pizza hut delivery', 'mutea', 'kb coffee', 'café aroma', 'cafe aroma', 'café park', 'cafe park', 'the hungry monkey', 'giulios take away', 'host chinese', 'bahaar'],
     aliases: { KFC: ['Kentucky Fried Chicken'], 'Burger King': ['BK'], "Domino's": ['Dominos', "Domino's Pizza", 'Dominos Pizza'], Costa: ['Costa Coffee'], Starbucks: ['Starbucks Coffee'], Insomnia: ['Insomnia Coffee', 'Insomnia Coffee Company'], 'Krispy Kreme': ['Krispy Kreme Doughnuts'], Boojum: ['Boojum Burritos'], Abrakebabra: ['Abra Kebabra', 'Abrakebabra Blanchardstown'], 'Apache Pizza': ['Apache'], 'Java Republic': ['Java Republic Coffee'], Wagamama: ['Wagamamas', 'Wagamama Blanchardstown'], Popeyes: ["Popeye's", 'Popeyes Chicken'], 'JD Wetherspoon': ['Wetherspoons', "Wetherspoon's", 'Spoons'], 'Four Star Pizza': ['Four Star'], 'Eddie Rocket\'s': ["Eddie Rockets"] },
     prior: { KFC: 0.14, Starbucks: 0.12, Costa: 0.1, Subway: 0.08, 'Burger King': 0.08, "Domino's": 0.06, Wagamama: 0.05, Insomnia: 0.05, Boojum: 0.04, 'Apache Pizza': 0.04, 'Krispy Kreme': 0.04, Popeyes: 0.03 } },
-  13: { cat: ['fitness'], re: /^leisure\/(sports_centre|fitness_centre|swimming_pool)$/,
+  13: { cat: ['fitness'], accept: (e, n) => !/school|college|gaa|football|rugby|golf|pitch|club house|clubhouse|community centre|\bns\b|national school|church|hotel/i.test(n) && (e.type === 'fitness_centre' || /gym|fitness|leisure|sports (complex|centre|hall)|swim|pool|crossfit|yoga|pilates|martial|boxing|dance|studio|health club|aquatic|trampoline|climbing|bowling|snooker|karate|judo/i.test(n)), re: /^leisure\/(sports_centre|fitness_centre|swimming_pool)$/,
     keep: ['ben dunne gym', 'westside gym', 'fyre gym', 'ger conroy fitness', 'evolve fitness', 'coolmine sports complex', 'national aquatic centre', 'verona sports and leisure club', 'leisureplex'],
     canon: { 'Ben Dunne Gym': 'Ben Dunne Gym' },
     aliases: { 'Ben Dunne Gym': ['Ben Dunne Gyms', 'Ben Dunne Gym Blanchardstown', 'BDG'], 'National Aquatic Centre': ['NAC', 'Aquatic Centre', 'Irish National Aquatic Centre', 'Sport Ireland National Aquatic Centre', 'National Aquatic Centre Blanchardstown'], 'Coolmine Sports Complex': ['Coolmine Sports Centre', 'Coolmine Leisure Centre'], Leisureplex: ['Leisureplex Blanchardstown', 'Leisure Plex'], 'Verona Sports and Leisure Club': ['Verona Sports and Leisure', 'Verona Sports Club', 'Verona Leisure Club'] },
@@ -86,7 +86,7 @@ function build(allowedAreas) {
       const kind = e.category + '/' + e.type; if (!spec.re.test(kind)) continue;
       const lname = tidy(e.name).toLowerCase();
       if (spec.drop && spec.drop.includes(lname)) continue;
-      if (spec.keep && !spec.keep.includes(lname)) continue;
+      if (spec.keep && !spec.keep.includes(lname) && !(spec.accept && spec.accept(e, lname))) continue;
       if (q === 15 && !/park|estate|centre|campus|retail/i.test(e.name)) continue;
       place(q, e, spec);
     }

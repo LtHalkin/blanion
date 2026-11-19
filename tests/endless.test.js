@@ -56,3 +56,36 @@ test('suggestions go to review (never accepted), dedupe, and are rate-limited pe
   for (let i = 0; i < 15; i++) await call('POST', '/api/endless/suggest', { q: 5, answer: 'Place Number ' + i }, 'spam');
   assert.equal((await call('POST', '/api/endless/suggest', { q: 5, answer: 'One More Place' }, 'spam')).code, 429);
 });
+
+test('Day 002 exists, uses bank categories, and the admin day tester resolves answers without writing anything', async () => {
+  const { call, store } = setup();
+  const tok = (await call('POST', '/api/admin/login', { password: 'pw' })).body.token;
+  const get = async path => { const app = createApp({ store, adminPassword: 'pw', sleep: async () => {} }); return app.handle({ method: 'GET', headers: { authorization: 'Bearer ' + tok }, ip: 'z', json: async () => ({}) }, new URL('http://x' + path)); };
+  const post = async (path, body) => { const app = createApp({ store, adminPassword: 'pw', sleep: async () => {} }); return app.handle({ method: 'POST', headers: { authorization: 'Bearer ' + tok }, ip: 'z', json: async () => body }, new URL('http://x' + path)); };
+  const pv = (await get('/api/admin/day/preview?day=2')).body;
+  assert.equal(pv.questions.length, 7); assert.ok(pv.questions.every(q => q.known >= 5), 'every Day 002 question has a bank');
+  const before = JSON.stringify(store.db.submissions) + store.db.plays.length;
+  const hit = (await post('/api/admin/day/test', { day: 2, n: 4, answer: 'Kentucky Fried Chicken' })).body;
+  assert.equal(hit.kind, 'match'); assert.equal(hit.canonical, 'KFC');
+  assert.equal((await post('/api/admin/day/test', { day: 2, n: 4, answer: 'zzz nonsense place' })).body.kind, 'unknown');
+  assert.equal(JSON.stringify(store.db.submissions) + store.db.plays.length, before, 'tester writes nothing');
+});
+
+test('a full Day 002 dive plays through the daily API using bank categories 8-16', async () => {
+  const { call, store } = setup();
+  const { addDays, dateKey } = require('../lib/util');
+  store.db.meta.launchDate = addDays(dateKey(Date.now()), -1);   // so today is Day 002
+  const st = (await call('GET', '/api/config')).body.today;
+  assert.equal(st.day, 2);
+  const start = (await call('POST', '/api/play/start', { nickname: 'T' }, 'p1')).body;
+  let play = (await call('POST', '/api/play/begin', { playId: start.play.id }, 'p1')).body.play;
+  const answers = ['The Twelfth Lock', 'St Brigid\'s Church', 'Dunnes', 'kfc', 'Ben Dunne Gym', 'JCMH', 'Castleknock Road'];
+  for (let i = 0; i < 7; i++) {
+    assert.equal(play.question.n, i + 1);
+    const r = (await call('POST', '/api/play/answer', { playId: start.play.id, answer: answers[i] }, 'p1')).body;
+    assert.equal(r.outcome, 'correct', answers[i] + ' -> ' + JSON.stringify(r.response || r));
+    play = r.play;
+    if (i < 6) play = (await call('POST', '/api/play/begin', { playId: start.play.id }, 'p1')).body.play;
+  }
+  assert.ok(play.done); assert.ok(play.score > 0); assert.deepEqual(play.responses.map(x => x.n), [1, 2, 3, 4, 5, 6, 7]);
+});

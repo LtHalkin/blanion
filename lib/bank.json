@@ -3313,6 +3313,27 @@
    "abbreviations": []
   },
   {
+   "id": "b11-1wj5odn",
+   "q": 11,
+   "canonical": "Enable Ireland",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Shops",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.38549,
+   "lng": -6.37329,
+   "source": "https://www.openstreetmap.org/node/6468803886",
+   "sources": [
+    "https://www.openstreetmap.org/node/6468803886"
+   ],
+   "osm": "node/6468803886",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
    "id": "b12-3snuv5",
    "q": 12,
    "canonical": "Tyrrelstown Asian Restaurant and Takeaway",
@@ -4516,6 +4537,484 @@
    ]
   },
   {
+   "id": "b12-r1x7b7",
+   "q": 12,
+   "canonical": "Building 2 Canteen",
+   "aliases": [],
+   "area": "Tyrrelstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Tyrrelstown, Dublin 15",
+   "lat": 53.41982,
+   "lng": -6.41622,
+   "source": "https://www.openstreetmap.org/way/346529779",
+   "sources": [
+    "https://www.openstreetmap.org/way/346529779"
+   ],
+   "osm": "way/346529779",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "B2C"
+   ]
+  },
+  {
+   "id": "b12-1ndgwg4",
+   "q": 12,
+   "canonical": "Building 3 Canteen",
+   "aliases": [],
+   "area": "Mulhuddart",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.41861,
+   "lng": -6.41673,
+   "source": "https://www.openstreetmap.org/way/346530538",
+   "sources": [
+    "https://www.openstreetmap.org/way/346530538"
+   ],
+   "osm": "way/346530538",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "B3C"
+   ]
+  },
+  {
+   "id": "b12-e9vvwn",
+   "q": 12,
+   "canonical": "Building 6 Canteen",
+   "aliases": [],
+   "area": "Damastown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Damastown, Dublin 15",
+   "lat": 53.42125,
+   "lng": -6.41862,
+   "source": "https://www.openstreetmap.org/way/346529440",
+   "sources": [
+    "https://www.openstreetmap.org/way/346529440"
+   ],
+   "osm": "way/346529440",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "B6C"
+   ]
+  },
+  {
+   "id": "b12-1gzg8qu",
+   "q": 12,
+   "canonical": "Building 5 Canteen",
+   "aliases": [],
+   "area": "Damastown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Damastown, Dublin 15",
+   "lat": 53.41971,
+   "lng": -6.41916,
+   "source": "https://www.openstreetmap.org/way/346530733",
+   "sources": [
+    "https://www.openstreetmap.org/way/346530733"
+   ],
+   "osm": "way/346530733",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "B5C"
+   ]
+  },
+  {
+   "id": "b12-1luzjnw",
+   "q": 12,
+   "canonical": "Chef Garden",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.42023,
+   "lng": -6.38223,
+   "source": "https://www.openstreetmap.org/node/626672406",
+   "sources": [
+    "https://www.openstreetmap.org/node/626672406"
+   ],
+   "osm": "node/626672406",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-u314si",
+   "q": 12,
+   "canonical": "Calmio Coffee",
+   "aliases": [],
+   "area": "Mulhuddart",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Mulhuddart, Dublin 15",
+   "lat": 53.42107,
+   "lng": -6.38217,
+   "source": "https://www.openstreetmap.org/node/14270908927",
+   "sources": [
+    "https://www.openstreetmap.org/node/14270908927"
+   ],
+   "osm": "node/14270908927",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-1fy6re1",
+   "q": 12,
+   "canonical": "Rosa Cafe",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.4153,
+   "lng": -6.36208,
+   "source": "https://www.openstreetmap.org/node/4864350757",
+   "sources": [
+    "https://www.openstreetmap.org/node/4864350757"
+   ],
+   "osm": "node/4864350757",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-1n4iv12",
+   "q": 12,
+   "canonical": "San Marco Take Out",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.40443,
+   "lng": -6.42605,
+   "source": "https://www.openstreetmap.org/node/1358194690",
+   "sources": [
+    "https://www.openstreetmap.org/node/1358194690"
+   ],
+   "osm": "node/1358194690",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "SMTO"
+   ]
+  },
+  {
+   "id": "b12-1evz2ma",
+   "q": 12,
+   "canonical": "Ipsen Employee Canteen",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.40643,
+   "lng": -6.36763,
+   "source": "https://www.openstreetmap.org/node/801794199",
+   "sources": [
+    "https://www.openstreetmap.org/node/801794199"
+   ],
+   "osm": "node/801794199",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "IEC"
+   ]
+  },
+  {
+   "id": "b12-1g6qcbq",
+   "q": 12,
+   "canonical": "Cafe Haven",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.4065,
+   "lng": -6.34978,
+   "source": "https://www.openstreetmap.org/node/365324181",
+   "sources": [
+    "https://www.openstreetmap.org/node/365324181"
+   ],
+   "osm": "node/365324181",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-1wt3y1j",
+   "q": 12,
+   "canonical": "Papa Razzi",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39582,
+   "lng": -6.44073,
+   "source": "https://www.openstreetmap.org/node/950977617",
+   "sources": [
+    "https://www.openstreetmap.org/node/950977617"
+   ],
+   "osm": "node/950977617",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-ykf4kb",
+   "q": 12,
+   "canonical": "Chef",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39513,
+   "lng": -6.43904,
+   "source": "https://www.openstreetmap.org/node/6345548834",
+   "sources": [
+    "https://www.openstreetmap.org/node/6345548834"
+   ],
+   "osm": "node/6345548834",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-yks2ez",
+   "q": 12,
+   "canonical": "Taro",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39518,
+   "lng": -6.43915,
+   "source": "https://www.openstreetmap.org/node/6345548833",
+   "sources": [
+    "https://www.openstreetmap.org/node/6345548833"
+   ],
+   "osm": "node/6345548833",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-1hykbgy",
+   "q": 12,
+   "canonical": "Chef In",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39493,
+   "lng": -6.43985,
+   "source": "https://www.openstreetmap.org/node/6345652353",
+   "sources": [
+    "https://www.openstreetmap.org/node/6345652353"
+   ],
+   "osm": "node/6345652353",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-ykx0ms",
+   "q": 12,
+   "canonical": "Zouq",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.38342,
+   "lng": -6.40145,
+   "source": "https://www.openstreetmap.org/node/8033223505",
+   "sources": [
+    "https://www.openstreetmap.org/node/8033223505"
+   ],
+   "osm": "node/8033223505",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-1b6x2v",
+   "q": 12,
+   "canonical": "Magic Wok",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39242,
+   "lng": -6.42027,
+   "source": "https://www.openstreetmap.org/node/3219472686",
+   "sources": [
+    "https://www.openstreetmap.org/node/3219472686"
+   ],
+   "osm": "node/3219472686",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-ukxau6",
+   "q": 12,
+   "canonical": "Spice India",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.38692,
+   "lng": -6.37789,
+   "source": "https://www.openstreetmap.org/node/10759455350",
+   "sources": [
+    "https://www.openstreetmap.org/node/10759455350"
+   ],
+   "osm": "node/10759455350",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-4bfwdk",
+   "q": 12,
+   "canonical": "Nando's",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.39172,
+   "lng": -6.39081,
+   "source": "https://www.openstreetmap.org/node/2935976014",
+   "sources": [
+    "https://www.openstreetmap.org/node/2935976014"
+   ],
+   "osm": "node/2935976014",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-3tqtt1",
+   "q": 12,
+   "canonical": "Milano",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.39165,
+   "lng": -6.39081,
+   "source": "https://www.openstreetmap.org/node/2935976015",
+   "sources": [
+    "https://www.openstreetmap.org/node/2935976015"
+   ],
+   "osm": "node/2935976015",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b12-1aekzyu",
+   "q": 12,
+   "canonical": "Chopped (Healthy Food Company)",
+   "aliases": [],
+   "area": "Blakestown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blakestown, Dublin 15",
+   "lat": 53.3889,
+   "lng": -6.38938,
+   "source": "https://www.openstreetmap.org/node/5505475866",
+   "sources": [
+    "https://www.openstreetmap.org/node/5505475866"
+   ],
+   "osm": "node/5505475866",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "CHFC"
+   ]
+  },
+  {
+   "id": "b12-1vu45kt",
+   "q": 12,
+   "canonical": "K&K café",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.39087,
+   "lng": -6.39178,
+   "source": "https://www.openstreetmap.org/node/4368084789",
+   "sources": [
+    "https://www.openstreetmap.org/node/4368084789"
+   ],
+   "osm": "node/4368084789",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "KandK café"
+   ]
+  },
+  {
+   "id": "b12-tyug7v",
+   "q": 12,
+   "canonical": "Eddie Rocket's",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Food & Drink",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.39204,
+   "lng": -6.39136,
+   "source": "https://www.openstreetmap.org/node/676841915",
+   "sources": [
+    "https://www.openstreetmap.org/node/676841915"
+   ],
+   "osm": "node/676841915",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
    "id": "b13-10s4fa9",
    "q": 13,
    "canonical": "Ben Dunne Gym",
@@ -4729,6 +5228,117 @@
     "https://www.openstreetmap.org/node/676841921"
    ],
    "osm": "node/676841921",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b13-13xo5qe",
+   "q": 13,
+   "canonical": "Yogahub Castleknock",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Fitness & Leisure",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.38417,
+   "lng": -6.36429,
+   "source": "https://www.openstreetmap.org/node/12224092435",
+   "sources": [
+    "https://www.openstreetmap.org/node/12224092435"
+   ],
+   "osm": "node/12224092435",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b13-9q4fia",
+   "q": 13,
+   "canonical": "Spartan martial arts",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Fitness & Leisure",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.40245,
+   "lng": -6.35076,
+   "source": "https://www.openstreetmap.org/node/2879524003",
+   "sources": [
+    "https://www.openstreetmap.org/node/2879524003"
+   ],
+   "osm": "node/2879524003",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "SMA"
+   ]
+  },
+  {
+   "id": "b13-eemjud",
+   "q": 13,
+   "canonical": "Bikram Yoga D15",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Fitness & Leisure",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.38337,
+   "lng": -6.40098,
+   "source": "https://www.openstreetmap.org/node/12224092434",
+   "sources": [
+    "https://www.openstreetmap.org/node/12224092434"
+   ],
+   "osm": "node/12224092434",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "BYD"
+   ]
+  },
+  {
+   "id": "b13-1xufsyn",
+   "q": 13,
+   "canonical": "Yoga Salsa With Didi",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Fitness & Leisure",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.38594,
+   "lng": -6.40924,
+   "source": "https://www.openstreetmap.org/node/12224092437",
+   "sources": [
+    "https://www.openstreetmap.org/node/12224092437"
+   ],
+   "osm": "node/12224092437",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "YSWD"
+   ]
+  },
+  {
+   "id": "b13-c6hr8y",
+   "q": 13,
+   "canonical": "CrossFit",
+   "aliases": [],
+   "area": "Castleknock",
+   "areaBasis": "osm-label",
+   "category": "Fitness & Leisure",
+   "location": "Castleknock, Dublin 15",
+   "lat": 53.40396,
+   "lng": -6.3498,
+   "source": "https://www.openstreetmap.org/node/11139772881",
+   "sources": [
+    "https://www.openstreetmap.org/node/11139772881"
+   ],
+   "osm": "node/11139772881",
    "flag": null,
    "note": null,
    "prior": 0.008,
@@ -8674,6 +9284,492 @@
    "abbreviations": [
     "Kilshane Rd"
    ]
+  },
+  {
+   "id": "b16-1xm3u98",
+   "q": 16,
+   "canonical": "Bay Meadows View",
+   "aliases": [],
+   "area": "Tyrrelstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Tyrrelstown, Dublin 15",
+   "lat": 53.42211,
+   "lng": -6.36804,
+   "source": "https://www.openstreetmap.org/way/1124368174",
+   "sources": [
+    "https://www.openstreetmap.org/way/1124368174"
+   ],
+   "osm": "way/1124368174",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "BMV"
+   ]
+  },
+  {
+   "id": "b16-6ev2b9",
+   "q": 16,
+   "canonical": "Bay Meadows Avenue",
+   "aliases": [],
+   "area": "Tyrrelstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Tyrrelstown, Dublin 15",
+   "lat": 53.42258,
+   "lng": -6.3728,
+   "source": "https://www.openstreetmap.org/way/798630291",
+   "sources": [
+    "https://www.openstreetmap.org/way/798630291"
+   ],
+   "osm": "way/798630291",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "Bay Meadows Ave",
+    "BMA"
+   ]
+  },
+  {
+   "id": "b16-1xlz1hb",
+   "q": 16,
+   "canonical": "Bay Meadows Park",
+   "aliases": [],
+   "area": "Tyrrelstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Tyrrelstown, Dublin 15",
+   "lat": 53.42309,
+   "lng": -6.36688,
+   "source": "https://www.openstreetmap.org/way/1089301835",
+   "sources": [
+    "https://www.openstreetmap.org/way/1089301835"
+   ],
+   "osm": "way/1089301835",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "Bay Meadows Pk",
+    "BMP"
+   ]
+  },
+  {
+   "id": "b16-1wbzm4o",
+   "q": 16,
+   "canonical": "Bay Meadows Crescent",
+   "aliases": [],
+   "area": "Tyrrelstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Tyrrelstown, Dublin 15",
+   "lat": 53.42203,
+   "lng": -6.3713,
+   "source": "https://www.openstreetmap.org/way/798630292",
+   "sources": [
+    "https://www.openstreetmap.org/way/798630292"
+   ],
+   "osm": "way/798630292",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "Bay Meadows Cres",
+    "BMC"
+   ]
+  },
+  {
+   "id": "b16-hz2isi",
+   "q": 16,
+   "canonical": "Bay Meadows Square",
+   "aliases": [],
+   "area": "Tyrrelstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Tyrrelstown, Dublin 15",
+   "lat": 53.42214,
+   "lng": -6.37272,
+   "source": "https://www.openstreetmap.org/way/923164813",
+   "sources": [
+    "https://www.openstreetmap.org/way/923164813"
+   ],
+   "osm": "way/923164813",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "Bay Meadows Sq",
+    "BMS"
+   ]
+  },
+  {
+   "id": "b16-nzivbo",
+   "q": 16,
+   "canonical": "Bay Meadows Grove",
+   "aliases": [],
+   "area": "Tyrrelstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Tyrrelstown, Dublin 15",
+   "lat": 53.42249,
+   "lng": -6.36798,
+   "source": "https://www.openstreetmap.org/way/1089301839",
+   "sources": [
+    "https://www.openstreetmap.org/way/1089301839"
+   ],
+   "osm": "way/1089301839",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "Bay Meadows Gr",
+    "BMG"
+   ]
+  },
+  {
+   "id": "b16-1spiwst",
+   "q": 16,
+   "canonical": "Blackwood Lawn",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39596,
+   "lng": -6.44524,
+   "source": "https://www.openstreetmap.org/way/7989901",
+   "sources": [
+    "https://www.openstreetmap.org/way/7989901"
+   ],
+   "osm": "way/7989901",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-lcxg7m",
+   "q": 16,
+   "canonical": "Willan's Rise",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39416,
+   "lng": -6.4431,
+   "source": "https://www.openstreetmap.org/way/15958817",
+   "sources": [
+    "https://www.openstreetmap.org/way/15958817"
+   ],
+   "osm": "way/15958817",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-xqf826",
+   "q": 16,
+   "canonical": "Willow Wood Lawn",
+   "aliases": [],
+   "area": "Clonsilla",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Clonsilla, Dublin 15",
+   "lat": 53.39053,
+   "lng": -6.41825,
+   "source": "https://www.openstreetmap.org/way/3298297",
+   "sources": [
+    "https://www.openstreetmap.org/way/3298297"
+   ],
+   "osm": "way/3298297",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "WWL"
+   ]
+  },
+  {
+   "id": "b16-1rpz3ci",
+   "q": 16,
+   "canonical": "Beechfield Lawn",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.40504,
+   "lng": -6.43526,
+   "source": "https://www.openstreetmap.org/way/30443995",
+   "sources": [
+    "https://www.openstreetmap.org/way/30443995"
+   ],
+   "osm": "way/30443995",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-1r0y59j",
+   "q": 16,
+   "canonical": "Castlegrange Lawn",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.3992,
+   "lng": -6.42688,
+   "source": "https://www.openstreetmap.org/way/541581389",
+   "sources": [
+    "https://www.openstreetmap.org/way/541581389"
+   ],
+   "osm": "way/541581389",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-lz8pym",
+   "q": 16,
+   "canonical": "Barnwell Lawn",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.39181,
+   "lng": -6.44027,
+   "source": "https://www.openstreetmap.org/way/450356459",
+   "sources": [
+    "https://www.openstreetmap.org/way/450356459"
+   ],
+   "osm": "way/450356459",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-td59tl",
+   "q": 16,
+   "canonical": "Allendale Lawn",
+   "aliases": [],
+   "area": "Clonsilla",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Clonsilla, Dublin 15",
+   "lat": 53.3926,
+   "lng": -6.4268,
+   "source": "https://www.openstreetmap.org/way/98031360",
+   "sources": [
+    "https://www.openstreetmap.org/way/98031360"
+   ],
+   "osm": "way/98031360",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-1oga9m5",
+   "q": 16,
+   "canonical": "Oakview Lawn",
+   "aliases": [],
+   "area": "Hartstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Hartstown, Dublin 15",
+   "lat": 53.39203,
+   "lng": -6.41773,
+   "source": "https://www.openstreetmap.org/way/3383467",
+   "sources": [
+    "https://www.openstreetmap.org/way/3383467"
+   ],
+   "osm": "way/3383467",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-1azkov3",
+   "q": 16,
+   "canonical": "Ravenswood Lawn",
+   "aliases": [],
+   "area": "Hartstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Hartstown, Dublin 15",
+   "lat": 53.39435,
+   "lng": -6.42539,
+   "source": "https://www.openstreetmap.org/way/7989310",
+   "sources": [
+    "https://www.openstreetmap.org/way/7989310"
+   ],
+   "osm": "way/7989310",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-6aewah",
+   "q": 16,
+   "canonical": "Linnetfields Rise",
+   "aliases": [],
+   "area": "Ongar",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Ongar, Dublin 15",
+   "lat": 53.40079,
+   "lng": -6.43683,
+   "source": "https://www.openstreetmap.org/way/31097444",
+   "sources": [
+    "https://www.openstreetmap.org/way/31097444"
+   ],
+   "osm": "way/31097444",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-q9270g",
+   "q": 16,
+   "canonical": "Briarwood Lawn",
+   "aliases": [],
+   "area": "Huntstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Huntstown, Dublin 15",
+   "lat": 53.39806,
+   "lng": -6.40538,
+   "source": "https://www.openstreetmap.org/way/7989261",
+   "sources": [
+    "https://www.openstreetmap.org/way/7989261"
+   ],
+   "osm": "way/7989261",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-1b1g0ev",
+   "q": 16,
+   "canonical": "Ashfield Lawn",
+   "aliases": [],
+   "area": "Huntstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Huntstown, Dublin 15",
+   "lat": 53.40265,
+   "lng": -6.40721,
+   "source": "https://www.openstreetmap.org/way/7989208",
+   "sources": [
+    "https://www.openstreetmap.org/way/7989208"
+   ],
+   "osm": "way/7989208",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-18kjg1s",
+   "q": 16,
+   "canonical": "Mount Symon Lawn",
+   "aliases": [],
+   "area": "Clonsilla",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Clonsilla, Dublin 15",
+   "lat": 53.38814,
+   "lng": -6.42062,
+   "source": "https://www.openstreetmap.org/way/4272746",
+   "sources": [
+    "https://www.openstreetmap.org/way/4272746"
+   ],
+   "osm": "way/4272746",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "Mt Symon Lawn",
+    "MSL"
+   ]
+  },
+  {
+   "id": "b16-khm1vr",
+   "q": 16,
+   "canonical": "Porters Gate Lawn",
+   "aliases": [],
+   "area": "Clonsilla",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Clonsilla, Dublin 15",
+   "lat": 53.38738,
+   "lng": -6.42533,
+   "source": "https://www.openstreetmap.org/way/7989311",
+   "sources": [
+    "https://www.openstreetmap.org/way/7989311"
+   ],
+   "osm": "way/7989311",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": [
+    "PGL"
+   ]
+  },
+  {
+   "id": "b16-1btyltx",
+   "q": 16,
+   "canonical": "Delwood Lawn",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.37928,
+   "lng": -6.39068,
+   "source": "https://www.openstreetmap.org/way/3189212",
+   "sources": [
+    "https://www.openstreetmap.org/way/3189212"
+   ],
+   "osm": "way/3189212",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
+  },
+  {
+   "id": "b16-swpyud",
+   "q": 16,
+   "canonical": "Whitechapel Lawn",
+   "aliases": [],
+   "area": "Blanchardstown",
+   "areaBasis": "osm-label",
+   "category": "Roads",
+   "location": "Blanchardstown, Dublin 15",
+   "lat": 53.38879,
+   "lng": -6.40266,
+   "source": "https://www.openstreetmap.org/way/1096070956",
+   "sources": [
+    "https://www.openstreetmap.org/way/1096070956"
+   ],
+   "osm": "way/1096070956",
+   "flag": null,
+   "note": null,
+   "prior": 0.008,
+   "abbreviations": []
   }
  ],
  "enrich": {
