@@ -43,6 +43,7 @@
       <div class="status" id="homeStatus"></div>
       <label class="nick" id="nickWrap">DIVER NAME <input id="nick" maxlength="16" placeholder="optional" autocomplete="nickname" spellcheck="false"></label>
       <button class="btn big" id="diveBtn">DIVE</button>
+      <button class="btn ghost small" id="endlessBtn">&#8734; ENDLESS DIVE</button>
       <div class="links-row">
         <button class="link" id="howBtn">HOW IT WORKS</button>
         <button class="link" id="boardBtn">TODAY'S DIVERS</button>
@@ -136,7 +137,7 @@
       <div class="row center">
         <button class="btn" id="shareBtn">COPY RESULT</button>
         <button class="btn ghost" id="resBoardBtn">LEADERBOARD</button>
-      </div>
+      <button class="btn ghost" id="resEndlessBtn">&#8734; ENDLESS</button></div>
       <p class="hint center" id="shareHint"></p>
       <div class="countdown" id="resCountdown"></div>
       <a class="promo promo-golf" href="/golf">
@@ -175,6 +176,67 @@
       <div class="row center"><button class="btn ghost" id="boardBack">BACK</button></div>
     </div>
   </section>
+
+  <!-- ENDLESS DIVE -->
+  <section id="v-endless" class="view hidden">
+    <div class="hud card thin">
+      <div><small>LIVES</small><b id="eLives" class="hearts">&hearts;&hearts;&hearts;</b></div>
+      <div><small>SCORE</small><b id="eScore">0</b></div>
+      <div><small>DEPTH</small><b id="eDepth">0m</b></div>
+      <div><small>STREAK</small><b id="eStreak">0</b></div>
+    </div>
+    <div class="card">
+      <div id="eReady" class="center">
+        <div class="day-chip">&#8734; ENDLESS DIVE</div>
+        <h2 class="res-title">HOW DEEP CAN YOU GO?</h2>
+        <ul class="e-rules">
+          <li><b>3 LIVES.</b> A wrong, unknown or too-slow answer costs one.</li>
+          <li><b>RARE = BIG POINTS.</b> Same scoring as the daily dive.</li>
+          <li><b>NO REPEATS.</b> Every answer in a run must be new.</li>
+          <li><b>FIVE IN A ROW</b> wins a life back (max 5).</li>
+          <li><b>THE CLOCK SHRINKS</b> as you go deeper.</li>
+        </ul>
+        <div class="row center"><button class="btn big" id="eStart">DIVE IN</button></div>
+        <p class="hint center" id="eBest"></p>
+        <div class="row center"><button class="link" id="eExit0">&larr; BACK</button></div>
+      </div>
+      <div id="ePanel" class="hidden">
+        <div class="timer" aria-hidden="true"><div class="timer-bar" id="eTimerBar"></div></div>
+        <div class="timer-row"><span class="chip" id="eCat">CATEGORY</span><span class="secs" id="eSecs" role="timer">25</span></div>
+        <h2 id="eText" class="question">&hellip;</h2>
+        <form id="eForm" autocomplete="off">
+          <input id="eAnswer" maxlength="100" placeholder="Type your answer" autocapitalize="words" spellcheck="false" aria-label="Your answer">
+          <button class="btn" id="eSubmit" type="submit">SUBMIT</button>
+        </form>
+        <div id="eClarify" class="clarify hidden"></div>
+        <p class="hint" id="eHint" aria-live="polite"></p>
+      </div>
+      <div id="eReveal" class="hidden" aria-live="polite">
+        <div class="reveal-tier" id="eTier">PLANKTON</div>
+        <div class="reveal-points" id="ePoints">+10</div>
+        <div class="reveal-name" id="eName"></div>
+        <p class="reveal-note" id="eNote"></p>
+        <div class="row center"><button class="btn" id="eNext">NEXT</button><button class="link hidden" id="eSuggest">I THINK THAT&rsquo;S RIGHT &mdash; SUGGEST IT</button></div>
+        <div class="auto"><div id="eAutoBar"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-eend" class="view hidden">
+    <div class="card">
+      <div class="day-chip">&#8734; ENDLESS DIVE</div>
+      <h2 class="res-title">RUN OVER</h2>
+      <div class="res-zone" id="eZone">Kelp Forest</div>
+      <div class="res-score"><span id="eEndScore">0</span><small>points</small></div>
+      <div class="res-depth" id="eEndDepth"></div>
+      <div class="res-prov" id="eEndBest"></div>
+      <div class="e-tiers" id="eTiers"></div>
+      <ol class="res-list" id="eFound"></ol>
+      <div class="row center"><button class="btn" id="eAgain">DIVE AGAIN</button><button class="btn ghost" id="eShare">COPY RESULT</button></div>
+      <p class="hint center" id="eShareHint"></p>
+      <div class="row center"><button class="link" id="eExit1">&larr; BACK TO THE MAIN DIVE</button></div>
+    </div>
+  </section>
 </main>
 
 <footer class="foot">
@@ -197,5 +259,6 @@
 <script src="/mascot.js"></script>
 <script src="/ocean.js"></script>
 <script src="/app.js"></script>
+<script src="/endless.js"></script>
 </body>
 </html>

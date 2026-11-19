@@ -55,6 +55,16 @@ npm test                            # engine unit tests
 5. **Admin decisions** — approve (needs a source URL + an in-boundary area; coords must fall inside the Dublin 15 box; duplicate of an existing answer is refused → use merge), merge, reject (reason required), flag for research. One decision applies to every player who gave that answer, and scores are **recomputed from decisions** — there is no endpoint to edit a score.
 6. **Audit trail**: every decision, coverage change, answer edit, day close and recalculation is appended to a hash-chained log (verify it in the admin AUDIT LOG tab).
 
+## Endless Dive (unlimited mode for the main game)
+
+The daily dive is seven questions once a day. **Endless Dive** (home screen: `∞ ENDLESS DIVE`, also on the results screen) is the unlimited version: as many runs as you like, any time.
+
+- A run keeps asking the same seven kinds of question (waterway, station, park, school, heritage, area, club) in random order, until you lose all **3 lives**. A wrong, unknown or too-slow answer costs a life; **five correct in a row wins one back** (max 5). Every answer in a run must be new (repeating one is rejected, costs nothing).
+- **Same rules as the daily game:** the same matching engine (aliases, typos, "which did you mean?"), the same 25 s clock, the same rarity tiers and points. The clock shrinks by 3 s every 8 answers (floor 12 s). The mascot dives with your score, and zones continue past the Abyss.
+- **Rarity in endless mode:** tiers come from the most recent *finalised* real day that saw the answer, otherwise from the answer's expected-popularity prior. Nothing you do in Endless touches daily statistics, rarity counts, leaderboards or player records (the server endpoints `/api/endless/*` are stateless), so it cannot skew the real game.
+- **Feeds the answer bank:** an unknown answer shows "I think that's right — suggest it", which sends it to ANSWER REVIEW (and the verification bot), never accepted automatically. Suggestions are de-duplicated and limited to 15 per hour per IP.
+- A run ends with a depth, a tier breakdown, your best answers and a copyable result; your best run is saved on your device. No online leaderboard (the run is scored in the browser).
+
 ## Answer bank
 
 The bank holds **141 answers** (Q1 waterways 5 · Q2 stations 5 · Q3 parks 16 · Q4 schools 36 · Q5 heritage 21 · Q6 areas 39 · Q7 clubs 19; the admin Answer Database shows live numbers).

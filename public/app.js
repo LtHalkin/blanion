@@ -21,7 +21,7 @@
   const serverNow = () => Date.now() + skew;
 
   /* ----------------------------------------------------------- views */
-  const VIEWS = ['home', 'game', 'results', 'board'];
+  const VIEWS = ['home', 'game', 'results', 'board', 'endless', 'eend'];
   function show(v) {
     VIEWS.forEach(x => $('v-' + x).classList.toggle('hidden', x !== v));
     window.scrollTo(0, 0);
@@ -324,6 +324,7 @@
     renderHome(); show('home');
   }
 
+  window.BlanionApp = { show, renderHome };      // used by endless.js
   $('diveBtn').onclick = () => { if (play && !play.done) return diveClicked(); if (play && play.done) return showResults(); diveClicked(); };
   $('goBtn').onclick = begin;
   $('nextBtn').onclick = next;
