@@ -13,9 +13,9 @@ function setup() {
   return { store, call };
 }
 
-test('endless info lists the seven categories with live bank sizes', async () => {
+test('endless info lists all 16 categories with live bank sizes', async () => {
   const { call } = setup(); const r = (await call('GET', '/api/endless/info')).body;
-  assert.equal(r.questions.length, 7); assert.ok(r.questions.every(q => q.known >= 3)); assert.equal(r.startLives, 3); assert.equal(r.tiers.length, 6);
+  assert.equal(r.questions.length, 16); assert.ok(r.questions.every(q => q.known >= 3)); assert.equal(r.startLives, 3); assert.equal(r.tiers.length, 6);
 });
 
 test('answers resolve exactly like the daily game, with a rarity tier and points', async () => {
@@ -29,7 +29,7 @@ test('answers resolve exactly like the daily game, with a rarity tier and points
   assert.equal((await call('POST', '/api/endless/answer', { q: 4, answer: 'Pizza Palace' })).body.outcome, 'unknown');
   assert.equal((await call('POST', '/api/endless/answer', { q: 6, answer: 'Dublin' })).body.outcome, 'wrong');
   assert.equal((await call('POST', '/api/endless/answer', { q: 6, answer: '' })).body.outcome, 'invalid');
-  assert.equal((await call('POST', '/api/endless/answer', { q: 9, answer: 'x' })).code, 400);
+  assert.equal((await call('POST', '/api/endless/answer', { q: 17, answer: 'x' })).code, 400);
 });
 
 test('tiers come from the latest finalised day when one exists', async () => {

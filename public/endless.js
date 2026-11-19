@@ -52,7 +52,7 @@
 
   /* --------------------------------------------------------------- questions */
   function nextQuestion() {
-    let q; do { q = 1 + Math.floor(Math.random() * 7); } while (q === lastQ); lastQ = q;
+    let q; do { q = 1 + Math.floor(Math.random() * info.questions.length); } while (q === lastQ); lastQ = q;
     const meta = info.questions[q - 1];
     current = { q, limit: limitFor(run.answered), meta };
     $('eText').textContent = meta.text; $('eCat').textContent = meta.category.toUpperCase();

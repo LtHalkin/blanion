@@ -220,7 +220,7 @@
       } catch (e) { toast(e.message, true); }
     };
     root.append(h('h2', {}, 'BULK IMPORT ANSWERS'),
-      h('p', { class: 'meta' }, 'One answer per line, fields separated by | :  question 1–7 | canonical name | aliases (separate with ;) | area | source URL | lat | lng | location. Lat/lng/location optional. Lines starting with # are ignored. Each row obeys the same rules as approval: a source URL, an in-boundary area, no duplicates. Preview first.'),
+      h('p', { class: 'meta' }, 'One answer per line, fields separated by | :  question 1–16 (1–7 daily, 8–16 endless-only) | canonical name | aliases (separate with ;) | area | source URL | lat | lng | location. Lat/lng/location optional. Lines starting with # are ignored. Each row obeys the same rules as approval: a source URL, an in-boundary area, no duplicates. Preview first.'),
       ta, h('div', { class: 'grid' }, field('REASON', reason)),
       h('div', { class: 'act' }, h('button', { class: 'btn alt', onclick: () => run(true) }, 'PREVIEW (NO CHANGES)'), h('button', { class: 'btn ok', onclick: () => run(false) }, 'IMPORT')), out);
   }

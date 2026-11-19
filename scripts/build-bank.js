@@ -17,11 +17,14 @@
 const fs = require('fs');
 const path = require('path');
 const { norm } = require('../lib/util');
+process.env.BLANION_BUILD = '1';
 const D = require('../lib/day001');
+const { abbreviationsFor, resolveCollisions } = require('../lib/abbrev');
+const ExtraBank = require('./bank-extra');
 
 const raw = JSON.parse(fs.readFileSync(path.join(__dirname, 'osm-raw', 'nominatim.json'), 'utf8'));
 const GENERATED = '2026-11-19';
-const QCAT = Object.fromEntries(D.QUESTIONS.map(q => [q.n, q.category]));
+const QCAT = Object.fromEntries(D.ALL_QUESTIONS.map(q => [q.n, q.category]));
 const osmUrl = e => `https://www.openstreetmap.org/${e.osm_type}/${e.osm_id}`;
 
 /** find an element by exact (case-insensitive) name; `pref` = list of "category/type" prefixes in order of preference */
@@ -195,32 +198,69 @@ for (const [q, canon, osm, o] of ENRICH) {
   enrich[seed.id] = { lat: +e.lat.toFixed(5), lng: +e.lon.toFixed(5), source: osmUrl(e), osm: `${e.osm_type}/${e.osm_id}`, ...(o.area ? { area: o.area } : {}), ...('flag' in o ? { flag: o.flag } : {}), ...(o.aliases ? { aliases: o.aliases } : {}) };
 }
 
+// --- extra categories (Endless Dive): pubs, worship, hotels, shops, food, fitness, health, business parks, roads
+const allowedAreas = [...D.COVERAGE.core, ...D.COVERAGE.extended, ...newAnswers.map(a => a.area)];
+const extraBuilt = ExtraBank.build(allowedAreas);
+const extraAnswers = extraBuilt.answers.map(a => ({
+  id: `b${a.q}-${hash(norm(a.canonical))}`, q: a.q, canonical: a.canonical, aliases: [...a.aliases], area: a.area, areaBasis: 'osm-label', category: QCAT[a.q],
+  location: `${a.area}, Dublin 15`, lat: a.lat, lng: a.lng, source: a.source, sources: [a.source], osm: a.osm, flag: null, note: null, prior: a.prior,
+}));
+const bankAnswers = newAnswers.concat(extraAnswers);
+
+// Manual abbreviations / nicknames for the hand-curated seed answers (people really say these)
+const SEED_ABBR = {
+  'Castleknock College': ['CKC', 'Castleknock College Dublin'], 'Castleknock Community College': ['CCC', 'CKCC', 'Castleknock CC'],
+  'Coolmine Community School': ['CCS', 'Coolmine CS'], 'St Francis Xavier Senior School': ['SFX Senior', 'SFXS', 'SFX Senior NS'], 'St Francis Xavier Junior School': ['SFX Junior', 'SFXJ', 'SFX Junior NS'],
+  'Scoil Bhríde Boys National School': ["St Brigid's Boys NS", 'SBBNS', 'Scoil Bhride Boys NS'], 'Scoil Bhríde Girls National School': ["St Brigid's Girls NS", 'SBGNS', 'Scoil Bhride Girls NS'],
+  'Hartstown Community School': ['HCS', 'Hartstown CS'], 'Blakestown Community School': ['BCS', 'Blakestown CS'], 'Le Chéile Secondary School': ['Le Cheile SS', 'LCSS'],
+  "St Luke's National School": ["St Luke's NS", 'St Lukes NS'], 'Tyrrelstown Educate Together National School': ['Tyrrelstown ETNS', 'Tyrrelstown ET', 'TETNS'], 'Powerstown Educate Together National School': ['Powerstown ETNS', 'Powerstown ET', 'PETNS'],
+  'Gaelscoil an Chuilinn': ['Gaelscoil Chuilinn', 'GAC'], 'Scoil Oilibhéir National School': ['Scoil Oilibheir NS', 'SONS'],
+  "St Peregrine's GAA": ["St Peregrine's", 'Peregrines', 'SPGAA'], 'Castleknock GAA': ['Castleknock HFC', 'Castleknock H&FC', 'CHFC', 'Castleknock Hurling & Football Club'], "St Brigid's GAA": ["St Brigid's GAA Club", 'SBGAA'],
+  'Erin Go Bragh GAA': ['EGB', 'EGB GAA', 'Erin go Bragh'], 'Westmanstown Gaels': ['WG', 'Westmanstown GAA', 'Garda Westmanstown Gaels'], 'Castleknock Celtic': ['CKC', 'Castleknock Celtic FC', 'Castleknock Celtic AFC'],
+  'Corduff FC': ['Corduff F.C.', 'Corduff Football Club'], 'Coolmine RFC': ['Coolmine Rugby Football Club', 'CRFC'], 'Castleknock Lawn Tennis Club': ['Castleknock LTC', 'CLTC', 'Castleknock Tennis Club'],
+  'Verona FC': ['Verona Football Club', 'Verona F.C.'], "St Mochta's FC": ["St Mochta's Football Club", 'St Mochtas'], 'Tyrrelstown FC': ['Tyrrelstown Football Club'],
+  'Millennium Regional Park': ['Millennium RP', 'Blanchardstown Millennium Park'], 'Tolka Valley Regional Park': ['Tolka Valley RP', 'TVP'], "St Catherine's Park": ['St Catherine Pk'],
+  'River Tolka': ['R. Tolka', 'Tolka R.'], 'River Liffey': ['R. Liffey', 'Liffey R.'], 'Royal Canal': ['RC'], 'Luttrellstown Castle': ['Luttrellstown Castle Resort', 'Luttrellstown Castle Golf & Country Club', 'LTC'],
+  'Coolmine Station': ['Coolmine Stn', 'Coolmine Railway'], 'Castleknock Station': ['Castleknock Stn'], 'Clonsilla Station': ['Clonsilla Stn'], 'Hansfield Station': ['Hansfield Stn'],
+};
+const seedAnswers = seeds.map(sd => ({ key: sd.id, q: sd.q, canonical: sd.canonical, aliases: [...sd.aliases, ...((enrich[sd.id] && enrich[sd.id].aliases) || [])], abbreviations: [...(SEED_ABBR[sd.canonical] || []), ...abbreviationsFor(sd.canonical)] }));
+const bankItems = bankAnswers.map(a => ({ key: a.id, q: a.q, canonical: a.canonical, aliases: a.aliases, abbreviations: [...(SEED_ABBR[a.canonical] || []), ...abbreviationsFor(a.canonical)] }));
+
 // Alias hygiene: within a question an alias may not equal another answer's canonical name or another's alias.
 const owners = {};   // q -> Map(norm -> Set(answerKey))
 const claim = (q, name, key) => { const m = (owners[q] ||= new Map()); const k = norm(name); if (!m.has(k)) m.set(k, new Set()); m.get(k).add(key); };
 seeds.forEach(s => [s.canonical, ...s.aliases].forEach(n => claim(s.q, n, s.id)));
 Object.entries(enrich).forEach(([id, e]) => { const s = seeds.find(x => x.id === id); (e.aliases || []).forEach(n => claim(s.q, n, id)); });
-newAnswers.forEach(a => [a.canonical, ...a.aliases].forEach(n => claim(a.q, n, a.id)));
+bankAnswers.forEach(a => [a.canonical, ...a.aliases].forEach(n => claim(a.q, n, a.id)));
 let dropped = 0;
 const clean = (q, id, canonical, aliases) => aliases.filter(n => {
   const k = norm(n); if (k === norm(canonical)) return false;
   const owner = owners[q].get(k); if (owner.size > 1) { dropped++; return false; } return true;
 }).filter((n, i, arr) => arr.findIndex(x => norm(x) === norm(n)) === i);
-newAnswers.forEach(a => { a.aliases = clean(a.q, a.id, a.canonical, a.aliases); });
+bankAnswers.forEach(a => { a.aliases = clean(a.q, a.id, a.canonical, a.aliases); });
 Object.entries(enrich).forEach(([id, e]) => { if (e.aliases) { const s = seeds.find(x => x.id === id); e.aliases = clean(s.q, id, s.canonical, e.aliases); } });
+
+// Abbreviations: de-duplicated against every real name and against each other (an abbreviation must never be ambiguous)
+const sync = it => { /* aliases may have been cleaned above; keep the item view consistent */ };
+bankItems.forEach(it => { const a = bankAnswers.find(x => x.id === it.key); it.aliases = a.aliases; });
+seedAnswers.forEach(it => { const e = enrich[it.key]; it.aliases = [...seeds.find(x => x.id === it.key).aliases, ...((e && e.aliases) || [])]; });
+resolveCollisions(seedAnswers.concat(bankItems));
+let abbrCount = 0;
+for (const it of bankItems) { const a = bankAnswers.find(x => x.id === it.key); a.abbreviations = it.abbreviations; abbrCount += it.abbreviations.length; }
+for (const it of seedAnswers) { if (!it.abbreviations.length) continue; (enrich[it.key] ||= {}).abbreviations = it.abbreviations; abbrCount += it.abbreviations.length; }
 
 // extra boundary areas introduced by the townland answers (all "extended" ring)
 const areas = {};
-for (const a of newAnswers) if (!D.CENTROIDS[a.area] && !areas[a.area]) areas[a.area] = [a.lat, a.lng];
+for (const a of bankAnswers) if (!D.CENTROIDS[a.area] && !areas[a.area]) areas[a.area] = [a.lat, a.lng];
 
 // sanity: coordinates inside the Dublin 15 box
-for (const a of newAnswers) if (a.lat < D.COVERAGE.bbox.minLat || a.lat > D.COVERAGE.bbox.maxLat || a.lng < D.COVERAGE.bbox.minLng || a.lng > D.COVERAGE.bbox.maxLng) throw new Error(`Outside box: ${a.canonical}`);
+for (const a of bankAnswers) if (a.lat < D.COVERAGE.bbox.minLat || a.lat > D.COVERAGE.bbox.maxLat || a.lng < D.COVERAGE.bbox.minLng || a.lng > D.COVERAGE.bbox.maxLng) throw new Error(`Outside box: ${a.canonical}`);
 
 const bank = {
-  version: 2, generatedAt: GENERATED,
-  attribution: 'Coordinates and names © OpenStreetMap contributors, ODbL 1.0 — https://www.openstreetmap.org/copyright',
-  areas, answers: newAnswers, enrich,
+  version: 3, generatedAt: GENERATED,
+  attribution: 'Coordinates and names \u00A9 OpenStreetMap contributors, ODbL 1.0 \u2014 https://www.openstreetmap.org/copyright',
+  areas, answers: bankAnswers, enrich,
 };
 fs.writeFileSync(path.join(__dirname, '..', 'lib', 'bank.json'), JSON.stringify(bank, null, 1) + '\n');
-const perQ = {}; newAnswers.forEach(a => perQ[a.q] = (perQ[a.q] || 0) + 1);
-console.log(`bank v${bank.version}: ${newAnswers.length} new answers ${JSON.stringify(perQ)}, ${Object.keys(enrich).length} seeds enriched, ${Object.keys(areas).length} new areas, ${dropped} colliding aliases dropped`);
+const perQ = {}; bankAnswers.forEach(a => perQ[a.q] = (perQ[a.q] || 0) + 1);
+console.log(`bank v${bank.version}: ${bankAnswers.length} bank answers ${JSON.stringify(perQ)}, ${Object.keys(enrich).length} seeds enriched, ${abbrCount} abbreviations, ${dropped} colliding aliases dropped, ${extraBuilt.excluded.length} OSM places excluded (outside the boundary or unplaceable)`);

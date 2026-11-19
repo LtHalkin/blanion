@@ -81,3 +81,15 @@ test('syncSeeds upgrades an old store without touching admin-edited answers', ()
   assert.ok(old.answers.find(a => a.canonical === 'Coolmine Community School').coordPrecision === 'osm-point', 'untouched seed enriched');
   assert.equal(syncSeeds(old), null, 'idempotent');
 });
+
+test('v3 bank: new endless categories and abbreviations resolve', () => {
+  const by = {}; for (const a of answers) by[a.q] = (by[a.q] || 0) + 1;
+  for (let q = 8; q <= 16; q++) assert.ok(by[q] >= 3, 'category ' + q + ' has answers');
+  assert.equal(canon(4, 'CKC'), 'Castleknock College');
+  assert.equal(canon(4, 'Coolmine CS'), 'Coolmine Community School');
+  assert.equal(canon(7, 'EGB'), 'Erin Go Bragh GAA');
+  assert.equal(canon(12, 'Kentucky Fried Chicken'), 'KFC');
+  assert.equal(canon(14, 'JCMH'), 'Connolly Hospital');
+  assert.equal(canon(16, 'castleknock rd'), 'Castleknock Road');
+  assert.ok(answers.filter(a => a.abbreviations && a.abbreviations.length).length > 150);
+});
