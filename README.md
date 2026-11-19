@@ -65,10 +65,13 @@ Growing the bank: `NODE_USE_ENV_PROXY=1 node scripts/harvest.js` does a polite (
 
 ## BLANION Racer (`/racer`)
 
-A low-poly 3D time-trial racer in the spirit of PolyTrack (original code and art, nothing copied): arcade car physics, three hand-built circuits (Coral Loop, Tidewater Run, Deep Trench), **random tracks from a numeric code** (share the code; the same code always gives the same circuit), a **ghost car** of your best race, gold/silver/bronze medals, drift with SPACE, minimap, engine sound, keyboard and touch controls.
+A low-poly 3D time-trial racer in the spirit of PolyTrack (original code and art, nothing copied). **Art direction:** clean flat-shaded low-poly only, no photo textures, one soft sun with a subtle shadow that follows the car, a coordinated palette per circuit, and its own menu/HUD identity (aubergine, cream, tangerine, mint and coral, Chakra Petch type).
 
-- `public/racer-core.js` – track maths, 120 Hz fixed-step car physics, lap rules, AI driver. Pure functions, tested in Node (`tests/racer.test.js`): every circuit is validated (no crossings or pinches) and must be finished cleanly by the AI driver; the AI's time sets the medal thresholds.
-- `public/racer3d.js` – the view: the whole circuit is merged into a few vertex-coloured, flat-shaded meshes (fast on phones). `public/racer.js` – game flow, HUD, ghost, records.
+- **Cars (`public/racer-cars.js`):** four race cars lofted from cross-sections so they have real silhouettes: *Apex GT* (GT3 coupe, big wing), *Tourer T* (touring saloon), *Sprint LM* (prototype with dorsal fin and double wing) and *Hot Hatch RS*. Each has splitter, diffuser, racing wheels (tyre, five-spoke rim, caliper), mirrors, headlights and tail lights, five liveries and a racing number you choose. Each also has slightly different handling (speed, acceleration, grip).
+- **Circuits:** Seaside GP (sunny, long straights, palms), Sunset Dunes (hairpin, cacti and mesas), Midnight Lagoon (twisty, hilly, crystals). All have wide roads of a consistent width, road markings, kerbs, barriers, grandstands with crowds, billboards, start gantry and a painted grid. Start/finish is always on a straight. **Random tracks** come from a numeric code (same code, same circuit).
+- **Racing:** 3 laps, WASD (W accelerate, S brake, A/D steer, SPACE drift; arrow keys also work), 120 Hz fixed-step physics, ghost car of your best race, gold/silver/bronze medals, minimap, engine sound, touch controls.
+- `public/racer-core.js` – track maths, car physics, lap rules, AI driver (pure functions, tested in Node: `tests/racer.test.js`). Every circuit is validated and must be finished cleanly by the AI driver with every car; the AI's time sets the medal thresholds.
+- `public/racer3d.js` – the view (merged vertex-coloured meshes, fast on phones). `public/racer.js` – game flow, garage menu, HUD, ghost, records.
 - Best times, ghosts and settings are stored in your browser (`localStorage`); there is no server leaderboard.
 
 ## Endless Dive (unlimited mode for the main game)

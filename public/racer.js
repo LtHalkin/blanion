@@ -9,10 +9,10 @@
   };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
-  const COLORS = ['#ff5d4a', '#ffd54f', '#35e0b0', '#4aa8ff', '#c77dff', '#f4f4f4'];
+  const LIV = [{ n: 'Coral', body: '#ff5470', stripe: '#ffffff' }, { n: 'Mint', body: '#1fe0c4', stripe: '#17142b' }, { n: 'Tangerine', body: '#ff9a3c', stripe: '#17142b' }, { n: 'Indigo', body: '#5b6cff', stripe: '#ffffff' }, { n: 'Cream', body: '#f4efe6', stripe: '#ff5470' }];   // keep in step with LIVERIES in racer-cars.js
 
   let view = null, track = null, race = null, phase = 'menu', paused = false, last = performance.now(), acc = 0, simT = 0;
-  let sel = LS.get('blanion.racer.sel') || 'coral', seed = LS.get('blanion.racer.seed') || 1234, colorIdx = LS.get('blanion.racer.color') || 0;
+  let sel = LS.get('blanion.racer.sel') || 'seaside', seed = LS.get('blanion.racer.seed') || 1234, carIdx = clamp(LS.get('blanion.racer.car') | 0, 0, C.CARS.length - 1), livIdx = clamp(LS.get('blanion.racer.liv') | 0, 0, LIV.length - 1), raceNum = clamp(LS.get('blanion.racer.num') | 0 || 7, 1, 99), tab = 'track';
   let testLaps = 0, auto = null, rec = null, ghost = null, ghostIdx = 0, countT = 0, lastCount = 4, flashT = 0, finishInfo = null;
   const bests = LS.get('blanion.racer.best') || {};
   const medals = {};
@@ -79,36 +79,59 @@
   function medalFor(tr, time) { const k = keyFor(tr); if (!medals[k]) medals[k] = C.medalTimes(tr, tr.laps); const m = medals[k]; return { medal: time <= m.gold ? 'GOLD' : time <= m.silver ? 'SILVER' : time <= m.bronze ? 'BRONZE' : null, m }; }
   const medalIcon = m => ({ GOLD: '🥇', SILVER: '🥈', BRONZE: '🥉' }[m] || '');
 
+  const thumbs = {};
+  function drawThumb(cv, tr) {
+    const g = cv.getContext('2d'), W = cv.width, H = cv.height; g.clearRect(0, 0, W, H);
+    let minX = 1e9, maxX = -1e9, minZ = 1e9, maxZ = -1e9; for (const p of tr.pts) { minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x); minZ = Math.min(minZ, p.z); maxZ = Math.max(maxZ, p.z); }
+    const s = Math.min((W - 14) / (maxX - minX), (H - 14) / (maxZ - minZ)), ox = (W - (maxX - minX) * s) / 2 - minX * s, oz = (H - (maxZ - minZ) * s) / 2 - minZ * s;
+    g.lineJoin = 'round'; g.lineCap = 'round'; g.beginPath(); tr.pts.forEach((p, i) => g[i ? 'lineTo' : 'moveTo'](p.x * s + ox, p.z * s + oz)); g.closePath();
+    g.strokeStyle = '#4a4584'; g.lineWidth = 7; g.stroke(); g.strokeStyle = '#f7f1e5'; g.lineWidth = 3; g.stroke();
+    g.fillStyle = '#ff9a3c'; g.beginPath(); g.arc(tr.pts[0].x * s + ox, tr.pts[0].z * s + oz, 4, 0, 7); g.fill();
+  }
   function renderMenu() {
     const ul = $('trackList'); ul.textContent = '';
-    const items = C.TRACKS.map(d => ({ id: d.id, name: d.name, blurb: d.blurb, level: d.level })).concat([{ id: 'random', name: 'RANDOM TRACK', blurb: 'A new circuit from a code. Share the code with friends.', level: 'RANDOM' }]);
+    const items = C.TRACKS.map(d => ({ id: d.id, name: d.name, blurb: d.blurb, level: d.level, def: d })).concat([{ id: 'random', name: 'Random Track', blurb: 'A brand-new circuit from a code. Share the code with friends.', level: 'RANDOM' }]);
     for (const it of items) {
       const li = document.createElement('li'); li.className = it.id === sel ? 'sel' : ''; li.tabIndex = 0; li.setAttribute('role', 'button');
       const key = it.id === 'random' ? 'r' + seed : it.id, b = bests[key];
-      const n = document.createElement('span'); n.className = 'tn'; n.textContent = it.name;
-      const l = document.createElement('span'); l.className = 'tl'; l.textContent = it.level;
-      const d = document.createElement('span'); d.className = 'tb2'; d.textContent = it.blurb;
-      const bt = document.createElement('span'); bt.className = 'bt'; bt.textContent = b ? 'BEST ' + C.fmt(b.race) + (b.medal ? ' ' + medalIcon(b.medal) : '') + ' · BEST LAP ' + C.fmt(b.lap) : 'NO TIME SET YET';
-      li.append(n, l, d, bt);
+      const cv = document.createElement('canvas'); cv.width = 192; cv.height = 144;
+      let tr = thumbs[key]; if (!tr) tr = thumbs[key] = it.id === 'random' ? C.randomTrack(seed) : C.buildTrack(it.def); drawThumb(cv, tr);
+      const box = document.createElement('div');
+      const n = document.createElement('div'); n.className = 'rc-tn'; n.textContent = it.id === 'random' ? 'Random Track #' + (tr.seed || seed) : it.name; const lv = document.createElement('span'); lv.className = 'rc-tl ' + it.level; lv.textContent = it.level; n.append(lv);
+      const d = document.createElement('div'); d.className = 'rc-td'; d.textContent = it.blurb + ' ' + Math.round(tr.len) + ' m · ' + tr.laps + ' laps';
+      const bt = document.createElement('div'); bt.className = 'rc-tb'; bt.textContent = b ? 'BEST ' + C.fmt(b.race) + (b.medal ? ' ' + medalIcon(b.medal) : '') + ' · LAP ' + C.fmt(b.lap) : 'NO TIME SET YET';
+      box.append(n, d, bt);
       if (it.id === 'random') {
-        const row = document.createElement('div'); row.className = 'rnd'; const inp = document.createElement('input'); inp.type = 'number'; inp.min = 1; inp.max = 99999; inp.value = seed; inp.setAttribute('aria-label', 'Track code');
-        const go = document.createElement('button'); go.className = 'btn small'; go.textContent = 'ROLL'; go.type = 'button';
-        inp.onclick = e => e.stopPropagation(); inp.onchange = () => { seed = clamp(parseInt(inp.value, 10) || 1, 1, 99999); LS.set('blanion.racer.seed', seed); select('random'); };
+        const row = document.createElement('div'); row.className = 'rc-rnd'; const inp = document.createElement('input'); inp.type = 'number'; inp.min = 1; inp.max = 99999; inp.value = seed; inp.setAttribute('aria-label', 'Track code');
+        const go = document.createElement('button'); go.className = 'rc-mini-btn'; go.textContent = 'ROLL'; go.type = 'button';
+        inp.onclick = e => e.stopPropagation(); inp.onkeydown = e => e.stopPropagation(); inp.onchange = () => { seed = clamp(parseInt(inp.value, 10) || 1, 1, 99999); LS.set('blanion.racer.seed', seed); select('random'); };
         go.onclick = e => { e.stopPropagation(); seed = 1 + Math.floor(Math.random() * 99999); LS.set('blanion.racer.seed', seed); select('random'); };
-        row.append(document.createTextNode('CODE '), inp, go); li.append(row);
+        row.append(document.createTextNode('CODE'), inp, go); box.append(row);
       }
+      li.append(cv, box);
       const pick = () => { sfx.click(); select(it.id); }; li.onclick = pick; li.onkeydown = e => { if (e.key === 'Enter') pick(); };
       ul.append(li);
     }
-    const cs = $('colors'); cs.textContent = '';
-    COLORS.forEach((c, i) => { const b = document.createElement('button'); b.className = 'swatch' + (i === colorIdx ? ' sel' : ''); b.style.background = c; b.setAttribute('aria-label', 'Car colour ' + (i + 1)); b.type = 'button'; b.onclick = () => { colorIdx = i; LS.set('blanion.racer.color', i); if (view) view.setCarColor(c); renderMenu(); }; cs.append(b); });
-    const b = bests[sel === 'random' ? 'r' + seed : sel]; $('bestLine').textContent = b ? 'YOUR BEST: ' + C.fmt(b.race) + (b.medal ? ' ' + medalIcon(b.medal) + ' ' + b.medal : '') : 'SET A TIME TO UNLOCK YOUR GHOST';
+    // cars
+    const cl = $('carList'); cl.textContent = '';
+    C.CARS.forEach((c, i) => { const li = document.createElement('li'); li.className = i === carIdx ? 'sel' : ''; li.tabIndex = 0; const b = document.createElement('b'); b.textContent = c.name; const sp = document.createElement('span'); sp.textContent = c.tag; li.append(b, sp); const pick = () => { carIdx = i; LS.set('blanion.racer.car', i); sfx.click(); applyCar(); renderMenu(); }; li.onclick = pick; li.onkeydown = e => { if (e.key === 'Enter') pick(); }; cl.append(li); });
+    const st = $('carStats'); st.textContent = ''; const m = C.CARS[carIdx].mods;
+    for (const [lab, v] of [['SPEED', m.vmax], ['ACCEL', m.acc], ['GRIP', m.alat]]) { const n = clamp(Math.round(3 + (v - 1) * 40), 1, 5); const row = document.createElement('div'); row.className = 'rc-stat'; const l = document.createElement('span'); l.textContent = lab; const bars = document.createElement('div'); bars.className = 'rc-bars'; for (let k = 0; k < 5; k++) { const i = document.createElement('i'); if (k < n) i.className = 'on'; bars.append(i); } row.append(l, bars); st.append(row); }
+    const sw = $('liveries'); sw.textContent = '';
+    LIV.forEach((l, i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'rc-sw' + (i === livIdx ? ' sel' : ''); b.style.background = l.body; b.title = l.n; b.setAttribute('aria-label', 'Livery ' + l.n); const st2 = document.createElement('i'); st2.style.cssText = 'position:absolute;left:0;right:0;top:50%;height:6px;transform:translateY(-50%);background:' + l.stripe; b.append(st2); b.onclick = () => { livIdx = i; LS.set('blanion.racer.liv', i); sfx.click(); applyCar(); renderMenu(); }; sw.append(b); });
+    $('numIn').value = raceNum;
+    const b = bests[sel === 'random' ? 'r' + seed : sel]; $('bestLine').textContent = b ? 'YOUR BEST ' + C.fmt(b.race) + (b.medal ? ' ' + medalIcon(b.medal) + ' ' + b.medal : '') : 'SET A TIME TO UNLOCK YOUR GHOST';
   }
+  function applyCar() { if (view) view.setCar(C.CARS[carIdx].id, livIdx, raceNum); }
+  function setTab(t) { tab = t; $('paneTrack').classList.toggle('hidden', t !== 'track'); $('paneCar').classList.toggle('hidden', t !== 'car'); $('tabTrack').classList.toggle('on', t === 'track'); $('tabCar').classList.toggle('on', t === 'car'); }
+  $('tabTrack').onclick = () => { sfx.click(); setTab('track'); }; $('tabCar').onclick = () => { sfx.click(); setTab('car'); };
+  const setNum = n => { raceNum = clamp(n | 0 || 1, 1, 99); LS.set('blanion.racer.num', raceNum); $('numIn').value = raceNum; applyCar(); };
+  $('numMinus').onclick = () => setNum(raceNum - 1); $('numPlus').onclick = () => setNum(raceNum + 1); $('numIn').onchange = () => setNum(parseInt($('numIn').value, 10)); $('numIn').onkeydown = e => e.stopPropagation();
   function select(id) { sel = id; LS.set('blanion.racer.sel', id); track = trackFor(id); if (view) { view.setTrack(track); view.resetCamera(); } renderMenu(); drawMini(); }
 
   /* ----------------------------------------------------------------- ghost */
   const ghostKey = tr => 'blanion.racer.ghost.' + keyFor(tr);
-  function loadGhost() { const g = LS.get(ghostKey(track)); ghost = g && g.x && g.x.length > 10 ? g : null; ghostIdx = 0; $('hGhostWrap').classList.toggle('hidden', !ghost); }
+  function loadGhost() { const g = LS.get(ghostKey(track)); ghost = g && g.x && g.x.length > 10 ? g : null; ghostIdx = 0; if (ghost && view) view.setGhostCar(ghost.car || 'gt'); $('hGhostWrap').classList.toggle('hidden', !ghost); }
   function ghostPose(t) {
     if (!ghost) return null; const f = t * 30, i = Math.floor(f); if (i >= ghost.x.length - 1) return null;
     const u = f - i, x = (ghost.x[i] + (ghost.x[i + 1] - ghost.x[i]) * u) / 10, z = (ghost.z[i] + (ghost.z[i + 1] - ghost.z[i]) * u) / 10;
@@ -124,13 +147,13 @@
   /* ----------------------------------------------------------------- flow */
   const show = id => { for (const s of ['menu', 'results', 'pause', 'noGL']) $(s).classList.toggle('hidden', s !== id); };
   const hudOn = on => { for (const id of ['hud', 'speedo', 'mini', 'keysHint']) $(id).classList.toggle('hidden', !on); $('touch').classList.toggle('hidden', !(on && matchMedia('(pointer: coarse)').matches)); };
-  function flash(text, cls) { const f = $('flash'); f.textContent = text; f.className = 'r-flash ' + (cls || ''); clearTimeout(flashT); flashT = setTimeout(() => f.classList.add('hidden'), 1800); f.style.animation = 'none'; void f.offsetWidth; f.style.animation = ''; }
+  function flash(text, cls) { const f = $('flash'); f.textContent = text; f.className = 'rc-flash ' + (cls || ''); clearTimeout(flashT); flashT = setTimeout(() => f.classList.add('hidden'), 1800); f.style.animation = 'none'; void f.offsetWidth; f.style.animation = ''; }
 
   function startRace() {
     if (!view) return;
     if (!track || keyFor(track) !== (sel === 'random' ? 'r' + (track.seed || seed) : sel)) track = trackFor(sel);
-    view.setTrack(track); view.resetCamera(); view.setCarColor(COLORS[colorIdx]);
-    race = C.newRace(track, testLaps || track.laps); rec = { x: [], z: [], h: [], p: [] }; loadGhost(); finishInfo = null;
+    view.setTrack(track); view.resetCamera(); applyCar();
+    race = C.newRace(track, testLaps || track.laps, C.CARS[carIdx].mods); rec = { x: [], z: [], h: [], p: [] }; loadGhost(); finishInfo = null;
     phase = 'countdown'; paused = false; countT = 0; lastCount = 4; simT = 0; acc = 0;
     show(null); $('flash').classList.add('hidden'); hudOn(true); drawMini(); engine(true);
     $('hLap').textContent = '1/' + race.laps; $('hTime').textContent = C.fmt(0); $('hBest').textContent = '--'; $('hDelta').textContent = '--'; $('hDelta').style.color = '';
@@ -147,7 +170,7 @@
   $('start').onclick = () => { audio(); sfx.click(); startRace(); };
   $('again').onclick = () => { sfx.click(); startRace(); };
   $('toMenu').onclick = () => toMenu();
-  function toMenu() { phase = 'menu'; paused = false; engine(false); hudOn(false); $('count').classList.add('hidden'); $('flash').classList.add('hidden'); renderMenu(); show('menu'); }
+  function toMenu() { applyCar(); phase = 'menu'; paused = false; engine(false); hudOn(false); $('count').classList.add('hidden'); $('flash').classList.add('hidden'); renderMenu(); show('menu'); }
 
   function finish() {
     phase = 'finish'; engine(false); hudOn(false);
@@ -155,7 +178,7 @@
     const { medal, m } = medalFor(track, total), isBest = !prev || total < prev.race;
     const lapBest = !prev || best < prev.lap;
     bests[k] = { race: isBest ? total : prev.race, lap: lapBest ? best : prev.lap, medal: bestMedal(prev && prev.medal, medal) }; LS.set('blanion.racer.best', bests);
-    if (isBest) { const n = rec.x.length; LS.set(ghostKey(track), { time: total, x: rec.x, z: rec.z, h: rec.h, p: rec.p }); void n; }
+    if (isBest) { const n = rec.x.length; LS.set(ghostKey(track), { time: total, car: C.CARS[carIdx].id, x: rec.x, z: rec.z, h: rec.h, p: rec.p }); void n; }
     finishInfo = { total, medal, isBest, laps: race.lapTimes.slice(), best, m };
     $('rTrack').textContent = track.name.toUpperCase();
     $('rTitle').textContent = isBest ? 'NEW BEST!' : 'FINISHED!';
@@ -177,7 +200,7 @@
 
   /* ----------------------------------------------------------------- minimap */
   function drawMini() {
-    const cv = $('mini'); if (!cv || !track) return; const g = cv.getContext('2d'), W = cv.width; g.clearRect(0, 0, W, W);
+    const cv = $('mini'); if (!cv || !track) return; const g = cv.getContext('2d', { willReadFrequently: true }), W = cv.width; g.clearRect(0, 0, W, W);
     let minX = 1e9, maxX = -1e9, minZ = 1e9, maxZ = -1e9; for (const p of track.pts) { minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x); minZ = Math.min(minZ, p.z); maxZ = Math.max(maxZ, p.z); }
     const s = (W - 20) / Math.max(maxX - minX, maxZ - minZ), ox = (W - (maxX - minX) * s) / 2 - minX * s, oz = (W - (maxZ - minZ) * s) / 2 - minZ * s;
     drawMini.t = { s, ox, oz };
@@ -185,10 +208,10 @@
     g.strokeStyle = '#cfe5ff'; g.lineWidth = 4; g.stroke(); drawMini.base = g.getImageData(0, 0, W, W);
   }
   function drawMiniCar() {
-    const cv = $('mini'), g = cv.getContext('2d'), t = drawMini.t; if (!t || !drawMini.base) return; g.putImageData(drawMini.base, 0, 0);
+    const cv = $('mini'), g = cv.getContext('2d', { willReadFrequently: true }), t = drawMini.t; if (!t || !drawMini.base) return; g.putImageData(drawMini.base, 0, 0);
     const dot = (x, z, col, r) => { g.fillStyle = col; g.beginPath(); g.arc(x * t.s + t.ox, z * t.s + t.oz, r, 0, 7); g.fill(); };
     const gp = ghost && ghostPose(race.time); if (gp) dot(gp.x, gp.z, '#ffffff99', 4);
-    dot(race.car.x, race.car.z, COLORS[colorIdx], 5); const p0 = track.pts[0]; dot(p0.x, p0.z, '#ffd54f', 3);
+    dot(race.car.x, race.car.z, LIV[livIdx].body, 5); const p0 = track.pts[0]; dot(p0.x, p0.z, '#ffd54f', 3);
   }
 
   /* ----------------------------------------------------------------- main loop */
@@ -196,13 +219,13 @@
     requestAnimationFrame(tick);
     const dt = Math.min(0.1, (now - last) / 1000); last = now; simT += dt;
     if (!view) return;
-    if (phase === 'menu' || phase === 'noGL') { view.frame(null, null, dt, 'orbit', simT); return; }
+    if (phase === 'menu' || phase === 'noGL') { view.frame(null, null, dt, 'showcase', simT); return; }
     if (paused) { view.frame(race.car, ghostPose(race.time), 0.0001, 'race', simT); return; }
     const inp = readInput();
     if (phase === 'countdown') {
       countT += dt; const n = 3 - Math.floor(countT);
-      if (n !== lastCount && n >= 1) { lastCount = n; const el = $('count'); el.textContent = n; el.className = 'r-count'; el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; sfx.count(false); }
-      if (countT >= 3) { phase = 'race'; const el = $('count'); el.textContent = 'GO!'; el.className = 'r-count go'; el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; sfx.count(true); setTimeout(() => $('count').classList.add('hidden'), 900); acc = 0; }
+      if (n !== lastCount && n >= 1) { lastCount = n; const el = $('count'); el.textContent = n; el.className = 'rc-count'; el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; sfx.count(false); }
+      if (countT >= 3) { phase = 'race'; const el = $('count'); el.textContent = 'GO!'; el.className = 'rc-count go'; el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; sfx.count(true); setTimeout(() => $('count').classList.add('hidden'), 900); acc = 0; }
       else if (countT < 3 && countT > 0) $('count').classList.remove('hidden');
       view.frame(race.car, ghostPose(0), dt, 'race', simT); engineUpdate(0, inp.thr * 0.6); return;
     }
@@ -227,13 +250,12 @@
 
   /* ----------------------------------------------------------------- boot */
   async function boot() {
-    try { if (window.Mascot) Mascot.mount($('logoMascot'), 3); } catch { /* cosmetic */ }
     renderMenu(); setMuteUI();
     try {
       const mod = await import('/racer3d.js');
       const lowQ = (navigator.hardwareConcurrency || 4) <= 4 && matchMedia('(pointer: coarse)').matches;
       view = mod.createView($('gl'), { reduced, lowQuality: lowQ, maxDpr: lowQ ? 1.5 : 2 });
-      view.setCarColor(COLORS[colorIdx]); select(sel);
+      applyCar(); select(sel); setTab(tab);
     } catch (err) { console.error(err); show('noGL'); return; }
     window.__racer = { get phase() { return phase; }, get race() { return race; }, get track() { return track; }, core: C, start: startRace, setLaps(n) { testLaps = n; }, autopilot(on) { auto = on ? C.bot(track, 1) : null; }, setInput(i) { keys.clear(); if (i.thr) keys.add('w'); if (i.brk) keys.add('s'); if (i.str < 0) keys.add('a'); if (i.str > 0) keys.add('d'); } };
     requestAnimationFrame(t => { last = t; tick(t); });

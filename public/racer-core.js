@@ -19,24 +19,33 @@
 
   /* ----------------------------------------------------------------------------------------------- tracks */
   const TRACKS = [
-    { id: 'coral', name: 'Coral Loop', blurb: 'Wide, flowing and friendly. A good warm-up.', width: 16, laps: 3, level: 'EASY',
-      pts: [[0, -130], [100, -105], [150, -20], [120, 75], [35, 120], [-65, 95], [-135, 30], [-125, -65], [-60, -115]],
-      elev: { amp: 3, waves: [[1, 0], [2, 1.3]] },
-      pal: { sky: ['#3aa0e8', '#9fd8fa', '#e8f7ff'], fog: '#bfe6fb', ground: '#79c98a', ground2: '#5fb877', road: '#6b7686', road2: '#737f90', kerbA: '#ff5d4a', kerbB: '#f7f7f7', wall: '#e8f1f8', tree: '#2f9e62', tree2: '#43b873', trunk: '#8a5a3c', rock: '#9aa7b4' } },
-    { id: 'tidewater', name: 'Tidewater Run', blurb: 'A hairpin, a chicane and a long drag back.', width: 14, laps: 3, level: 'MEDIUM',
-      pts: [[0, 0], [100, -25], [200, -15], [265, 60], [225, 150], [135, 140], [110, 190], [190, 268], [90, 340], [-60, 295], [-80, 190], [-150, 120], [-130, 20], [-65, -20]],
+    { id: 'seaside', name: 'Seaside GP', blurb: 'Long sunlit straights and fast sweepers by the water.', width: 17, laps: 3, level: 'EASY', theme: 'palm',
+      pts: [[-120, 0], [40, 0], [200, 0], [300, 20], [350, 90], [330, 170], [260, 215], [170, 200], [110, 150], [50, 130], [-10, 170], [-30, 240], [-100, 270], [-170, 230], [-180, 150], [-170, 70]],
+      elev: { amp: 2.5, waves: [[1, 0], [2, 1.3]] },
+      pal: { sky: ['#2fa8ff', '#8fdcff', '#eafcff'], fog: '#c4ecff', ground: '#7fd58a', ground2: '#6cc77c', road: '#6f7a8c', road2: '#78838f', kerbA: '#ff5470', kerbB: '#ffffff', wall: '#f6f8fc', wallB: '#ff5470', line: '#ffffff', tree: '#33b36b', tree2: '#4cc97f', trunk: '#b9835a', rock: '#a9b8c8', stand: ['#ff5470', '#ffffff', '#2fa8ff'], cloud: '#ffffff', sun: '#fff1c9' } },
+    { id: 'dunes', name: 'Sunset Dunes', blurb: 'A big hairpin, a drag to the dunes and a flat-out finish.', width: 16, laps: 3, level: 'MEDIUM', theme: 'cactus',
+      pts: [[0, 0], [160, 0], [320, -15], [410, 40], [430, 130], [380, 200], [300, 190], [250, 130], [190, 100], [130, 140], [120, 220], [170, 290], [120, 350], [30, 330], [-30, 260], [-50, 170], [-60, 80]],
       elev: { amp: 5, waves: [[1, 0.6], [3, 2.1]] },
-      pal: { sky: ['#f0884a', '#f7b96d', '#ffe7b8'], fog: '#f6c98c', ground: '#d9b97a', ground2: '#cba76a', road: '#5d6572', road2: '#656e7c', kerbA: '#2b6cff', kerbB: '#ffe27a', wall: '#fff0d0', tree: '#3c8f58', tree2: '#58ad6c', trunk: '#7a4b2b', rock: '#b59a78' } },
-    { id: 'trench', name: 'Deep Trench', blurb: 'Narrow, twisty and hilly. Brake early.', width: 12, laps: 3, level: 'HARD',
+      pal: { sky: ['#ff6f61', '#ffab70', '#ffe6b8'], fog: '#ffc99a', ground: '#f2c27c', ground2: '#e8b36a', road: '#78718e', road2: '#817a98', kerbA: '#1fe0c4', kerbB: '#ffffff', wall: '#fff1dc', wallB: '#1fe0c4', line: '#fff6e6', tree: '#3fae6f', tree2: '#5cc986', trunk: '#8c5a3a', rock: '#d49a5e', stand: ['#1fe0c4', '#fff1dc', '#ff6f61'], cloud: '#ffe9d6', sun: '#fff0b0' } },
+    { id: 'lagoon', name: 'Midnight Lagoon', blurb: 'Tight, twisting and hilly under a violet sky.', width: 15, laps: 3, level: 'HARD', theme: 'crystal',
       pts: [[0, 0], [90, -45], [185, -5], [260, -75], [345, -45], [370, 40], [300, 105], [215, 80], [170, 150], [250, 225], [175, 315], [50, 270], [0, 180], [-95, 195], [-160, 120], [-125, 35], [-75, -25]],
-      elev: { amp: 8, waves: [[2, 0.2], [3, 1.7], [5, 0.9]] },
-      pal: { sky: ['#0b1f4d', '#1c4a8f', '#3f86c7'], fog: '#1c4a8f', ground: '#1f6f6a', ground2: '#195c5a', road: '#4a5462', road2: '#515b6a', kerbA: '#35e0b0', kerbB: '#0f2740', wall: '#7fe7d1', tree: '#14a085', tree2: '#35e0b0', trunk: '#1d3b52', rock: '#4a7d9a' } },
+      elev: { amp: 7, waves: [[2, 0.2], [3, 1.7], [5, 0.9]] },
+      pal: { sky: ['#1b1148', '#4d2c8c', '#c07bdc'], fog: '#5a3496', ground: '#2f9f96', ground2: '#278a84', road: '#6c6896', road2: '#75719f', kerbA: '#ff4f8b', kerbB: '#2ee6c8', wall: '#d9d2ff', wallB: '#ff4f8b', line: '#f0ecff', tree: '#2ee6c8', tree2: '#7dffe3', trunk: '#3b2a63', rock: '#6e5fb0', stand: ['#ff4f8b', '#2ee6c8', '#d9d2ff'], cloud: '#b99be8', sun: '#ffd6f2' } },
   ];
+
+  /** the cars: handling multipliers (visuals live in racer3d.js) */
+  const CARS = [
+    { id: 'gt', name: 'Apex GT', tag: 'GT3 coupe. Fast and balanced.', mods: { vmax: 1.0, acc: 1.0, alat: 1.0 } },
+    { id: 'tourer', name: 'Tourer T', tag: 'Touring saloon. Grippy and stable.', mods: { vmax: 0.96, acc: 1.03, alat: 1.06 } },
+    { id: 'proto', name: 'Sprint LM', tag: 'Prototype. Top speed king.', mods: { vmax: 1.05, acc: 1.03, alat: 0.98 } },
+    { id: 'hatch', name: 'Hot Hatch RS', tag: 'Compact and punchy off the line.', mods: { vmax: 0.93, acc: 1.07, alat: 1.03 } },
+  ];
+  const NOMOD = { vmax: 1, acc: 1, alat: 1 };
 
   /* seeded RNG */
   function rng(seed) { let s = (seed >>> 0) || 1; return () => { s ^= s << 13; s >>>= 0; s ^= s >>> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; }; }
 
-  const PALS = [TRACKS[0].pal, TRACKS[1].pal, TRACKS[2].pal];
+  const PALS = [TRACKS[0].pal, TRACKS[1].pal, TRACKS[2].pal], THEMES = ['palm', 'cactus', 'crystal'];
 
   /** Closed random circuit from a seed. May fail validation; use randomTrack() which retries. */
   function randomDef(seed) {
@@ -48,7 +57,7 @@
       const k = 1 + wob * Math.sin(2 * a + ph[0]) + wob * 0.6 * Math.sin(3 * a + ph[1]) + (r() - 0.5) * 0.18;
       pts.push([Math.cos(a) * base * k * (1 + 0.25 * Math.sin(a + ph[2])), Math.sin(a) * base * k * 0.9]);
     }
-    return { id: 'r' + seed, name: 'Random #' + seed, blurb: 'A fresh circuit from code ' + seed + '.', width: 14, laps: 3, level: 'RANDOM', pts, elev: { amp: 2 + r() * 5, waves: [[1 + Math.floor(r() * 2), r() * TAU], [2 + Math.floor(r() * 3), r() * TAU]] }, pal: PALS[seed % 3], seed };
+    return { id: 'r' + seed, name: 'Random #' + seed, blurb: 'A fresh circuit from code ' + seed + '.', width: 16, laps: 3, level: 'RANDOM', theme: THEMES[seed % 3], pts, elev: { amp: 2 + r() * 5, waves: [[1 + Math.floor(r() * 2), r() * TAU], [2 + Math.floor(r() * 3), r() * TAU]] }, pal: PALS[seed % 3], seed };
   }
 
   /* Closed Catmull-Rom through the control points, resampled every ~2 m with tangent, curvature and height. */
@@ -71,6 +80,11 @@
       const a = dense[j], b = dense[(j + 1) % m], f = (s - cum[j]) / ((cum[j + 1] - cum[j]) || 1);
       pts.push({ x: a[0] + (b[0] - a[0]) * f, z: a[1] + (b[1] - a[1]) * f });
     }
+    // start/finish goes on the straightest stretch (so the grid, line and grandstand sit on a straight)
+    { const ang = pts.map((p, i) => { const a = pts[(i + N - 1) % N], b = pts[(i + 1) % N]; return Math.atan2(b.x - a.x, b.z - a.z); });
+      const W = Math.round(70 / ds); let best = 0, bs = 1e9;
+      for (let i = 0; i < N; i++) { let sum = 0; for (let k = -W; k <= W; k++) { let d = ang[(i + k + N * 4) % N] - ang[(i + k - 1 + N * 4) % N]; while (d > Math.PI) d -= TAU; while (d < -Math.PI) d += TAU; sum += Math.abs(d); } if (sum < bs) { bs = sum; best = i; } }
+      const rot = pts.map((_, i) => pts[(i + best) % N]); for (let i = 0; i < N; i++) pts[i] = rot[i]; }
     for (let i = 0; i < N; i++) {
       const a = pts[(i + N - 1) % N], b = pts[(i + 1) % N], dx = b.x - a.x, dz = b.z - a.z, l = Math.hypot(dx, dz) || 1;
       pts[i].tx = dx / l; pts[i].tz = dz / l;
@@ -130,9 +144,9 @@
   }
 
   /* ----------------------------------------------------------------------------------------------- the car */
-  function newCar(track, lane) {
+  function newCar(track, lane, mods) {
     const p = track.pts[track.N - 5], h = Math.atan2(p.tx, p.tz);
-    return { x: p.x + p.tz * (lane || 0), z: p.z - p.tx * (lane || 0), h, vx: 0, vz: 0, steer: 0, slip: 0, off: false, hit: 0, idx: track.N - 5, y: p.y, lat: 0, speed: 0, vf: 0, drift: 0 };
+    return { x: p.x + p.tz * (lane || 0), z: p.z - p.tx * (lane || 0), h, vx: 0, vz: 0, steer: 0, slip: 0, off: false, hit: 0, idx: track.N - 5, y: p.y, lat: 0, speed: 0, vf: 0, drift: 0, m: mods || NOMOD };
   }
 
   /** advance one fixed step. input: { thr 0..1, brk 0..1, str -1..1 (right +), hb bool } */
@@ -141,10 +155,10 @@
     const fx = Math.sin(c.h), fz = Math.cos(c.h), rx = Math.cos(c.h), rz = -Math.sin(c.h);
     let vf = c.vx * fx + c.vz * fz, vl = c.vx * rx + c.vz * rz;
     const thr = clamp(inp.thr || 0, 0, 1), brk = clamp(inp.brk || 0, 0, 1), str = clamp(inp.str || 0, -1, 1), hb = !!inp.hb;
-    const cap = c.off ? CAR.VMAX * CAR.OFF_CAP : CAR.VMAX;
+    const M = c.m || NOMOD, VMAX = CAR.VMAX * M.vmax, cap = c.off ? VMAX * CAR.OFF_CAP : VMAX;
     // longitudinal
     let a = 0;
-    if (thr > 0) a += thr * CAR.ACC * Math.max(0, 1 - Math.max(0, vf) / cap);
+    if (thr > 0) a += thr * CAR.ACC * M.acc * Math.max(0, 1 - Math.max(0, vf) / cap);
     if (brk > 0) { if (vf > 0.6) a -= brk * CAR.BRAKE; else a -= brk * CAR.ACC * 0.45 * Math.max(0, 1 - Math.max(0, -vf) / CAR.VREV); }
     if (hb) a -= 6 * Math.sign(vf);
     a -= Math.sign(vf) * CAR.ROLL + vf * Math.abs(vf) * CAR.AERO;
@@ -156,7 +170,7 @@
     const grip = (hb ? CAR.GRIP_HB : CAR.GRIP) * (c.off ? 0.7 : 1);
     vl *= Math.exp(-grip * dt);
     // steering: yaw rate limited by what the tyres can take
-    const sp = Math.abs(vf), lim = Math.min(CAR.YAW, CAR.ALAT / Math.max(sp, 1)), ramp = clamp(sp / 5, 0, 1);
+    const sp = Math.abs(vf), lim = Math.min(CAR.YAW, CAR.ALAT * M.alat / Math.max(sp, 1)), ramp = clamp(sp / 5, 0, 1);
     const target = str * lim * ramp * Math.sign(vf || 1) * (hb ? 1.4 : 1);
     c.steer += (target - c.steer) * Math.min(1, dt * 12);
     c.h += c.steer * dt;
@@ -187,8 +201,8 @@
   }
 
   /* ----------------------------------------------------------------------------------------------- a race */
-  function newRace(track, laps) {
-    const car = newCar(track, 0), st = nearest(track, car.x, car.z, -1);
+  function newRace(track, laps, mods) {
+    const car = newCar(track, 0, mods), st = nearest(track, car.x, car.z, -1);
     return { track, laps: laps || track.laps, car, ticks: 0, total: st.s - track.len, last: st.s, lapTimes: [], lapStart: 0, done: false, hits: 0, bestLap: Infinity, time: 0 };
   }
   /** one fixed step of a race; returns events: 'lap' (with time) / 'finish' */
@@ -232,9 +246,9 @@
     while (!r.done && r.ticks < maxT) stepRace(r, drive(r.car));
     return r;
   }
-  const medalTimes = (track, laps) => { const r = simulate(track, laps || track.laps, 1, 600), t = r.done ? r.finishTime : 999; return { gold: t * 1.03, silver: t * 1.14, bronze: t * 1.32, bot: t }; };
+  const medalTimes = (track, laps) => { const r = simulate(track, laps || track.laps, 1, 600), t = r.done ? r.finishTime : 999; return { gold: t * 1.06, silver: t * 1.18, bronze: t * 1.36, bot: t }; };
 
   const fmt = t => { if (!isFinite(t)) return '--:--.---'; const m = Math.floor(t / 60), s = t - m * 60; return String(m).padStart(2, '0') + ':' + (s < 10 ? '0' : '') + s.toFixed(3); };
 
-  return { DT, CAR, TRACKS, buildTrack, randomTrack, randomDef, validate, nearest, newCar, stepCar, newRace, stepRace, started, bot, simulate, medalTimes, fmt, rng };
+  return { DT, CAR, CARS, TRACKS, buildTrack, randomTrack, randomDef, validate, nearest, newCar, stepCar, newRace, stepRace, started, bot, simulate, medalTimes, fmt, rng };
 });
